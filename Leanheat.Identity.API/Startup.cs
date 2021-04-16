@@ -59,7 +59,7 @@ namespace Leanheat.Identity.API
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
 
-            }).AddEntityFrameworkStores<LeanheatIdentityApiContext>();
+            }).AddEntityFrameworkStores<LeanheatIdentityApiContext>().AddDefaultTokenProviders(); // AddDefaultTokenProviders is used for the Update Log In Password etc.
 
 
 
