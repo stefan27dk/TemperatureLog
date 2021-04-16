@@ -32,9 +32,9 @@ namespace Leanheat.Identity.API
         }
 
 
-        //public DbSet<ApplicationUser> FirstName { get; set; }
-        //public DbSet<ApplicationUser> LastName { get; set; }
-        //public DbSet<ApplicationUser> Age { get; set; }
+        public DbSet<ApplicationUser> FirstName { get; set; }
+        public DbSet<ApplicationUser> LastName { get; set; }
+        public DbSet<ApplicationUser> Age { get; set; }
 
 
     }

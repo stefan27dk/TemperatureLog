@@ -4,14 +4,16 @@ using Leanheat.Identity.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Leanheat.Identity.API.Migrations
 {
     [DbContext(typeof(LeanheatIdentityApiContext))]
-    partial class LeanheatIdentityApiContextModelSnapshot : ModelSnapshot
+    [Migration("20210416112646_AddedAgeAndNames")]
+    partial class AddedAgeAndNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -122,56 +122,46 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // Update Email ==================================================================================
-        [HttpPost]
-        [Route("UpdateEmail")]
-        public async Task<IActionResult> UpdateEmail(string email)
-        {
-            // Get Current User
-            var user = await userManager.GetUserAsync(HttpContext.User);
+        //// Update User ==================================================================================
+        //[HttpPost]
+        //[Route("UpdateUser")]
+        //public async Task<IActionResult> UpdateUser(string email)
+        //{
+        //    // Get Current User
+        //    var user = await userManager.GetUserAsync(HttpContext.User);
+
+            
 
 
+            
 
-            // Change Email
-            var result = await userManager.SetEmailAsync(user, email);  
-
-            // If Ok
-            if (result.Succeeded)
-            {
-                return StatusCode(200, "Email Updated Successfully");
-            }
-            else
-            {
-                return new JsonResult(result.Errors);
-            }
-
-        }
+        //}
 
 
 
 
-        // Update Password ==================================================================================
-        [HttpPost]
-        [Route("UpdatePassword")]
-        public async Task<IActionResult> UpdatePassword(string newPassword)
-        {
-            // Get Current User
-            var user = await userManager.GetUserAsync(HttpContext.User);
+        //// Update Password ==================================================================================
+        //[HttpPost]
+        //[Route("UpdatePassword")]
+        //public async Task<IActionResult> UpdatePassword(string newPassword)
+        //{
+        //    // Get Current User
+        //    var user = await userManager.GetUserAsync(HttpContext.User);
 
               
 
-            // Change Password
-            if (!await userManager.CheckPasswordAsync(user, newPassword))
-            {
-                var token = await userManager.GeneratePasswordResetTokenAsync(user);
-                await userManager.ResetPasswordAsync(user, token, newPassword);
-                return StatusCode(200, "Password Updated Successfully");
-            }
-            else // If password is the same as the old
-            {
-                return StatusCode(409, "Please enter different password from the old");
-            }
-        }
+        //    // Change Password
+        //    if (!await userManager.CheckPasswordAsync(user, newPassword))
+        //    {
+        //        var token = await userManager.GeneratePasswordResetTokenAsync(user);
+        //        await userManager.ResetPasswordAsync(user, token, newPassword);
+        //        return StatusCode(200, "Password Updated Successfully");
+        //    }
+        //    else // If password is the same as the old
+        //    {
+        //        return StatusCode(409, "Please enter different password from the old");
+        //    }
+        //}
 
 
 
@@ -193,21 +183,17 @@ namespace Leanheat.Identity.API.Controllers
                 // Delete the User
                 var result = await userManager.DeleteAsync(user);
 
-                // If Success
-                if(result.Succeeded)
+                
+                if(result.Succeeded)// If Success
                 {
                     return StatusCode(200, "User Deleted Successfully");
                 }
-
-                // If Error
-                else
+                else// If Error
                 {
                     return new JsonResult(result.Errors);
                 }
             }
-
-            // If email not same as the users email
-            else
+            else// If email not same as the users email
             {
                 return StatusCode(422, "Please enter your email to confirm deletion of the account");
             }
