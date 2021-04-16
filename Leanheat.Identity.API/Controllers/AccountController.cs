@@ -114,35 +114,102 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // Update LogIn ==================================================================================
+
+
+
+
+
+
+
+
+        // Update Email ==================================================================================
         [HttpPost]
-        [Route("UpdateLogIn")]
-        public async Task<IActionResult> UpdateLogIn(string email, string newPassword)
+        [Route("UpdateEmail")]
+        public async Task<IActionResult> UpdateEmail(string email)
         {
             // Get Current User
             var user = await userManager.GetUserAsync(HttpContext.User);
 
 
+
             // Change Email
-            if (user.Email != email)
+            var result = await userManager.SetEmailAsync(user, email);  
+
+            // If Ok
+            if (result.Succeeded)
             {
-                user.Email = email;
+                return StatusCode(200, "Email Updated Successfully");
+            }
+            else
+            {
+                return new JsonResult(result.Errors);
             }
 
+        }
 
+
+
+
+        // Update Password ==================================================================================
+        [HttpPost]
+        [Route("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword(string newPassword)
+        {
+            // Get Current User
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+              
 
             // Change Password
             if (!await userManager.CheckPasswordAsync(user, newPassword))
             {
                 var token = await userManager.GeneratePasswordResetTokenAsync(user);
                 await userManager.ResetPasswordAsync(user, token, newPassword);
-                return StatusCode(200, "Password Changed Successfully");
+                return StatusCode(200, "Password Updated Successfully");
             }
-
-
             else // If password is the same as the old
             {
                 return StatusCode(409, "Please enter different password from the old");
+            }
+        }
+
+
+
+
+
+
+
+
+        // Delete LogIn ==================================================================================
+        [HttpPost]
+        [Route("DeleteLogIn")]
+        public  async Task<IActionResult> DeleteLogIn(string email)
+        {
+            // Get Current User
+            var user = await userManager.GetUserAsync(HttpContext.User); 
+
+            if(user.Email == email)
+            {
+                // Delete the User
+                var result = await userManager.DeleteAsync(user);
+
+                // If Success
+                if(result.Succeeded)
+                {
+                    return StatusCode(200, "User Deleted Successfully");
+                }
+
+                // If Error
+                else
+                {
+                    return new JsonResult(result.Errors);
+                }
+            }
+
+            // If email not same as the users email
+            else
+            {
+                return StatusCode(422, "Please enter your email to confirm deletion of the account");
             }
         }
 
