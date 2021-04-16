@@ -122,25 +122,38 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        //// Update User ==================================================================================
-        //[HttpPost]
-        //[Route("UpdateUser")]
-        //public async Task<IActionResult> UpdateUser(string email, string firstName, string lastName, int age, string password, int tlf)
-        //{
-        //    // Get Current User
-        //    var user = await userManager.GetUserAsync(HttpContext.User);
+        // Update User ==================================================================================
+        [HttpPost]
+        [Route("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(string email, string firstName, string lastName, int age, string password, string tel)
+        {
+            // Get Current User
+            var user = await userManager.GetUserAsync(HttpContext.User);
 
-        //    user.FirstName = firstName;
-        //    user.LastName = lastName;
-        //    user.Email = email;
-        //    user.Age = age;
-        //    user.PasswordHash =
+            if(firstName!=null) { user.FirstName = firstName; }
+            if (lastName!= null) { user.LastName = lastName; }
+            if (email != null) { user.Email = email; user.UserName = email; user.NormalizedUserName = email.ToUpper(); user.NormalizedEmail = email.ToUpper(); }
+            if (tel != null) { user.PhoneNumber = tel; }
+            if (age != 0) { user.Age = age;}
+            if (password != null)
+            {
+                var passwordHasher = new PasswordHasher<ApplicationUser>();
+                var newHashedPassword = passwordHasher.HashPassword(user, password);
+                user.PasswordHash = newHashedPassword;
+            }
+             
+            var result = await userManager.UpdateAsync(user);
 
 
-
-
-
-        //}
+            if(result.Succeeded)// If OK
+            {
+                return StatusCode(200, "User Data Updated Successfully");
+            }
+            else  // If Error
+            {
+                return new JsonResult(result.Errors);
+            }
+        }
 
 
 
