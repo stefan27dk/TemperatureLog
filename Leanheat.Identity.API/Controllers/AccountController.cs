@@ -1,0 +1,152 @@
+﻿using Leanheat.Identity.API.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Leanheat.Identity.API.Controllers
+{
+    // Acount - Controller - || Class ||
+    [Route("[controller]")]
+    [ApiController]
+    public class AccountController : ControllerBase
+    {
+
+
+        // Managers
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+
+
+
+        // || Constructor || ====================================================================
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        {
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
+
+
+
+
+
+
+        // Register ========================================================================== 
+        [HttpPost]
+        [Route("Register")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(string email, string password, bool rememberMe)
+        {
+            var user = new ApplicationUser { UserName = email, Email = email };  // Create the User
+            var result = await userManager.CreateAsync(user, password);
+
+            // If All Ok
+            if (result.Succeeded)
+            {
+                await signInManager.SignInAsync(user, isPersistent: rememberMe);  // Sign In the User "Session with persistent cookie"
+                return StatusCode(200, "Registration Successfull");
+            }
+
+            // If Erors return errors 
+            //return new JsonResult(result.Errors);
+            return StatusCode(409, result.Errors);
+
+        }
+
+
+
+
+
+
+        // Log In ===================================================================================
+        [HttpPost]
+        [Route("LogIn")]
+        [AllowAnonymous]
+        public async Task<IActionResult> LogIn(string email, string password, bool rememberMe)
+        {
+            var result = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
+
+            if (result.Succeeded) // If Login Ok
+            {
+                //return StatusCode(200);
+                return new JsonResult(result);
+            }
+
+            // If Erors return errors 
+            return StatusCode(401, "Invalid Log In");
+        }
+
+
+
+
+
+
+        // Log Out ==================================================================================
+        [HttpPost]
+        [Route("LogOut")]
+        public async Task<IActionResult> LogOut()
+        {
+            await signInManager.SignOutAsync();
+            return StatusCode(200, "Successfully Logged Out");
+        }
+
+
+
+
+
+
+        // GetUser LogIn ==================================================================================
+        [HttpGet]
+        [Route("GetUser")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetUser()
+        {
+            // Get Current User
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            return new JsonResult(user);
+        }
+
+
+
+
+
+        // Update LogIn ==================================================================================
+        [HttpPost]
+        [Route("UpdateLogIn")]
+        public async Task<IActionResult> UpdateLogIn(string email, string newPassword)
+        {
+            // Get Current User
+            var user = await userManager.GetUserAsync(HttpContext.User);
+
+
+            // Change Email
+            if (user.Email != email)
+            {
+                user.Email = email;
+            }
+
+
+
+            // Change Password
+            if (!await userManager.CheckPasswordAsync(user, newPassword))
+            {
+                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                await userManager.ResetPasswordAsync(user, token, newPassword);
+                return StatusCode(200, "Password Changed Successfully");
+            }
+
+
+            else // If password is the same as the old
+            {
+                return StatusCode(409, "Please enter different password from the old");
+            }
+        }
+
+
+
+    }
+}
