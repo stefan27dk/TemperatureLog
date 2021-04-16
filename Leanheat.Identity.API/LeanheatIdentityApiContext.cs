@@ -11,8 +11,7 @@ namespace Leanheat.Identity.API
     public class LeanheatIdentityApiContext : IdentityDbContext<ApplicationUser>
     {
 
-        public LeanheatIdentityApiContext(DbContextOptions<LeanheatIdentityApiContext> options)
-         : base(options)
+        public LeanheatIdentityApiContext(DbContextOptions<LeanheatIdentityApiContext> options): base(options)
         {
 
         }
@@ -25,17 +24,11 @@ namespace Leanheat.Identity.API
             //builder.Entity<ApplicationUser>().Ignore(c => c.UserName);
             //builder.Entity<ApplicationUser>().Ignore(c => c.NormalizedUserName);
             //builder.Entity<ApplicationUser>().Ignore(c => c.NormalizedEmail);
-     
+
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            // Add your customizations after calling base.OnModelCreating(builder);          
         }
-
-
-        public DbSet<ApplicationUser> FirstName { get; set; }
-        public DbSet<ApplicationUser> LastName { get; set; }
-        public DbSet<ApplicationUser> Age { get; set; }
-
-
+             
     }
 }

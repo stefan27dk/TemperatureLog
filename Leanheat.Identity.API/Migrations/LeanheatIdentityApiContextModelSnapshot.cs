@@ -27,8 +27,8 @@ namespace Leanheat.Identity.API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Age")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

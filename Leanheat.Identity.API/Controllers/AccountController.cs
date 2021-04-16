@@ -125,15 +125,20 @@ namespace Leanheat.Identity.API.Controllers
         //// Update User ==================================================================================
         //[HttpPost]
         //[Route("UpdateUser")]
-        //public async Task<IActionResult> UpdateUser(string email)
+        //public async Task<IActionResult> UpdateUser(string email, string firstName, string lastName, int age, string password, int tlf)
         //{
         //    // Get Current User
         //    var user = await userManager.GetUserAsync(HttpContext.User);
 
-            
+        //    user.FirstName = firstName;
+        //    user.LastName = lastName;
+        //    user.Email = email;
+        //    user.Age = age;
+        //    user.PasswordHash =
 
 
-            
+
+
 
         //}
 
@@ -148,7 +153,7 @@ namespace Leanheat.Identity.API.Controllers
         //    // Get Current User
         //    var user = await userManager.GetUserAsync(HttpContext.User);
 
-              
+
 
         //    // Change Password
         //    if (!await userManager.CheckPasswordAsync(user, newPassword))

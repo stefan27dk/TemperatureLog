@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Leanheat.Identity.API.Migrations
 {
     [DbContext(typeof(LeanheatIdentityApiContext))]
-    [Migration("20210416112646_AddedAgeAndNames")]
-    partial class AddedAgeAndNames
+    [Migration("20210416134111_Initial2")]
+    partial class Initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,8 @@ namespace Leanheat.Identity.API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Age")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
