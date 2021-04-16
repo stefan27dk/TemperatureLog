@@ -15,15 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{92C8A123-80C8-48A2-BFDD-B70198113C98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Identity.API", "Leanheat.Identity.API\Leanheat.Identity.API.csproj", "{92BB4EE8-77A0-4A7A-88B7-F61BC61BE732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Identity.API", "Leanheat.Identity.API\Leanheat.Identity.API.csproj", "{92BB4EE8-77A0-4A7A-88B7-F61BC61BE732}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Common", "Leanheat.Common\Leanheat.Common.csproj", "{8BF6174E-FBBC-4953-A2E0-5CAC22618EFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Common", "Leanheat.Common\Leanheat.Common.csproj", "{8BF6174E-FBBC-4953-A2E0-5CAC22618EFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Blazor.Server", "Leanheat.Blazor\Server\Leanheat.Blazor.Server.csproj", "{92D8C5C6-7C4B-4BD2-B2ED-50FEACAFF704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Blazor.Server", "Leanheat.Blazor\Server\Leanheat.Blazor.Server.csproj", "{92D8C5C6-7C4B-4BD2-B2ED-50FEACAFF704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Blazor.Client", "Leanheat.Blazor\Client\Leanheat.Blazor.Client.csproj", "{AE32BCB7-3B92-41A0-9928-18866A73B3E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Blazor.Client", "Leanheat.Blazor\Client\Leanheat.Blazor.Client.csproj", "{AE32BCB7-3B92-41A0-9928-18866A73B3E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Blazor.Shared", "Leanheat.Blazor\Shared\Leanheat.Blazor.Shared.csproj", "{BC4FCD2D-068A-405C-8710-A3A3CD70F73A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Blazor.Shared", "Leanheat.Blazor\Shared\Leanheat.Blazor.Shared.csproj", "{BC4FCD2D-068A-405C-8710-A3A3CD70F73A}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Leanheat.Python", "Leanheat.Python\Leanheat.Python.pyproj", "{A67608C0-2C7D-4581-A8EC-A0087010CFDA}"
 EndProject

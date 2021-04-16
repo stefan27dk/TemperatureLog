@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Leanheat_Get_Api_Data.py">
+    <Compile Include="Leanheatapidata.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
