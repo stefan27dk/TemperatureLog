@@ -68,22 +68,26 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+
+
+
+
         // Log In ===================================================================================
         [HttpPost]
         [Route("LogIn")]
         [AllowAnonymous]
         public async Task<IActionResult> LogIn(string email, string password, bool rememberMe)
         {
-            var result = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
-
-            if (result.Succeeded) // If Login Ok
+            if(email != null && password !=null)
             {
-                //return StatusCode(200);
-                return new JsonResult(result);
+                var result = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
+                if (result.Succeeded) // If Login Ok
+                {
+                    return new JsonResult(result);
+                }
+                return StatusCode(401, "Invalid Log In");  // If Erors return errors 
             }
-
-            // If Erors return errors 
-            return StatusCode(401, "Invalid Log In");
+            return StatusCode(401, "Email or Password cant be empty");
         }
 
 
@@ -105,7 +109,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // GetUser LogIn ==================================================================================
+        // Get User  ==================================================================================
         [HttpGet]
         [Route("GetUser")]
         [AllowAnonymous]
