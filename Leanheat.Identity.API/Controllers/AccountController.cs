@@ -40,22 +40,27 @@ namespace Leanheat.Identity.API.Controllers
         [HttpPost]
         [Route("Register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(string email, string password, bool rememberMe)
+        public async Task<IActionResult> Register(string firstname, string lastname, string email, string age, string phonenumber, string password, bool rememberMe)
         {
-            var user = new ApplicationUser { UserName = email, Email = email };  // Create the User
-            var result = await userManager.CreateAsync(user, password);
+            //var user = new ApplicationUser { UserName = email, Email = email };  // Create the User
+            var user = new ApplicationUser(); // Create the User
+            var setResult = user.SetUserData(firstname, lastname, email, age, phonenumber, password); ;
 
-            // If All Ok
-            if (result.Succeeded)
+            if(setResult.Succeeded) // If all validated
             {
-                await signInManager.SignInAsync(user, isPersistent: rememberMe);  // Sign In the User "Session with persistent cookie"
-                return StatusCode(200, "Registration Successfull");
+                if (email != null && password != null) 
+                {
+                      var result = await userManager.CreateAsync(user); // Save the  User
+                      if (result.Succeeded)  // If All Ok
+                      {
+                          await signInManager.SignInAsync(user, isPersistent: rememberMe);  // Sign In the User "Session with persistent cookie"
+                          return StatusCode(200, "Registration Successfull");
+                      }
+                      return StatusCode(409, result.Errors);  // Create User Errors
+                }
+                return StatusCode(409, "Email or Password is empty"); // Registration Errors
             }
-
-            // If Erors return errors 
-            //return new JsonResult(result.Errors);
-            return StatusCode(409, result.Errors);
-
+            return StatusCode(409, setResult);  // Validation Errors
         }
 
 
@@ -146,12 +151,12 @@ namespace Leanheat.Identity.API.Controllers
                 }
                 else  // If Update Error
                 {
-                    return new JsonResult(result.Errors);
+                    return StatusCode(409, result.Errors);
                 }
             }
             else // If validation Error
             {
-                return new JsonResult(validationResult);
+                return StatusCode(409, validationResult);
             }
         }
 
