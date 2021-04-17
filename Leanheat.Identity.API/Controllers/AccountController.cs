@@ -126,49 +126,36 @@ namespace Leanheat.Identity.API.Controllers
         // Update User ==================================================================================
         [HttpPost]
         [Route("UpdateUser")]
-        public async Task<IActionResult> UpdateUser(string email, string firstName, string lastName, int age, string password, string tel)
+        public async Task<IActionResult> UpdateUser(string firstName, string lastName, string email, string age, string phonenumber, string password)
         {
             // Get Current User
             var user = await userManager.GetUserAsync(HttpContext.User);
 
-             user.FirstName = firstName;  
-             user.LastName = lastName;  
 
+            // Set User data with validation
+            var validationResult = user.SetUserData(firstName, lastName, email, age,  phonenumber, password);
 
-           
-             user.Email = email;
-             user.UserName = email;
-             user.NormalizedUserName = email.ToUpper();
-             user.NormalizedEmail = email.ToUpper();
-          
-
-
-
-            user.PhoneNumber = tel;  
-            user.Age = age; 
-
-
-          
-            //var passwordHasher = new PasswordHasher<ApplicationUser>();
-            //var newHashedPassword = passwordHasher.HashPassword(user, password);
-            //user.PasswordHash = newHashedPassword;
-           
 
             // Update
-            var result = await userManager.UpdateAsync(user);
-
-
-
-
-
-            if (result.Succeeded)// If OK
+            if(validationResult.Succeeded) // Update if validation passed
             {
-                return StatusCode(200, "User Data Updated Successfully");
+                var result = await userManager.UpdateAsync(user);
+                if (result.Succeeded)// If OK
+                {
+                    return StatusCode(200, "User Data Updated Successfully");
+                }
+                else  // If Update Error
+                {
+                    return new JsonResult(result.Errors);
+                }
             }
-            else  // If Error
+            else // If validation Error
             {
-                return new JsonResult(result.Errors);
+                return new JsonResult(validationResult);
             }
+
+
+            
         }
 
 
