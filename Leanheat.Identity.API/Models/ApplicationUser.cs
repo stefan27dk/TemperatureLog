@@ -33,6 +33,55 @@ namespace Leanheat.Identity.API.Models
 
         public IdentityResult SetUserData(string firstName, string lastName, string email, string age, string phonenumber, string password)
         {
+            
+            
+            // If all empty
+            if(firstName == null && lastName == null && email == null && age == null && phonenumber == null && password == null)
+            {
+                return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Nothing to Update", Description = "All fields are Null - there is nothing to update" } });
+            }
+
+
+
+            // Password
+            if (password != null)
+            {
+                var result = SetPassword(password);
+                if (result != IdentityResult.Success)
+                {
+                    return result;
+                }
+            }
+
+
+
+
+            // Email
+            if (email != null)
+            {
+                var result = SetEmail(email);
+                if (result != IdentityResult.Success)
+                {
+                    return result;
+                }
+            }
+
+
+
+
+            // PhoneNumber
+            if (phonenumber != null)
+            {
+                var result = SetPhoneNumber(phonenumber);
+                if (result != IdentityResult.Success)
+                {
+                    return result;
+                }
+            }
+
+
+
+
             // FirstName
             if (firstName != null) 
             {
@@ -61,34 +110,6 @@ namespace Leanheat.Identity.API.Models
 
 
 
-            // Email
-            if (email != null) 
-            {
-                var result = SetEmail(email);
-                if (result != IdentityResult.Success)
-                {
-                    return result;
-                }
-            }
-
-
-
-
-
-            // PhoneNumber
-            if (phonenumber != null) 
-            {
-                var result = SetPhoneNumber(phonenumber);
-                if (result != IdentityResult.Success)
-                {
-                    return result;
-                }
-            }
-
-
-
-
-
             // Age
             if (age != null) 
             {
@@ -98,19 +119,7 @@ namespace Leanheat.Identity.API.Models
                     return result;
                 }
             }
-
-
-
-
-
-            // Password
-            if (password != null)
-            {
-                var passwordHasher = new PasswordHasher<ApplicationUser>();
-                var newHashedPassword = passwordHasher.HashPassword(this, password);
-                this.PasswordHash = newHashedPassword;
-            }
-
+               
             return IdentityResult.Success;
         }
 
@@ -121,7 +130,7 @@ namespace Leanheat.Identity.API.Models
 
 
 
-        // ==== ::############# [Setter Methods] ############# :: ====================================================================== 
+        // ################# [Setter Methods] ###################################################################################################
 
         // ==== [Set Email] =================================================================================
         public IdentityResult SetEmail(string email)
@@ -135,7 +144,7 @@ namespace Leanheat.Identity.API.Models
                 return IdentityResult.Success;
             }
 
-            return IdentityResult.Failed(new IdentityError[] {new IdentityError { Code = "Err1", Description = "Email is not Valid" }});
+            return IdentityResult.Failed(new IdentityError[] {new IdentityError { Code = "Set Email Error", Description = "Email is not Valid" }});
         }
 
 
@@ -152,7 +161,7 @@ namespace Leanheat.Identity.API.Models
                return IdentityResult.Success;
             }
 
-            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Err2", Description = "Firstname is not Valid - Min 2 Letters and Max 20 letters" } });
+            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Set Firstname Error", Description = "Firstname is not Valid - Min 2 Letters and Max 20 letters" } });
         }
 
 
@@ -170,7 +179,7 @@ namespace Leanheat.Identity.API.Models
                 return IdentityResult.Success;
             }
 
-            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Err3", Description = "Lastname is not Valid - Min 2 Letters and Max 20 letters" } });
+            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Set Lastname Error", Description = "Lastname is not Valid - Min 2 Letters and Max 20 letters" } });
         }
 
 
@@ -188,7 +197,7 @@ namespace Leanheat.Identity.API.Models
                 return IdentityResult.Success;
             }
 
-            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Err5", Description = "Not a valid Age  Min 0 and Max 200" } });
+            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Set Age Error", Description = "Not a valid Age  Min 0 and Max 200" } });
         }
 
 
@@ -206,7 +215,29 @@ namespace Leanheat.Identity.API.Models
                 return IdentityResult.Success;
             }
 
-            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Err4", Description = "Not valid phonenumber - Min / Max 8 digits a" } });
+            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Set Phonenumber Error", Description = "Not valid phonenumber - Min / Max 8 digits" } });
+        }
+
+
+
+
+
+
+        // ==== [Set Password] =================================================================================
+        public IdentityResult SetPassword(string password)
+        {
+            if (PasswordIsValid(password))
+            {
+                // Hash Password
+                var passwordHasher = new PasswordHasher<ApplicationUser>();
+                var newHashedPassword = passwordHasher.HashPassword(this, password);
+             
+                // Set Password
+                this.PasswordHash = newHashedPassword;
+                return IdentityResult.Success;
+            }
+
+            return IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = "Set Password Error", Description = "Not a valid Password - Password must be at least 6 digits, letters or special chars" } });
         }
 
 
@@ -225,7 +256,10 @@ namespace Leanheat.Identity.API.Models
 
 
 
-        // ==== ::############# [Validation Methods] ############# :: ====================================================================
+
+
+
+        // ==== ################### [Validation Methods] ###################################################################################################
 
         // ==== [EMAIL Validation] ============================================================================  
         private bool EmailIsValid(string email)
@@ -245,7 +279,7 @@ namespace Leanheat.Identity.API.Models
         // ==== [FirstName Validation] ============================================================================  
         private bool FirstNameIsValid(string firstname)
         {
-            if (firstname.Length > 1 && firstname.Length <= 20)
+            if (firstname.Length > 1 && firstname.Length <= 20 && Regex.IsMatch(firstname, @"^[a-zA-ZæøåÆØÅ]+$"))
             {
                 return true;
             }
@@ -260,7 +294,7 @@ namespace Leanheat.Identity.API.Models
         // ==== [LastName Validation] ============================================================================  
         private bool LastNameIsValid(string lastname)
         {
-            if (lastname.Length > 0 && lastname.Length <= 20)
+            if (lastname.Length > 0 && lastname.Length <= 20 && Regex.IsMatch(lastname, @"^[a-zA-ZæøåÆØÅ]+$"))
             {
                 return true;
             }
@@ -276,7 +310,7 @@ namespace Leanheat.Identity.API.Models
         private bool AgeIsValid(string age)
         {
             int theAge;
-            if(int.TryParse(age, out theAge) &&  (theAge >= 0 && theAge < 200))
+            if(int.TryParse(age, out theAge) &&  (theAge >= 0 && theAge <= 200))
             {
                 return true;
             }
@@ -292,7 +326,25 @@ namespace Leanheat.Identity.API.Models
         // ==== [PhoneNumber Validation] ============================================================================  
         private bool PhoneNumberIsValid(string phonenumber)
         {
-            if (phonenumber.Length == 7 && int.TryParse(phonenumber, out int output))
+            if (phonenumber.Length == 8 && int.TryParse(phonenumber, out int output))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+        // ==== [Password Validation] ============================================================================  
+        private bool PasswordIsValid(string password)
+        {
+            if (password.Length >= 6)
             {
                 return true;
             }

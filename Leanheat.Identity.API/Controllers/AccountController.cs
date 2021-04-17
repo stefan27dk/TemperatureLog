@@ -153,9 +153,6 @@ namespace Leanheat.Identity.API.Controllers
             {
                 return new JsonResult(validationResult);
             }
-
-
-            
         }
 
 
