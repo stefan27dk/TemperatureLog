@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace Leanheat.Identity.API.Controllers
 {
-    // Acount - Controller - || Class ||
+    
+    // Class ============= || Account - Controller ||==========================================
     [Route("[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
