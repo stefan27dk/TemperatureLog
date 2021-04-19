@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Leanheat.Identity.API
+namespace Leanheat.Identity.API.DBContexts
 {
     public class LeanheatIdentityApiContext : IdentityDbContext<ApplicationUser>
     {
