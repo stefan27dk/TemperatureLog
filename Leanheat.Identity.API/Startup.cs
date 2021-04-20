@@ -1,4 +1,5 @@
 using Leanheat.Identity.API.DBContexts;
+using Leanheat.Identity.API.Filters;
 using Leanheat.Identity.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -46,6 +47,9 @@ namespace Leanheat.Identity.API
             options.UseSqlServer(Configuration.GetConnectionString("IdentityContextConnection")));
 
 
+            // UnitOfWork - Filter
+            services.AddScoped<UnitOfWorkFilter>(); 
+            services.AddControllers(config => { config.Filters.AddService<UnitOfWorkFilter>(); });  // UnitOfWork for all Controllers
 
 
 
@@ -78,7 +82,7 @@ namespace Leanheat.Identity.API
 
             }).AddXmlSerializerFormatters();
 
-            services.AddControllers();
+            //services.AddControllers();
 
 
 
