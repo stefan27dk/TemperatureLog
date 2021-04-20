@@ -1,5 +1,6 @@
 ﻿using Leanheat.Identity.API.DBContexts;
 using Leanheat.Identity.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace Leanheat.Identity.API.Controllers
 
     // Class ============= || Administrator - Controller ||==========================================
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class AdministratorController : ControllerBase
     {

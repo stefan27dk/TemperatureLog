@@ -123,8 +123,8 @@ namespace Leanheat.Identity.API
 
 
             // Log In
+            app.UseAuthentication(); // UseAuthentication SHOULD ALWAYS BE BEFORE Authorization
             app.UseAuthorization();
-            app.UseAuthentication();
 
 
             app.UseEndpoints(endpoints =>
