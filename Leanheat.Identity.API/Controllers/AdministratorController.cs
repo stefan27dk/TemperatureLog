@@ -199,6 +199,31 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+        // ===== Remove Role from User - || Post || =====================================================================
+         [HttpPost]
+         [Route("RemoveUserFromRole")]
+        public async Task<IActionResult> RemoveRoleFromUser(string email, string roleName)
+         {
+            var user = await userManager.FindByEmailAsync(email);  // Get User
+            if (user != null) // If user found
+            {
+                var role = await roleManager.FindByNameAsync(roleName); // Get Role
+                if(role != null) // If role found
+                {
+                    var result = await userManager.RemoveFromRoleAsync(user,roleName); // Remove User from Role
+                    if(result.Succeeded) // If Ok
+                    {
+                        return StatusCode(200, $"User: \"{user.Email}\" was removed from Role: \" {roleName} \" "); // Remove User from Role msg
+                    }
+                    return StatusCode(500, result.Errors); // If Remove User from role error
+                }
+                return StatusCode(404, "No such Role"); // If Role not found msg
+            }
+            return StatusCode(404, "No such User"); // If User not found msg
+         }
+
+
+
 
 
 
