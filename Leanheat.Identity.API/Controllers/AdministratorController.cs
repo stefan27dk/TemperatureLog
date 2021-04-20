@@ -43,6 +43,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+
         // ===== Create Role || POST || =====================================================================
         [HttpPost]
         [Route("CreateRole")]
@@ -61,6 +62,7 @@ namespace Leanheat.Identity.API.Controllers
             }
             return StatusCode(409, "Input was null - Cant create Role without rolename");
         }
+
 
 
 
@@ -95,6 +97,9 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+
+
+
         // ===== Edit Role - || Post || =====================================================================
         [HttpPost]
         [Route("EditRole")]
@@ -118,6 +123,10 @@ namespace Leanheat.Identity.API.Controllers
                 return StatusCode(404, "No such role");
             }
         }
+
+
+
+
 
 
 
@@ -199,6 +208,13 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+
+
+
+
+
+
+
         // ===== Remove Role from User - || Post || =====================================================================
          [HttpPost]
          [Route("RemoveUserFromRole")]
@@ -221,6 +237,10 @@ namespace Leanheat.Identity.API.Controllers
             }
             return StatusCode(404, "No such User"); // If User not found msg
          }
+
+
+
+
 
 
 
@@ -264,6 +284,12 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+
+
+
+
+
+
         // ===== Get ALL Users - || GET || =====================================================================
         [HttpGet]
         [Route("GetAllUsers")]
@@ -289,6 +315,8 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+
+
         // ===== Get User - || GET || =====================================================================
         [HttpGet]
         [Route("GetUser")]
@@ -302,6 +330,9 @@ namespace Leanheat.Identity.API.Controllers
             return StatusCode(404, "No such user"); // Get user
 
         }
+
+
+
 
 
 
