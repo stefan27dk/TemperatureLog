@@ -251,9 +251,9 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // ===== Edit User - In - Role - || Post || =====================================================================
+        // ===== AddUserToRole- || Post || =====================================================================
         [HttpPost]
-        [Route("EditUserInRole")]
+        [Route("AddUserToRole")]
         public async Task<IActionResult> EditUserInRole(string userEmail, string roleName)
         {
             var user = await userManager.FindByEmailAsync(userEmail); // Find user
