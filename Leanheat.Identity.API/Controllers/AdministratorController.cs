@@ -286,7 +286,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
         // ===== Get Users with Roles - || GET || =====================================================================
-        [HttpPost]
+        [HttpGet]
         [Route("GetAllUsersWithRoles")]
         public async Task<IActionResult> GetAllUsersWithRoles()
         {
