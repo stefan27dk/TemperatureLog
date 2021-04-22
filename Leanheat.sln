@@ -33,21 +33,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Predic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Python", "Python", "{13F70F1E-0081-4A75-BBC6-3FF1ADBCE37E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Application", "Leanheat.Temperature.Prediction.API.Application\Leanheat.Temperature.Prediction.API.Application.csproj", "{67A54E8A-A82A-480F-8186-6CB37A201AF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Prediction.API.Application", "Leanheat.Temperature.Prediction.API.Application\Leanheat.Temperature.Prediction.API.Application.csproj", "{67A54E8A-A82A-480F-8186-6CB37A201AF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Domain", "Leanheat.Temperature.Prediction.API.Domain\Leanheat.Temperature.Prediction.API.Domain.csproj", "{F5BAB465-B3D2-46DB-87C4-3D6599A63059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Prediction.API.Domain", "Leanheat.Temperature.Prediction.API.Domain\Leanheat.Temperature.Prediction.API.Domain.csproj", "{F5BAB465-B3D2-46DB-87C4-3D6599A63059}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{DF8AC137-BB67-439C-92F6-C5608E8FAAF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Persistence", "Leanheat.Temperature.Prediction.API.Persistence\Leanheat.Temperature.Prediction.API.Persistence.csproj", "{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Prediction.API.Persistence", "Leanheat.Temperature.Prediction.API.Persistence\Leanheat.Temperature.Prediction.API.Persistence.csproj", "{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Query", "Leanheat.Temperature.Prediction.API.Query\Leanheat.Temperature.Prediction.API.Query.csproj", "{8D18A68E-A397-401B-96E1-B6945703B329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Prediction.API.Query", "Leanheat.Temperature.Prediction.API.Query\Leanheat.Temperature.Prediction.API.Query.csproj", "{8D18A68E-A397-401B-96E1-B6945703B329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Repository", "Leanheat.Temperature.Prediction.API.Repository\Leanheat.Temperature.Prediction.API.Repository.csproj", "{EA863F9A-E447-40FE-9F65-58EFE19AD728}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Prediction.API.Repository", "Leanheat.Temperature.Prediction.API.Repository\Leanheat.Temperature.Prediction.API.Repository.csproj", "{EA863F9A-E447-40FE-9F65-58EFE19AD728}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C23D1DDF-2A3B-4000-BB42-A51260624848}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{6E9EFB97-56E4-4070-B38E-1C2C540F07BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Blazor.Server.Application", "Leanheat.Blazor.Server.Application\Leanheat.Blazor.Server.Application.csproj", "{3D0D0EB5-3481-43BE-B075-6AC4EB99FB7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AB1413F0-5E2B-4666-AE7B-8272C9175329}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{01C32C77-FD2B-4E0F-8034-93ED49B6158D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{26AD865E-87CF-406D-A562-CDE028BA4BF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Blazor.Server.Domain", "Leanheat.Blazor.Server.Domain\Leanheat.Blazor.Server.Domain.csproj", "{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +111,14 @@ Global
 		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D0D0EB5-3481-43BE-B075-6AC4EB99FB7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D0D0EB5-3481-43BE-B075-6AC4EB99FB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D0D0EB5-3481-43BE-B075-6AC4EB99FB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D0D0EB5-3481-43BE-B075-6AC4EB99FB7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,7 +130,7 @@ Global
 		{92C8A123-80C8-48A2-BFDD-B70198113C98} = {8F60A7BF-DA72-4F73-9692-D2FF470D5367}
 		{92BB4EE8-77A0-4A7A-88B7-F61BC61BE732} = {92C8A123-80C8-48A2-BFDD-B70198113C98}
 		{8BF6174E-FBBC-4953-A2E0-5CAC22618EFD} = {2CDACAF3-F9E4-44A6-B6C2-E47CA8B2119A}
-		{92D8C5C6-7C4B-4BD2-B2ED-50FEACAFF704} = {736B9E42-48D1-4316-A89C-41E10B96C391}
+		{92D8C5C6-7C4B-4BD2-B2ED-50FEACAFF704} = {26AD865E-87CF-406D-A562-CDE028BA4BF4}
 		{AE32BCB7-3B92-41A0-9928-18866A73B3E3} = {41664E1D-8283-479D-806B-AA1785AF6001}
 		{BC4FCD2D-068A-405C-8710-A3A3CD70F73A} = {736B9E42-48D1-4316-A89C-41E10B96C391}
 		{A67608C0-2C7D-4581-A8EC-A0087010CFDA} = {13F70F1E-0081-4A75-BBC6-3FF1ADBCE37E}
@@ -127,6 +145,11 @@ Global
 		{EA863F9A-E447-40FE-9F65-58EFE19AD728} = {DF8AC137-BB67-439C-92F6-C5608E8FAAF9}
 		{C23D1DDF-2A3B-4000-BB42-A51260624848} = {101571E9-A5D9-453A-BDA9-9C9C78851090}
 		{6E9EFB97-56E4-4070-B38E-1C2C540F07BC} = {101571E9-A5D9-453A-BDA9-9C9C78851090}
+		{3D0D0EB5-3481-43BE-B075-6AC4EB99FB7B} = {AB1413F0-5E2B-4666-AE7B-8272C9175329}
+		{AB1413F0-5E2B-4666-AE7B-8272C9175329} = {736B9E42-48D1-4316-A89C-41E10B96C391}
+		{01C32C77-FD2B-4E0F-8034-93ED49B6158D} = {736B9E42-48D1-4316-A89C-41E10B96C391}
+		{26AD865E-87CF-406D-A562-CDE028BA4BF4} = {736B9E42-48D1-4316-A89C-41E10B96C391}
+		{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE} = {AB1413F0-5E2B-4666-AE7B-8272C9175329}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8A64823-3E0F-4D0A-A933-E1142CC957D6}
