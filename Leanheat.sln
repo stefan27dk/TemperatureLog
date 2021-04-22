@@ -29,9 +29,21 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Leanheat.Python", "Leanheat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemperaturePrediction", "TemperaturePrediction", "{101571E9-A5D9-453A-BDA9-9C9C78851090}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API", "Leanheat.Temperature.Prediction.API\Leanheat.Temperature.Prediction.API.csproj", "{1A5C6085-397B-4F08-BBC6-25A58AC63672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Temperature.Prediction.API", "Leanheat.Temperature.Prediction.API\Leanheat.Temperature.Prediction.API.csproj", "{1A5C6085-397B-4F08-BBC6-25A58AC63672}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Python", "Python", "{13F70F1E-0081-4A75-BBC6-3FF1ADBCE37E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Application", "Leanheat.Temperature.Prediction.API.Application\Leanheat.Temperature.Prediction.API.Application.csproj", "{67A54E8A-A82A-480F-8186-6CB37A201AF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Domain", "Leanheat.Temperature.Prediction.API.Domain\Leanheat.Temperature.Prediction.API.Domain.csproj", "{F5BAB465-B3D2-46DB-87C4-3D6599A63059}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{DF8AC137-BB67-439C-92F6-C5608E8FAAF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Persistence", "Leanheat.Temperature.Prediction.API.Persistence\Leanheat.Temperature.Prediction.API.Persistence.csproj", "{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Query", "Leanheat.Temperature.Prediction.API.Query\Leanheat.Temperature.Prediction.API.Query.csproj", "{8D18A68E-A397-401B-96E1-B6945703B329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Prediction.API.Repository", "Leanheat.Temperature.Prediction.API.Repository\Leanheat.Temperature.Prediction.API.Repository.csproj", "{EA863F9A-E447-40FE-9F65-58EFE19AD728}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +77,26 @@ Global
 		{1A5C6085-397B-4F08-BBC6-25A58AC63672}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A5C6085-397B-4F08-BBC6-25A58AC63672}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A5C6085-397B-4F08-BBC6-25A58AC63672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A54E8A-A82A-480F-8186-6CB37A201AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A54E8A-A82A-480F-8186-6CB37A201AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A54E8A-A82A-480F-8186-6CB37A201AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A54E8A-A82A-480F-8186-6CB37A201AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5BAB465-B3D2-46DB-87C4-3D6599A63059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5BAB465-B3D2-46DB-87C4-3D6599A63059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5BAB465-B3D2-46DB-87C4-3D6599A63059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5BAB465-B3D2-46DB-87C4-3D6599A63059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D18A68E-A397-401B-96E1-B6945703B329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D18A68E-A397-401B-96E1-B6945703B329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D18A68E-A397-401B-96E1-B6945703B329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D18A68E-A397-401B-96E1-B6945703B329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA863F9A-E447-40FE-9F65-58EFE19AD728}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +115,12 @@ Global
 		{101571E9-A5D9-453A-BDA9-9C9C78851090} = {8F60A7BF-DA72-4F73-9692-D2FF470D5367}
 		{1A5C6085-397B-4F08-BBC6-25A58AC63672} = {101571E9-A5D9-453A-BDA9-9C9C78851090}
 		{13F70F1E-0081-4A75-BBC6-3FF1ADBCE37E} = {8F60A7BF-DA72-4F73-9692-D2FF470D5367}
+		{67A54E8A-A82A-480F-8186-6CB37A201AF2} = {101571E9-A5D9-453A-BDA9-9C9C78851090}
+		{F5BAB465-B3D2-46DB-87C4-3D6599A63059} = {101571E9-A5D9-453A-BDA9-9C9C78851090}
+		{DF8AC137-BB67-439C-92F6-C5608E8FAAF9} = {101571E9-A5D9-453A-BDA9-9C9C78851090}
+		{99CDCD2A-E1FD-493A-BCDC-4A0179BD179E} = {DF8AC137-BB67-439C-92F6-C5608E8FAAF9}
+		{8D18A68E-A397-401B-96E1-B6945703B329} = {DF8AC137-BB67-439C-92F6-C5608E8FAAF9}
+		{EA863F9A-E447-40FE-9F65-58EFE19AD728} = {DF8AC137-BB67-439C-92F6-C5608E8FAAF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8A64823-3E0F-4D0A-A933-E1142CC957D6}
