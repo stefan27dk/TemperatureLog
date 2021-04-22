@@ -19,11 +19,19 @@ namespace Leanheat.Blazor.Server.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+
+        // Constructor -------------------------------------------------
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
+
+
+
+
+
+        // Get-------------------------------------------------
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -36,5 +44,9 @@ namespace Leanheat.Blazor.Server.Controllers
             })
             .ToArray();
         }
+
+
+
+
     }
 }
