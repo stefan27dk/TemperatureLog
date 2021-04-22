@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.Temperature.Predic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C23D1DDF-2A3B-4000-BB42-A51260624848}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6E9EFB97-56E4-4070-B38E-1C2C540F07BC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{6E9EFB97-56E4-4070-B38E-1C2C540F07BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
