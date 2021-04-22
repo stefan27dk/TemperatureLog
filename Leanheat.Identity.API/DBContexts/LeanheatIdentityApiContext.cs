@@ -8,14 +8,23 @@ using System.Threading.Tasks;
 
 namespace Leanheat.Identity.API.DBContexts
 {
+    // Class ============= || DBContext-Identity ||==========================================
     public class LeanheatIdentityApiContext : IdentityDbContext<ApplicationUser>
     {
 
+
+
+
+        // Constructor - Options
         public LeanheatIdentityApiContext(DbContextOptions<LeanheatIdentityApiContext> options): base(options)
         {
 
         }
 
+
+
+
+        // ==== || OnModelCreating || =============================================================================  
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -7,7 +7,15 @@ using System.Threading.Tasks;
 
 namespace Leanheat.Temperature.Prediction.API.Persistence.Context
 {
+    // Class ============= || DBContext-Api ||==========================================
     public class LeanheatTemperaturePredictionApiDBContext : DbContext
     {
+
+
+        // Constructor - Options
+        public LeanheatTemperaturePredictionApiDBContext()
+        {
+
+        }
     }
 }
