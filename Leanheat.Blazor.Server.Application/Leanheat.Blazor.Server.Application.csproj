@@ -6,12 +6,19 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\InfrastructureInterfaces\" />
-    <Folder Include="Services\IdentityServices\ApplicationUserServices\" />
     <Folder Include="Services\IdentityServices\AdministratorServices\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview1.20073.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Leanheat.Blazor\Shared\Leanheat.Blazor.Shared.csproj" />
+    <ProjectReference Include="..\Leanheat.Identity.Models\Leanheat.Identity.Models.csproj" />
   </ItemGroup>
 
 </Project>

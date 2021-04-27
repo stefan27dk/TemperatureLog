@@ -1,4 +1,5 @@
-﻿using Leanheat.Identity.API.Models;
+﻿
+using Leanheat.Identity.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

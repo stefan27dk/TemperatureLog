@@ -4,11 +4,18 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Leanheat.Blazor.Server.Application\Leanheat.Blazor.Server.Application.csproj" />
     <ProjectReference Include="..\Client\Leanheat.Blazor.Client.csproj" />
     <ProjectReference Include="..\Shared\Leanheat.Blazor.Shared.csproj" />
   </ItemGroup>

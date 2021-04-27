@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Leanheat.Identity.API.Models
+namespace Leanheat.Identity.Models
 {
     public class ApplicationUser : IdentityUser
     {
