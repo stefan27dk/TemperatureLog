@@ -1,6 +1,6 @@
 using Leanheat.Identity.API.DBContexts;
 using Leanheat.Identity.API.Filters;
-using Leanheat.Identity.API.Models;
+using Leanheat.Identity.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,9 +22,9 @@ using System.Threading.Tasks;
 namespace Leanheat.Identity.API
 {
 
-    // Startup
     public class Startup
     {
+        // Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -40,6 +40,7 @@ namespace Leanheat.Identity.API
         // Configure Services ================================================================================= 
         public void ConfigureServices(IServiceCollection services)// This method gets called by the runtime. Use this method to add services to the container.
         {
+          
 
 
             // Log in - DbContext
@@ -83,7 +84,6 @@ namespace Leanheat.Identity.API
             }).AddXmlSerializerFormatters();
 
             //services.AddControllers();
-
 
 
 

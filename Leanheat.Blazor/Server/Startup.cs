@@ -1,3 +1,5 @@
+using Leanheat.Blazor.Server.Application.Interfaces;
+using Leanheat.Blazor.Server.Application.Services.IdentityServices.ApplicationUserServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,12 +7,14 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Linq;
 
 namespace Leanheat.Blazor.Server
 {
     public class Startup
     {
+        // Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -18,17 +22,35 @@ namespace Leanheat.Blazor.Server
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
-        {
 
+
+
+
+        // Configure Services ================================================================================= 
+        public void ConfigureServices(IServiceCollection services) // This method gets called by the runtime. Use this method to add services to the container.// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Services
+            services.AddScoped<IApplicationUserService, ApplicationUserService>();
+
+
+
+            // Base Adresses
+            services.AddHttpClient("IdentityAPI", e =>
+            {
+                e.BaseAddress = new Uri("https://localhost:44347/");
+                // Versioning
+                //e.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+
+
+        // Configure ===========================================================================================
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         {
             if (env.IsDevelopment())
             {
@@ -45,7 +67,6 @@ namespace Leanheat.Blazor.Server
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

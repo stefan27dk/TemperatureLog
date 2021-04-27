@@ -1,0 +1,101 @@
+﻿
+
+@using System.Net.Http
+@inject HttpClient Http
+@using Blazor.Shared.ViewModels.AppUserViewModels
+
+
+
+<h3>RegisterComponent</h3>
+
+
+
+<div name="reg" class="inputContainer">
+
+    <EditForm Model="user" OnValidSubmit="Register">
+        <DataAnnotationsValidator />
+
+
+        <div class="form-group">
+            <label for="Email"> Email:</label>
+            <input type="text" maxlength="25" id="Email" @bind-value="user.Email" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.Email)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="Password"> Password:</label>
+            <input type="text" maxlength="40" id="Password" @bind-value="user.Password" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.Password)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="RepeatPassword">Repeat Password:</label>
+            <input type="text" maxlength="40" id="RepeatPassword" @bind-value="user.RepeatPassword" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.RepeatPassword)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="FirstName">FirstName:</label>
+            <input type="text" maxlength="20" id="FirstName" @bind-value="user.FirstName" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.FirstName)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="LastName">LastName:</label>
+            <input type="text" maxlength="20" id="LastName" @bind-value="user.LastName" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.LastName)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="Age">Age:</label>
+            <input type="text" maxlength="3" id="Age" @bind-value="user.Age" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.Age)" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="PhoneNumber">Phonenumber:</label>
+            <input type="text" maxlength="8" id="Phonenumber" @bind-value="user.Phonenumber" class="form-control inputDark" />
+            <ValidationMessage For="@(() => user.Phonenumber)" />
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="RememberMe">Remember Me:</label>
+            <input type="checkbox" id="RememberMe" @bind-value="user.RememberMe" class="form-control inputDark" />
+        </div>
+
+
+        <button type="submit" class="buttonStyle1">Enter</button>
+    </EditForm>
+</div>
+
+
+@code {
+
+    // User
+    AppUserRegisterViewModel user = new AppUserRegisterViewModel();
+
+    // Register
+    private async Task Register()
+    {
+
+        var responce = await Http.PostAsJsonAsync("Account/Register", user);
+        if (responce.StatusCode == System.Net.HttpStatusCode.Created)
+        {
+           
+        }
+    }
+
+}
