@@ -1,12 +1,28 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@using Leanheat.Blazor.Client.Components
+
+<div class="top-row pl-4 navbar navbar-dark topBarMenu" style="background-color: rgba(0, 0, 0, 0);">
     <a class="navbar-brand" href="">Leanheat</a>
+    <div>
+        <a href="">
+            <img src="/img/TopMenu/padlock-open-icon.png" /> Log In
+        </a>
+        <a href=""> <img src="/img/TopMenu/padlock-closed-icon.png" /> Log Out</a>
+        <a href="/Register" ><img src="/img/TopMenu/Register-icon.png" /> Register</a>
+    </div>
+
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
+
+ 
+
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+
     <ul class="nav flex-column">
+        <li style="height: 60px; width: auto;"></li>
+
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
@@ -40,6 +56,8 @@
     </ul>
 </div>
 
+
+
 @code {
     private bool collapseNavMenu = true;
 
@@ -49,4 +67,5 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+ 
 }

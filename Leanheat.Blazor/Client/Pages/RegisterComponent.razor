@@ -1,12 +1,19 @@
-﻿
+﻿@page "/Register"
 
 @using System.Net.Http
 @inject HttpClient Http
 @using Blazor.Shared.ViewModels.AppUserViewModels
+@inject NavigationManager NavigationManager
+@using Leanheat.Blazor.Client.Components
 
 
 
 <h3>RegisterComponent</h3>
+
+@if (this.showIsRegistered)
+{
+    <MessageComponent></MessageComponent>
+}
 
 
 
@@ -82,20 +89,25 @@
 </div>
 
 
+
+
+
+
 @code {
 
     // User
     AppUserRegisterViewModel user = new AppUserRegisterViewModel();
+    private bool showIsRegistered { get; set; }
 
     // Register
     private async Task Register()
     {
 
         var responce = await Http.PostAsJsonAsync("Account/Register", user);
-        if (responce.StatusCode == System.Net.HttpStatusCode.Created)
+        if (responce.IsSuccessStatusCode)
         {
-           
+            NavigationManager.NavigateTo("/Home");
         }
     }
-
+                               
 }

@@ -90,9 +90,9 @@ body {
 
 /*<----------------Input Container-------------------------->*/
 .inputContainer {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
     margin-top: 2%;
     padding: 20px;
     min-width: 250px;
@@ -166,3 +166,40 @@ select.input-validation-error {
 .colorGold {
     color: #ffe668;
 }
+
+
+
+
+
+ 
+
+.topBarMenu {
+    position: fixed;
+    width: 100%;
+    height: 55px;
+    background: linear-gradient(0deg, rgba(87, 137, 244,0.01) 11%, rgba(4, 22, 61,0.9612219887955182) 46%);
+}
+
+
+
+
+    .topBarMenu div a {
+        float: right;
+        margin-left: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        color: rgb(52, 192, 235);
+    }
+
+
+
+        .topBarMenu div a:hover {
+            color: #ffe668;
+        }
+
+
+
+
+    .topBarMenu div img {
+        height: 30px;
+    }

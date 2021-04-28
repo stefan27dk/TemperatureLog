@@ -56,7 +56,7 @@ namespace Leanheat.Identity.API.Controllers
                       if (result.Succeeded)  // If All Ok
                       {
                           await signInManager.SignInAsync(user, isPersistent: rememberMe);  // Sign In the User "Session with persistent cookie"
-                          return StatusCode(201, "Registration Successfull");
+                          return StatusCode(200, "Registration Successfull");
                       }
                       return StatusCode(409, result.Errors);  // Create User Errors
                 }
