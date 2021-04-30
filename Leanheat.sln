@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Blazor.Server.Doma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leanheat.Identity.Models", "Leanheat.Identity.Models\Leanheat.Identity.Models.csproj", "{4EE7BB1B-1C63-4946-8F0C-651F4818FA35}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leanheat.JS.SPA.Client", "Leanheat.JS.SPA.Client\Leanheat.JS.SPA.Client.csproj", "{CF6C13E9-10F4-4337-8B1B-5C03DC9005A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{4EE7BB1B-1C63-4946-8F0C-651F4818FA35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EE7BB1B-1C63-4946-8F0C-651F4818FA35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EE7BB1B-1C63-4946-8F0C-651F4818FA35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF6C13E9-10F4-4337-8B1B-5C03DC9005A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF6C13E9-10F4-4337-8B1B-5C03DC9005A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF6C13E9-10F4-4337-8B1B-5C03DC9005A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF6C13E9-10F4-4337-8B1B-5C03DC9005A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +163,7 @@ Global
 		{26AD865E-87CF-406D-A562-CDE028BA4BF4} = {736B9E42-48D1-4316-A89C-41E10B96C391}
 		{DB801BB2-1A26-42D6-A80F-29FD7A9EEDCE} = {AB1413F0-5E2B-4666-AE7B-8272C9175329}
 		{4EE7BB1B-1C63-4946-8F0C-651F4818FA35} = {92C8A123-80C8-48A2-BFDD-B70198113C98}
+		{CF6C13E9-10F4-4337-8B1B-5C03DC9005A9} = {41664E1D-8283-479D-806B-AA1785AF6001}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8A64823-3E0F-4D0A-A933-E1142CC957D6}
