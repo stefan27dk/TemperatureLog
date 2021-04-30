@@ -12,21 +12,31 @@
 <!--BODY------------------------------------------------------------------------------------------------------> 
 <body class="darkBody">
 
-    <nav class="topBar">
-        <a href="/" style="color: red;"   >Dashbsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssssssssssssssssssssssssssssssssoard</a>
- 
 
-    </nav>
-    <!--Nav - LEFT ------------------------->
-    <nav class="nav">
-        <a href="/" class="nav__link" onclick="" data-link>Dashboard</a>
-        <a href="/posts" class="nav__link" data-link>Posts</a>
-        <a href="/settings" class="nav__link" data-link>Settings</a>
-    </nav>
 
-    <!--APP - Content ------------------------>
-    <div id="app"></div>
+    <div class="wrapper">
 
+        <!--Nav - LEFT ------------------------->
+        <nav class="leftBar">
+            <a href="/" class="leftBar__link" onclick="" data-link>Dashboard</a>
+            <a href="/posts" class="leftBar__link" data-link>Posts</a>
+            <a href="/settings" class="leftBar__link" data-link>Settings</a>
+        </nav>
+
+
+        <div class="wrapper2">
+
+        <div class="topBar">
+            <a href="/" style="color: red;">Dashbsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssssssssssssssssssssssssssssssssoard</a>
+        </div>
+
+        <!--APP - Content ------------------------>
+        <div id="app"></div>
+
+        </div>
+    </div>
+
+  
     <!--SPA - JS - Routing ------------------->
     <script type="module" src="/Static/js/index.js"></script>
 </body>

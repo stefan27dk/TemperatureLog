@@ -8,6 +8,8 @@
 /*-------|| HTML || ---------------------------------------------------*/
 html {
     position:fixed;
+    top:0;
+    left:0;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -27,21 +29,22 @@ body {
    
     font-family: 'Quicksand', sans-serif;
     font-size: 18px;
+  
 }
 
 
 
 /*<----------------Custom - Body------------------------------------------------->*/
 .darkBody {
-    --lefBar-width: 15vw; /* Declare Var for the Left nav "Sidebar"*/
+    --lefBar-width: 200px; /* Declare Var for the Left nav "Sidebar"*/
     --topBar-height: 50px; /* Declare Var for the TopBar*/
+                          
+    width:100%;
+    height:100%;
+   
+     
 
-
-    width: calc(100% - var(--lefBar-width)); /*Removes Scrollbar vertical - because of the side panel*/
-    height: calc(100% - 12px - var(--topBar-height)); /*Removes Scrollbar horizontal - because of the topBar*/
-
-    position: relative;
-    margin: var(--topBar-height) 0 0 var( --lefBar-width);
+    /*margin: var(--topBar-height) 0 0 var( --lefBar-width);*/
     background-color: rgb(40, 37, 44);
     color: sandybrown;
     /*overflow: hidden;*/
@@ -57,10 +60,14 @@ body {
 
 /*-------|| APP - Content || ------------------------------------------*/
 #app {
-    margin: calc(var(--topBar-height) + 12px) 0 0 0; /* Get the TopBar height and add 30px*/
+    /*margin: calc(var(--topBar-height) + 12px) 0 0 0;*/ /* Get the TopBar height and add 30px*/
     /*width: calc(100% - var(--lefBar-width));*/ /*Removes Scrollbar vertical - because of the side panel*/
- 
-    height: calc(100% - 20px); 
+    position: relative;
+    height: inherit;
+    left:0;
+    top: 0;
+    width: 100%;
+    height:100%;
     /*line-height: 1.5;
     font-weight: 500;*/
     background: rgb(174,238,225);
@@ -69,6 +76,7 @@ body {
     /*top: calc(var(--topBar-height));*/
     /*bottom: var(--topBar-height);*/
     padding: 10px;
+    float:left;
 }
 
 
@@ -82,11 +90,21 @@ a {
 
 
 
+.wrapper2
+{
+    display:block;
+    width:100%;
+}
 
 
 
-
-
+.wrapper {
+    /*display: inline-flex;*/
+    display: inline-flex;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+}
 
 
 
@@ -95,15 +113,17 @@ a {
 
 /*=============|| TOP ||============================================*/
 .topBar {
-    position: fixed;
-    z-index:200;
+    position: relative;
+    z-index: 200;
     top: 0;
-    left: var(--nav-width);
-    width: calc(100% - 20px - var(--lefBar-width)); /*Removes Scrollbar horizontal - because of the leftBar and 20px because of the padding*/
-    height: var( --topBar-height);
+    
+    width: 100%;
+    height: var(--topBar-height);
     background: rgb(21,238,255);
     background: linear-gradient(0deg, rgba(21,238,255,0) 0%, rgba(21,238,255,0.22452731092436973) 7%, rgba(21,231,255,0.3477766106442577) 59%, rgba(21,206,255,0.7343312324929971) 100%);
     padding: 12px 10px 0 10px;
+    /*display: inline-block;*/
+    clear:right;
 }
 
 
@@ -113,16 +133,19 @@ a {
 
 /*=============|| LEFT ||============================================*/
 /*-------|| NavBar - Left || ----------------------------------------*/
-.nav {
-    position: fixed;
+.leftBar {
+    position: relative;
+    z-index: 200;
     top: 0;
     left: 0;
-    width: var( --lefBar-width);
+    min-width: 150px;
+    max-width: 200px;
+    width: 15vw;
     height: 100%;
     background: #222222;
 }
 
-.nav__link {
+.leftBar__link {
     display: block;
     padding: 12px 18px;
     text-decoration: none;
@@ -130,7 +153,7 @@ a {
     font-weight: 500;
 }
 
-.nav__link:hover {
+.leftBar__link:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
