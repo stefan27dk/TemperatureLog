@@ -1,9 +1,7 @@
 
 
 
-
-
-
+ 
 /*=============|| MIDDLE ||=============================================================*/
 /*Ex. when Adding padding it holds it only in the element area does not make the elelemnt bigger*/
 * {
@@ -31,7 +29,7 @@ html {
 
 /*--------|| BODY ||-----------------------------------------------------------------------------*/
 body {
-    background-color: lime;
+ 
 }
 
 
@@ -46,9 +44,10 @@ body {
 
 /*-------|| APP - Content || ------------------------------------------*/
 #app {
-    height: calc(100% - 50px);
     width: 100%;
-    background-color: aqua;
+    height: calc(100% - 50px);
+    background: rgb(22,26,54);
+    background: radial-gradient(circle, rgba(22,26,54,1) 0%, rgba(37,32,32,1) 100%);
 }
 
 
@@ -58,10 +57,7 @@ a {
     color: #009579;
 }
 
-
-
-
-
+ 
 
 
 
@@ -82,9 +78,7 @@ a {
 
 
 
-
-
-
+   
 
 
 /*=============|| TOP ||============================================*/
@@ -92,7 +86,8 @@ a {
     height: 50px;
     max-width: 100%;
     overflow: hidden;
-    background-color: sandybrown;
+    background: rgb(44, 58, 57);
+    background: linear-gradient(180deg, rgba(80,80,97,1) 2%, rgba(20,44,57,1) 7%, rgba(70,70,85,1) 11%, rgba(28,31,32,1) 90%);
 }
 
 
@@ -112,10 +107,21 @@ a {
 /*=============|| LEFT ||============================================*/
 /*-------|| SideBar - Left || ----------------------------------------*/
 .left-bar {
-    background-color: red;
     min-width: 50px;
     max-width: 200px;
+    /*    background: rgb(84,84,84);
+    background: linear-gradient(90deg, rgba(84,84,84,1) 0%, rgba(32,31,30,1) 1%, rgba(59,57,59,1) 89%, rgba(30,28,31,1) 94%, rgba(82,80,77,1) 95%);
+*/
+
+
+    background: rgb(93,93,93);
+    background: linear-gradient(90deg, rgba(93,93,93,1) 0%, rgba(32,33,34,1) 1%, rgba(39,43,55,1) 5%, rgba(60,47,60,1) 93%, rgba(30,28,31,1) 96%, rgba(50,55,59,1) 97%);
+    border: 1px solid rgb(75, 75, 87);
+    /*font-family:'Trajan Pro 3';*/
+    font-family: Courier New, Courier, monospace;
+    font-weight: 900;
 }
+
 
 
 
@@ -138,8 +144,8 @@ a {
 
 
 
-#app,
-.top-bar,
+
+#app, .top-bar,
 .left-bar {
     padding: 10px;
 }
@@ -147,11 +153,11 @@ a {
 
 
 
-    .left-bar > h1,
+/*    .left-bar > h1,
     .top-bar > h1 {
         margin: 0px;
     }
-
+*/
 
 
 
