@@ -4,54 +4,40 @@
 
 
 
-/*=============|| MIDDLE ||============================================*/
-/*-------|| HTML || ---------------------------------------------------*/
-html {
-    position:fixed;
-    top:0;
-    left:0;
-    margin: 0;
+/*=============|| MIDDLE ||=============================================================*/
+/*Ex. when Adding padding it holds it only in the element area does not make the elelemnt bigger*/
+* {
+    box-sizing: border-box;
+}
+
+
+/*--------|| HTML - BODY ||--------------------------------------------------------------------*/
+html, body {
     padding: 0;
+    margin: 0;
     width: 100%;
-    height:100%;
-    /* --scrollbarBG: rgb(70, 103, 109);
-    --thumbBG: rgba(81, 74, 85, 0.78); */
+    height: 100%;
+}
+
+
+
+/*-------|| HTML || ----------------------------------------------------------------------------*/
+html {
+    position: fixed;
 }
 
 
 
 
-/*--------BODY--------------------------------------------------------------------*/
+/*--------|| BODY ||-----------------------------------------------------------------------------*/
 body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-   
-    font-family: 'Quicksand', sans-serif;
-    font-size: 18px;
-  
+    background-color: lime;
 }
 
 
 
-/*<----------------Custom - Body------------------------------------------------->*/
-.darkBody {
-    --lefBar-width: 200px; /* Declare Var for the Left nav "Sidebar"*/
-    --topBar-height: 50px; /* Declare Var for the TopBar*/
-                          
-    width:100%;
-    height:100%;
-   
-     
-
-    /*margin: var(--topBar-height) 0 0 var( --lefBar-width);*/
-    background-color: rgb(40, 37, 44);
-    color: sandybrown;
-    /*overflow: hidden;*/
-}
 
 
- 
 
 
 
@@ -60,23 +46,9 @@ body {
 
 /*-------|| APP - Content || ------------------------------------------*/
 #app {
-    /*margin: calc(var(--topBar-height) + 12px) 0 0 0;*/ /* Get the TopBar height and add 30px*/
-    /*width: calc(100% - var(--lefBar-width));*/ /*Removes Scrollbar vertical - because of the side panel*/
-    position: relative;
-    height: inherit;
-    left:0;
-    top: 0;
+    height: calc(100% - 50px);
     width: 100%;
-    height:100%;
-    /*line-height: 1.5;
-    font-weight: 500;*/
-    background: rgb(174,238,225);
-    /*background: radial-gradient(circle, rgba(174,238,225,1) 0%, rgba(39,98,119,1) 100%);
-    float: left;*/
-    /*top: calc(var(--topBar-height));*/
-    /*bottom: var(--topBar-height);*/
-    padding: 10px;
-    float:left;
+    background-color: aqua;
 }
 
 
@@ -90,21 +62,25 @@ a {
 
 
 
-.wrapper2
-{
-    display:block;
-    width:100%;
+
+
+
+/*--------|| Wrappers ||---------------------------------------------------------------------------*/
+.wrapper-1 {
+    height: 100%;
+    display: flex;
 }
 
-
-
-.wrapper {
-    /*display: inline-flex;*/
-    display: inline-flex;
-    max-height: 100%;
-    height: 100%;
+.wrapper-2 {
+    overflow: hidden;
     width: 100%;
 }
+
+
+
+
+
+
 
 
 
@@ -112,40 +88,40 @@ a {
 
 
 /*=============|| TOP ||============================================*/
-.topBar {
-    position: relative;
-    z-index: 200;
-    top: 0;
-    
-    width: 100%;
-    height: var(--topBar-height);
-    background: rgb(21,238,255);
-    background: linear-gradient(0deg, rgba(21,238,255,0) 0%, rgba(21,238,255,0.22452731092436973) 7%, rgba(21,231,255,0.3477766106442577) 59%, rgba(21,206,255,0.7343312324929971) 100%);
-    padding: 12px 10px 0 10px;
-    /*display: inline-block;*/
-    clear:right;
+.top-bar {
+    height: 50px;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: sandybrown;
 }
 
+
+
+
+
+
+
+
+
+ 
 
 
 
 
 
 /*=============|| LEFT ||============================================*/
-/*-------|| NavBar - Left || ----------------------------------------*/
-.leftBar {
-    position: relative;
-    z-index: 200;
-    top: 0;
-    left: 0;
-    min-width: 150px;
+/*-------|| SideBar - Left || ----------------------------------------*/
+.left-bar {
+    background-color: red;
+    min-width: 50px;
     max-width: 200px;
-    width: 15vw;
-    height: 100%;
-    background: #222222;
 }
 
-.leftBar__link {
+
+
+
+
+.left-bar__link {
     display: block;
     padding: 12px 18px;
     text-decoration: none;
@@ -153,9 +129,31 @@ a {
     font-weight: 500;
 }
 
-.leftBar__link:hover {
-    background: rgba(255, 255, 255, 0.05);
+    .left-bar__link:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+
+
+
+
+
+#app,
+.top-bar,
+.left-bar {
+    padding: 10px;
 }
+
+
+
+
+    .left-bar > h1,
+    .top-bar > h1 {
+        margin: 0px;
+    }
+
+
+
 
 
 
