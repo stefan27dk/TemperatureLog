@@ -19,8 +19,8 @@ export default class extends AbstractView {
       async getHtml()
       {
           return `
-                  <h1>DASHBOARD CONTENT -- Welcome back,................</h1> 
-                  <p>Here is the Dahsboard !!!!!!!!!!</p>  
+                            <iframe style="width: 100%; height: 100%;" src="https://iconarchive.com/"></iframe>
+  
                   `;
       }
   
