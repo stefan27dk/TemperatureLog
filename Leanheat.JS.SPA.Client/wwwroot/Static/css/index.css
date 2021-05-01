@@ -55,8 +55,13 @@ body {
 
 a {
     color: #009579;
+    text-decoration: none;
 }
 
+
+    a:hover {
+        color: aqua;
+    }
  
 
 
@@ -92,6 +97,11 @@ a {
 
 
 
+
+.top-bar > a
+{
+    margin: 0 15px 0 15px;
+}
 
 
 
