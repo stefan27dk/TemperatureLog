@@ -24,6 +24,6 @@ async function Post(postData)
     {
 
         // Handle error here
-        console.warn('Post Exception:', err);
+        alert(err);
     });
 }
