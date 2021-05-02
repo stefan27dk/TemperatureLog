@@ -86,14 +86,10 @@ export default class extends AbstractView {
         </div>
              </div>
 
-        <button type="submit" class="blue-dark-button">Enter</button>    
+        <button type="submit" onclick="registerAccount();" class="blue-dark-button">Enter</button>    
            </div>
    </form>
-
-
-
-    <script type="script" src="Static/js/api/components/register.js"></script>
-
+               
           `;
     }
 

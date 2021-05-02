@@ -53,6 +53,8 @@ namespace Leanheat.Identity.API
             services.AddControllers(config => { config.Filters.AddService<UnitOfWorkFilter>(); });  // UnitOfWork for all Controllers
 
 
+            // CORS - Allow calling the API from WebBrowsers
+            services.AddCors();
 
             // Log In
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -87,6 +89,7 @@ namespace Leanheat.Identity.API
 
 
 
+           
 
 
             // Swagger
@@ -116,10 +119,21 @@ namespace Leanheat.Identity.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Leanheat.Identity.API v1"));
             }
 
-           
+
+         
+
             app.UseHsts(); // Allow HTTPS
             app.UseHttpsRedirection();
             app.UseRouting();
+
+
+            // CORS - Allow calling the API from WebBrowsers
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+
 
 
             // Log In

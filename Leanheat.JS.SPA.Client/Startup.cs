@@ -44,7 +44,7 @@ namespace Leanheat.JS.SPA.Client
                 app.UseDeveloperExceptionPage();
             }
 
-
+ 
 
             // SPA
             app.UseDefaultFiles(); // Means search for the index.html or default files in wwwroot
