@@ -17,71 +17,83 @@ export default class extends AbstractView {
     // Get Html ====================================================>
     async getHtml() {
         return `
-                  <div name="reg" class="inputContainer">
 
+      <form id="registerForm">
+       <div name="register" class="inputContainer">
 
+                <h4 class="title">Register</h4>
+                <hr class="hrTitle">
+
+        <diV class="colom">
         <div class="form-group">
-            <label>Email:</label>
-            <input type="text" maxlength="25" id="Email" class="form-control inputDark" />
+            <label for="email">Email:</label>
+            <input name="email" type="text" maxlength="25" id="email" class="form-control inputDark" />
             <label id="emailValidation"></label>
         </div>
 
 
 
         <div class="form-group">
-            <label>Password:</label>
-            <input type="text" maxlength="40" id="Password" class="form-control inputDark" />
+            <label for="password">Password:</label>
+            <input name="password" type="text" maxlength="40" id="password" class="form-control inputDark" />
             <label id="passwordValidation"></label>
         </div>
 
 
 
         <div class="form-group">
-            <label>Repeat Password:</label>
-            <input type="text" maxlength="40" id="RepeatPassword" class="form-control inputDark" />
+            <label for="repeatPassword">Repeat Password:</label>
+            <input type="text" maxlength="40" id="repeatPassword" class="form-control inputDark" />
             <label id="repeatPasswordValidation"></label>
         </div>
 
 
 
         <div class="form-group">
-            <label>FirstName:</label>
-            <input type="text" maxlength="20" id="FirstName" class="form-control inputDark" />
+            <label for="firstname">FirstName:</label>
+            <input name="firstname" type="text" maxlength="20" id="firstname" class="form-control inputDark" />
             <label id="firstNameValidation"></label>
         </div>
 
 
 
         <div class="form-group">
-            <label>LastName:</label>
-            <input type="text" maxlength="20" id="LastName" class="form-control inputDark" />
+            <label for="lastname">LastName:</label>
+            <input name="lastname" type="text" maxlength="20" id="lastname" class="form-control inputDark" />
             <label id="lastNameValidation"></label>
         </div>
 
 
 
         <div class="form-group">
-            <label>Age:</label>
-            <input type="text" maxlength="3" id="Age" class="form-control inputDark" />
+            <label for="age">Age:</label>
+            <input name="age" type="text" maxlength="3" id="age" class="form-control inputDark" />
             <label is="ageValidation"></label>
         </div>
 
 
         <div class="form-group">
-            <label>Phonenumber:</label>
-            <input type="text" maxlength="8" id="Phonenumber" class="form-control inputDark" />
+            <label for="phonenumber">Phonenumber:</label>
+            <input name="phonenumber" type="text" maxlength="8" id="phonenumber" class="form-control inputDark" />
             <label id="phonenumberValidation"></label>
         </div>
 
 
 
         <div class="form-group">
-            <label>Remember Me:</label>
-            <input type="checkbox" id="RememberMe" class="form-control inputDark" />
+            <label for="rememberMe" class="subTitle" >Remember Me:</label>
+            <input name="rememberMe" value="true" type="checkbox" id="rememberMe" class="form-control inputDark" />
         </div>
+             </div>
+
+        <button type="submit" class="blue-dark-button">Enter</button>    
+           </div>
+   </form>
 
 
-        <button type="submit" class="buttonStyle1">Enter</button>    
+
+    <script type="script" src="Static/js/api/components/register.js"></script>
+
           `;
     }
 
