@@ -1,0 +1,95 @@
+﻿
+
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+
+
+
+.form-group {
+    margin-bottom: 1rem
+}
+
+.form-text {
+    display: block;
+    margin-top: .25rem
+}
+
+
+
+
+/*<----------------Input Container-------------------------->*/
+.inputContainer {
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    margin-top: 2%;
+    padding: 20px;
+    min-width: 250px;
+    max-width: 450px;
+    width: 30%;
+    background: linear-gradient(to bottom, rgba(62, 52, 82, 1) 50%, #2c1d2e77 80%);
+    color: rgb(14, 196, 255);
+    border: solid 2px rgb(21, 200, 241);
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: Andale Mono, monospace;
+}
+
+
+
+
+
+
+/*<----------------Button-------------------------->*/
+.buttonStyle1 {
+    border-radius: 4px;
+    /*border: 2px solid rgb(107,107,107);*/
+    border: none;
+    outline: none;
+    width: auto;
+    height: 40px;
+    background: linear-gradient(to bottom, rgb(0, 162, 255) 50%, rgb(0, 162, 255) 80%);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-family: Andale Mono, monospace;
+    font-size: 20px;
+}
+
+
+
+    .buttonStyle1:hover {
+        background: linear-gradient(to bottom, rgb(80,86,105) 50%, #6a809c36 80%);
+        color: rgb(155,255,131);
+    }
+
+
+
+
+    .buttonStyle1:focus {
+        outline: none;
+        box-shadow: 0 0 0 2pt rgb(144, 255, 122);
+    }
+
+
+
+    .buttonStyle1:active {
+        background-color: deepskyblue;
+        color: yellow;
+        outline: none;
+        box-shadow: none;
+    }
