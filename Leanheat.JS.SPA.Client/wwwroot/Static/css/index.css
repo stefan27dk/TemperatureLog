@@ -48,6 +48,7 @@ body {
     height: calc(100% - 50px);
     background: rgb(22,26,54);
     background: radial-gradient(circle, rgba(22,26,54,1) 0%, rgba(37,32,32,1) 100%);
+    overflow-y: auto;
 }
 
 
