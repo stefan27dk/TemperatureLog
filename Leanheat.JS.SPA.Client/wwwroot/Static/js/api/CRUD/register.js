@@ -2,13 +2,12 @@
 
     function registerAccount() {
     
-        const registerForm = document.getElementById('registerForm'); // Get the Form
-        
+         const registerForm = document.getElementById('registerForm'); // Get the Form
+
+       
         registerForm.addEventListener('submit', function (e)
         {
             e.preventDefault(); // Prevent page reload on Submit
-        
-        
         
         
             const formData = new FormData(this); // "this" = this Form
@@ -19,15 +18,18 @@
 
             fetch(identityApiUri+'/Account/Register?'+formQueryString, {
                 method: 'post'
-            }).then(function (responce) {
-        
-                // IF OK
-                if (response.ok) {
-                    console.log("OK!!!!!");
-                    return response.json();
+            }).then(function (response) {
+
+              
+                // IF OK                       
+                if (response.status == 201) { // Status 201 = "Created"
+                    SuccessMsg();
+                    this.registerForm.reset(); // Reset the Form
+                    //return response.json();
                 }
                 else // If Bad STATUS
                 {
+                    alert("BAD!!!");
                     console.log("BAD!!!!!");
                     return Promise.reject(response);
                 }
@@ -41,6 +43,7 @@
             }).catch(function (err) // CATCH
             {
                 // Handle error here
+                alert("Exception!!!!!!!!!!"+err);
                 console.warn('Post Exception:', err);
             });
         

@@ -237,3 +237,33 @@
         outline: none;
         box-shadow: none;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*================== || MESSAGES ||=======================================================================================*/
+
+.sucsess-Message{
+    position: fixed;
+    z-index: 1000;
+    background-color: lime;
+    border-radius: 5px;
+    padding: 10px 20px 10px 20px;
+    left: 50%;
+    transform: translate(-50%);
+}
