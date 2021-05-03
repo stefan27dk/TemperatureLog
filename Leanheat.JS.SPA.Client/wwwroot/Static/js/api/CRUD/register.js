@@ -23,7 +23,7 @@
               
                 // IF OK                       
                 if (response.status == 201) { // Status 201 = "Created"
-                    SuccessMsg();
+                    SuccessMsg("Success");
                     this.registerForm.reset(); // Reset the Form
                     //return response.json();
                 }
