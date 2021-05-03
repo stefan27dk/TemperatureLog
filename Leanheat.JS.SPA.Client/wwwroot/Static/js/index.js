@@ -77,3 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 router(); // Load the content if the url is defined in our "Spa Urls"
 });
+
+//#### Client Routing END #####
+
+
+
+
+
+
+
+
+

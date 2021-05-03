@@ -7,7 +7,7 @@ import AbstractView from "./AbstractView.js";
 export default class extends AbstractView {
 
     // Constructor =================================================>
-    constructor() {
+    constructor() {   
         super(); // The abstract class Constructor "Base constructor"
         this.setTitle("Register");
     }
@@ -86,10 +86,10 @@ export default class extends AbstractView {
         </div>
              </div>
 
-        <button type="submit" onclick="registerAccount();" class="blue-dark-button">Enter</button>    
+        <button type="submit" onkeypress="javascript:registerAccount()" onmousedown="javascript:registerAccount()" class="blue-dark-button">Enter</button>    
            </div>
    </form>
-               
+ 
           `;
     }
 
