@@ -9,7 +9,7 @@ function SuccessMsg(msg) {
    
     // Show div with Msg - Msg in body
     var body = document.getElementsByTagName('body')[0];
-    body.insertAdjacentHTML('afterbegin', `<div id="successMSG" class="base-Message sucsess-Message" style="right:calc(50% - ${leftBarWidth}px);"> <p>${msg}</p> </div>`);
+    body.insertAdjacentHTML('afterbegin', `<div id="successMSG" class="base-Message sucsess-Message" style="right:calc(50% - ${leftBarWidth}px);"> <img style="width: 50px; height: auto;" src="img/Messages/ok-2.png" /> <p> ${msg}</p> </div>`);
 
    
     // Remove div after 3 sec
@@ -31,7 +31,7 @@ function LoadingMsg() {
 
     // Show div with Loading - Msg in body
     var body = document.getElementsByTagName('body')[0];
-    body.insertAdjacentHTML('afterbegin', `<div id="loadingMsg" class="base-Message" style="right:calc(50% - ${leftBarWidth}px);"><img style="width: 50px; height: auto;" src="img/Messages/loading-100.gif" /></div>`);
+    body.insertAdjacentHTML('afterbegin', `<div id="loadingMsg" class="base-Message" style="right:calc(50% - ${leftBarWidth}px);"><img style="width: 100px; height: auto;" src="img/Messages/loading-100.gif" /></div>`);
 
     // Msg is remove if StatusCode = ok or else
 }
