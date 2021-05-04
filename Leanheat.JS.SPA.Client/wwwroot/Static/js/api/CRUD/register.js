@@ -8,6 +8,7 @@
         registerForm.addEventListener('submit', function (e)
         {
             e.preventDefault(); // Prevent page reload on Submit  
+
             LoadingMsg(); // Show Loading Message
         
             const formData = new FormData(this); // "this" = this Form
@@ -32,7 +33,7 @@
                     RemoveLoadingMsg(); // Remove Loading Message
                     alert("BAD!!!");
                     console.log("Register Error - Could not register");
-                    return Promise.reject(response);
+                    Promise.reject(response);
                 }
         
             }).then(function (responceData) // Responce DATA
