@@ -258,12 +258,47 @@
 
 /*================== || MESSAGES ||=======================================================================================*/
 
-.sucsess-Message{
+.base-Message {
+    top: 100px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    justify-content: center;
     position: fixed;
-    z-index: 1000;
-    background-color: lime;
-    border-radius: 5px;
-    padding: 10px 20px 10px 20px;
-    left: 50%;
-    transform: translate(-50%);
+    width: 200px;
+    height: auto;
+    max-width: 200px;
+    max-height: 70px;
+    opacity: 0.97;
+    z-index: 100;    
+}
+
+
+
+.sucsess-Message {
+    filter: drop-shadow(0px 0px 10px rgb(129, 255, 112));
+    background-color: rgb(190, 240, 137);
+    color: blue;
+}
+
+
+ 
+
+
+/*LOADING - MSG -----------------------------------------------------------------------------------------------------------*/
+.loading-Message {
+    animation: loading 0.3s infinite linear;
+    filter: drop-shadow(0px 0px 10px rgb(52, 171, 235));
+    background-color: rgb(190, 240, 137);
+    color: blue;
+}
+
+
+@keyframes loading {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(359deg);
+    }
 }
