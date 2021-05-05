@@ -67,10 +67,12 @@ namespace Leanheat.Identity.API.Filters
             {
                 _dbContext.SaveChangesAsync().Wait(new TimeSpan(0, 0, 10)); // Save and wait max 10 sec for save to complete
                 _transaction.CommitAsync().Wait(new TimeSpan(0, 0, 10)); // Commit
+                _transaction.Dispose();
             }
             else
             {
                 _transaction.RollbackAsync().GetAwaiter().GetResult(); // Rollback
+                _transaction.Dispose();
             }
         }
 
