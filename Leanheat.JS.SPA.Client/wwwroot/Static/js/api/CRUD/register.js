@@ -23,14 +23,12 @@ function registerAccount() {
                 
             }).then(function (response)
                {
-                alert("Before OK!!");
                  // IF OK                       
                    if (response.status == 201) // Status 201 = "Created"
                    {
                      RemoveLoadingMsg();
                      SuccessMsg("Success");
                        this.registerForm.reset(); // Reset the Form    
-                       alert("OK!!");  
                        return;
                    }
                    else // If Bad STATUS
@@ -43,9 +41,9 @@ function registerAccount() {
                   {
                   RemoveLoadingMsg();
                   // Handle error here
-                  alert("Exception!!!!!!!!!!" + err);
                   console.warn('Post Exception:', err);
-                  });
+               });
+
         this.removeEventListener('submit', handler); // Remove Event Listener 
     });
 
