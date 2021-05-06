@@ -50,3 +50,17 @@ function RemoveLoadingMsg() {
 
 
  // =============== || Error Message || ====================================================================
+function ErrorMsg(msg) {
+
+    var leftBar = document.getElementById('left-bar');
+    var leftBarWidth = leftBar.offsetWidth + 25;
+
+
+    // Show div with Err Msg - Msg in body
+    var body = document.getElementsByTagName('body')[0];
+    body.insertAdjacentHTML('afterbegin', `<div id="errorMSG" class="base-Message error-Message" style="right:calc(50% - ${leftBarWidth}px);"> <img style="width: 50px; height: auto;" src="img/Messages/error.png" /> <p> ${msg}</p> </div>`);
+
+
+    // Remove div after 3 sec
+    setTimeout(function () { document.getElementById("errorMSG").remove(); }, 3000);
+}

@@ -22,7 +22,7 @@ function registerAccount(formID, postUrl) {
 
 
         // POST ----------------------------------------------------------------------------------
-        fetch(identityApiUri + postUrl + formQueryString,     // #1 = API-Address, #2 = API - Controller/Mehod, #3 = form data as sring
+        fetch(identityApiUri + postUrl + formQueryString,  // #1 = API-Address, #2 = API - Controller/Mehod, #3 = form data as sring
             {    
                 method: 'POST' 
                 
@@ -32,22 +32,31 @@ function registerAccount(formID, postUrl) {
                    if (response.status == 201) // Status 201 = "Created"
                    {
                       RemoveLoadingMsg();
-                      SuccessMsg("Success");
+                       SuccessMsg("Success");
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
                      return;
                    }
                    else // If Bad STATUS
                    {
-                       submitBtn.disabled = false; // Enable Submit button
-                       console.log("Register Error - Could not register");
-                       return Promise.reject(response);  // Triggers Catch method
+                       //RemoveLoadingMsg();
+                       //ErrorMsg(response.json().);
+                       //submitBtn.disabled = false; // Enable Submit button
+                       //console.log("Register Error - Could not register");
+                     return Promise.reject(response);  // Triggers Catch method
                    }
                 
                }).catch(function (err) // CATCH
-                  {
-                  RemoveLoadingMsg();
-                  // Handle error here
+               {
+                   err.text().then(errorMessage => {
+                       var jsonErrString = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
+                       var obj = JSON.parse(jsonErrString); // Make the msg JSON
+                       ErrorMsg(obj["description"]); // Get the error and display
+                   });
+
+                   submitBtn.disabled = false; // Enable Submit button
+                   RemoveLoadingMsg();
+                   //ErrorMsg(err);
                   console.warn('Post Exception:', err);
                });
                     
