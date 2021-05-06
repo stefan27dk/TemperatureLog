@@ -51,7 +51,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="firstname">FirstName:</label>
-            <input name="firstname" type="text" onkeypress="LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
+            <input name="firstname" type="text" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
             <label id="firstNameValidation"></label>
         </div>
 
@@ -59,7 +59,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="lastname">LastName:</label>
-            <input name="lastname" type="text" onkeypress="LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
+            <input name="lastname" type="text" onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
             <label id="lastNameValidation"></label>
         </div>
 
