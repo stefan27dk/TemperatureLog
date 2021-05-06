@@ -270,7 +270,10 @@
     max-width: 200px;
     max-height: 70px;
     opacity: 0.97;
-    z-index: 100;    
+    z-index: 100;
+    font-weight: bold;
+    font-family: Andale Mono, monospace;
+    text-shadow: black 1px 0 10px;
 }
 
 
@@ -286,7 +289,7 @@
 
 .error-Message {
     filter: drop-shadow(0px 0px 10px rgb(255, 56, 96));
-    /*background-color: rgb(190, 240, 137);*/
+    /*background-color: rgb(82, 51, 51, 0.5);*/
     color: red;
 }
 

@@ -9,7 +9,7 @@ function registerAccount(formID, postUrl) {
      // Listen for Form- Submit 
     currForm.addEventListener('submit', function handler(e) {
         e.preventDefault(); // Prevent page reload on Submit  
-        submitBtn.disabled = true; // Disable the button
+        submitBtn.disabled = true; // Disable the submit button
 
         LoadingMsg(); // Show Loading Message
 
@@ -28,10 +28,10 @@ function registerAccount(formID, postUrl) {
                 
             }).then(function (response)
                {
-                 // IF OK                       
+                    // IF OK                       
                    if (response.status == 201) // Status 201 = "Created"
                    {
-                      RemoveLoadingMsg();
+                       RemoveLoadingMsg();
                        SuccessMsg("Success");
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
@@ -39,25 +39,27 @@ function registerAccount(formID, postUrl) {
                    }
                    else // If Bad STATUS
                    {
-                       //RemoveLoadingMsg();
-                       //ErrorMsg(response.json().);
-                       //submitBtn.disabled = false; // Enable Submit button
-                       //console.log("Register Error - Could not register");
                      return Promise.reject(response);  // Triggers Catch method
                    }
                 
-               }).catch(function (err) // CATCH
+               }).catch(function (err) // If Exception
                {
+                   RemoveLoadingMsg(); 
+                   // Show Error
                    err.text().then(errorMessage => {
-                       var jsonErrString = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
-                       var obj = JSON.parse(jsonErrString); // Make the msg JSON
-                       ErrorMsg(obj["description"]); // Get the error and display
+                       try // Because of JSON Parse
+                       {
+                           var jsonErrString = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
+                           var obj = JSON.parse(jsonErrString); // Make the msg JSON
+                           ErrorMsg(obj["description"]); // Get the error and display
+                       }
+                       catch (e)
+                       {
+                           ErrorMsg(""); // Get the error and display
+                       }
                    });
-
                    submitBtn.disabled = false; // Enable Submit button
-                   RemoveLoadingMsg();
-                   //ErrorMsg(err);
-                  console.warn('Post Exception:', err);
+                   console.warn('Post Exception:', err);
                });
                     
         this.removeEventListener('submit', handler); // Remove Event Listener 
