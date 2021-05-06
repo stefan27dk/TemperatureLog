@@ -46,18 +46,19 @@ function registerAccount(formID, postUrl) {
                {
                    RemoveLoadingMsg(); 
                    // Show Error
-                   err.text().then(errorMessage => {
-                       try // Because of JSON Parse
+                       try // Because of JSON Parse and err.text()
                        {
-                           var jsonErrString = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
-                           var obj = JSON.parse(jsonErrString); // Make the msg JSON
-                           ErrorMsg(obj["description"]); // Get the error and display
+                          err.text().then(errorMessage => {
+                               var error = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
+                               ErrorMsg(error); // Get the error and display
+                          });
                        }
-                       catch (e)
+                       catch(e)
                        {
-                           ErrorMsg(""); // Get the error and display
+                           console.warn("Post Exception -  Probably No connection to hte server");
+                           ErrorMsg(err + " - Server is probably offline"); // Get the error and display
                        }
-                   });
+
                    submitBtn.disabled = false; // Enable Submit button
                    console.warn('Post Exception:', err);
                });

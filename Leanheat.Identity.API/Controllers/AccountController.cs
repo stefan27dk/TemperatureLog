@@ -56,13 +56,13 @@ namespace Leanheat.Identity.API.Controllers
                       if (result.Succeeded)  // If All Ok
                       {
                           await signInManager.SignInAsync(user, isPersistent: rememberMe);  // Sign In the User "Session with persistent cookie"
-                          return StatusCode(201, "Registration Successfull");
+                          return StatusCode(201, "[\n \"Registration Successfull\" \n]");
                       }
-                      return StatusCode(409, result.Errors);  // Create User - Errors
+                      return StatusCode(409, result.Errors.Select(e => e.Description));  // Create User - Errors
                 }
-                return StatusCode(409, "Email or Password is empty"); // Registration Errors
+                return StatusCode(409, "[\n \"Email or Password is empty\" \n]"); // Registration Errors
             }
-            return StatusCode(409, setResult);  // Validation Errors
+            return StatusCode(409, setResult.Errors.Select(e => e.Description));  // Validation Errors
         }
 
 
@@ -87,13 +87,13 @@ namespace Leanheat.Identity.API.Controllers
                 {
                     return new JsonResult(result);
                 }
-                return StatusCode(401, "Invalid Log In");  // If Erors return errors 
+                return StatusCode(401, "[\n \"Invalid Log In\" \n]");  // If Erors return errors 
             }
-            return StatusCode(401, "Email or Password cant be empty");
+            return StatusCode(401, "[\n \"Email or Password cant be empty\" \n]");
         }
 
 
-
+       
 
 
 
@@ -103,7 +103,7 @@ namespace Leanheat.Identity.API.Controllers
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
-            return StatusCode(200, "Successfully Logged Out");
+            return StatusCode(200, "[\n \"Successfully Logged Out\" \n]");
         }
 
 
@@ -153,16 +153,16 @@ namespace Leanheat.Identity.API.Controllers
                 var result = await userManager.UpdateAsync(user);
                 if (result.Succeeded)// If OK
                 {
-                    return StatusCode(200, "User Data Updated Successfully");
+                    return StatusCode(200, "[\n \"User Data Updated Successfully\" \n]");
                 }
                 else  // If Update Error
                 {
-                    return StatusCode(409, result.Errors);
+                    return StatusCode(409, result.Errors.Select(e => e.Description));
                 }
             }
             else // If validation Error
             {
-                return StatusCode(409, validationResult);
+                return StatusCode(409, validationResult.Errors.Select(e => e.Description));
             }
         }
 
@@ -297,16 +297,16 @@ namespace Leanheat.Identity.API.Controllers
                 
                 if(result.Succeeded)// If Success
                 {
-                    return StatusCode(200, "User Deleted Successfully");
+                    return StatusCode(200, "[\n \"User Deleted Successfully\" \n]");
                 }
                 else// If Error
                 {
-                    return new JsonResult(result.Errors);
+                    return new JsonResult(result.Errors.Select(e => e.Description));
                 }
             }
             else// If email not same as the users email
             {
-                return StatusCode(422, "Please enter your email to confirm deletion of the account");
+                return StatusCode(422, "[\n \"Please enter your email to confirm deletion of the account\" \n]");
             }
         }
 

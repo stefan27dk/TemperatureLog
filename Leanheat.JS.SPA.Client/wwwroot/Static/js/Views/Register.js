@@ -35,7 +35,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="password">Password:</label>
-            <input name="password" type="text" maxlength="40" id="password" class="form-control inputDark" />
+            <input name="password" type="text" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />
             <label id="passwordValidation"></label>
         </div>
 
@@ -51,7 +51,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="firstname">FirstName:</label>
-            <input name="firstname" type="text" maxlength="20" id="firstname" class="form-control inputDark" />
+            <input name="firstname" type="text" onkeypress="LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
             <label id="firstNameValidation"></label>
         </div>
 
@@ -59,7 +59,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="lastname">LastName:</label>
-            <input name="lastname" type="text" maxlength="20" id="lastname" class="form-control inputDark" />
+            <input name="lastname" type="text" onkeypress="LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
             <label id="lastNameValidation"></label>
         </div>
 
@@ -67,14 +67,14 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="age">Age:</label>
-            <input name="age" type="text" maxlength="3" id="age" class="form-control inputDark" />
+            <input name="age" type="text" onkeypress="return NumValidate(event)" maxlength="3" id="age" class="form-control inputDark" />
             <label is="ageValidation"></label>
         </div>
 
 
         <div class="form-group">
             <label for="phonenumber">Phonenumber:</label>
-            <input name="phonenumber" type="text" maxlength="8" id="phonenumber" class="form-control inputDark" />
+            <input name="phonenumber" type="text" onkeypress="return NumValidate(event)" maxlength="8" id="phonenumber" class="form-control inputDark" />
             <label id="phonenumberValidation"></label>
         </div>
 
