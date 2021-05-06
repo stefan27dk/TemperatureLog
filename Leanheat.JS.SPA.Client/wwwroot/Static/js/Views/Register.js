@@ -27,7 +27,7 @@ export default class extends AbstractView {
         <diV class="colom">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input name="email" type="text" maxlength="25" id="email" class="form-control inputDark" />
+            <input name="email" type="text" maxlength="25" id="email" class="form-control inputDark"  />
             <label id="emailValidation"></label>
         </div>
 
