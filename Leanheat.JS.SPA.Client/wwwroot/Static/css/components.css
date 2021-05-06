@@ -287,9 +287,9 @@
 
 /*LOADING - MSG -----------------------------------------------------------------------------------------------------------*/
 .loading-Message {
-    animation: loading 0.3s infinite linear;
-    filter: drop-shadow(0px 0px 10px rgb(52, 171, 235));
-    background-color: rgb(190, 240, 137);
+    animation: loading 0.01s infinite linear;
+  
+     
     color: blue;
 }
 

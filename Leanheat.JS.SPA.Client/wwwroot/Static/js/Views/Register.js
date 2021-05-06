@@ -86,7 +86,7 @@ export default class extends AbstractView {
         </div>
              </div>
 
-        <button type="submit" onkeypress="javascript:registerAccount()" onmousedown="javascript:registerAccount(); " class="blue-dark-button">Enter</button>    
+        <button type="submit" id="registerButton" onkeypress="javascript:registerAccount()" onmousedown="javascript:registerAccount(); " class="blue-dark-button">Enter</button>    
            </div>
    </form>
             
