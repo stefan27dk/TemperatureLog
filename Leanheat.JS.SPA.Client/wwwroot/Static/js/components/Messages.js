@@ -58,7 +58,7 @@ function ErrorMsg(msg) {
 
     // Show div with Err Msg - Msg in body
     var body = document.getElementsByTagName('body')[0];
-    body.insertAdjacentHTML('afterbegin', `<div id="errorMSG" class="base-Message error-Message" style="right:calc(50% - ${leftBarWidth}px);"> <img style="width: 50px; height: auto;" src="img/Messages/error.png" /> <p> ${msg}</p> </div>`);
+    body.insertAdjacentHTML('afterbegin', `<div id="errorMSG" class="base-Message error-Message" style="right:calc(50% - ${leftBarWidth}px);"> <img style="width: 50px; height: auto;" src="img/Messages/error.png" /> <p> ${msg}</p > </div>`);
 
 
     // Remove div after 3 sec
