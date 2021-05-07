@@ -19,7 +19,7 @@ export default class extends AbstractView {
       async getHtml()
       {
           return `
-                            <iframe style="width: 100%; height: 100%;" src="https://iconarchive.com/"></iframe>
+                            <iframe style="width: 100%; height: 99%; box-sizing: border-box;" src="https://iconarchive.com/"></iframe>
   
                   `;
       }

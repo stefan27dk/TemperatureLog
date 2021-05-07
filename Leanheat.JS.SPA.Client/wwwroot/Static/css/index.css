@@ -15,7 +15,9 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
-    overflow:hidden;
+    overflow: hidden;
+     --scrollbarBG: rgb(70, 103, 109);
+    --thumbBG: rgba(81, 74, 85, 0.78); 
 }
 
 
@@ -30,7 +32,8 @@ html {
 
 /*--------|| BODY ||-----------------------------------------------------------------------------*/
 body {
- 
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
 
 

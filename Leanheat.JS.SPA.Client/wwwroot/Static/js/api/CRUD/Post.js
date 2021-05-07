@@ -36,7 +36,7 @@ function registerAccount(formID, postUrl) {
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
                        
-                       if (document.referrer.split('/')[2] === window.location.host) // Return to previouse page if local 
+                       if (document.referrer.split('/')[2] === window.location.host) // Return to previous page if local 
                        {
                            history.back(); // Go back to previouse page
                        }
