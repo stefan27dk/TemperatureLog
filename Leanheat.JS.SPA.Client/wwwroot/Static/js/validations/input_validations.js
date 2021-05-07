@@ -1,5 +1,7 @@
 ﻿
 
+
+
 // ===================== Allow - Only Numbers ===============================================================
 function NumValidate(key) {
     var keycode = (key.which) ? key.which : key.keyCode;
@@ -34,7 +36,7 @@ function LettersValidate(key) {
 
 
 
-
+// NOT IN USE
 // ================================ Check From / To - Compare Values ===========================================================
 function ValidateFromTo(a, b) {
 
@@ -97,30 +99,37 @@ function ValidateEmail(currentInput)
     
     if (regex.test(currentInput.value)) {
         currentInput.style.backgroundColor = "rgb(186, 255, 97)";
+        return true;
     }
     else
     {
         currentInput.style.backgroundColor = "rgb(255, 138, 130)";
+        return false;
     }
 }
 
 
 
+ 
 
-// --------------------- PASSWORD Validation -------------------------------------------------------
-function ValidatePassword(passInputID, repeatPassInputID)
+
+
+// --------------------- PASSWORD Validation Compare -------------------------------------------------------
+function ValidatePasswordCompare(passInputID, repeatPassInputID)
 {
     var pass = document.getElementById(passInputID);
     var repeatPass = document.getElementById(repeatPassInputID);
 
-    if (pass.value == repeatPass.value) {
+    if ((pass.value == repeatPass.value) && pass.value.length >= 6 ) {
         pass.style.backgroundColor = "rgb(186, 255, 97)";
         repeatPass.style.backgroundColor = "rgb(186, 255, 97)";
+        return true;
     }
     else
     {
         pass.style.backgroundColor = "rgb(255, 138, 130)";
         repeatPass.style.backgroundColor = "rgb(255, 138, 130)";
+        return false;
     }
 
 }
@@ -137,10 +146,12 @@ function ValidateName(currentNameInput)
 
     if (regex.test(currentNameInput.value)) {
         currentNameInput.style.backgroundColor = "rgb(186, 255, 97)";
+        return true;
     }
     else
     {
         currentNameInput.style.backgroundColor = "rgb(255, 138, 130)";
+        return false;
     }
 }
 
@@ -158,17 +169,19 @@ function ValidateAge(currentAgeInput) {
     if (currentAgeInput.value == "" || (age > 0 && age <= 200))
     {
         currentAgeInput.style.backgroundColor = "rgb(186, 255, 97)";
+        return true;
     }
     else
     {
         currentAgeInput.style.backgroundColor = "rgb(255, 138, 130)";
+        return false;
     }
 }
 
 
 
 
-// --------------------- PHONENUMBER Validation -------------------------------------------------------
+// --------------------- PHONENUMBER Validation --------------------------------------------------
 function ValidatePhoneNumber(currentPhonenumberInput)
 {
     var value = currentPhonenumberInput.value;
@@ -176,11 +189,64 @@ function ValidatePhoneNumber(currentPhonenumberInput)
     if (value == "" || (value.length == 8 && !isNaN(value)))
     {
         currentPhonenumberInput.style.backgroundColor = "rgb(186, 255, 97)";
+        return true;
     }
     else
     {
         currentPhonenumberInput.style.backgroundColor = "rgb(255, 138, 130)";
+        return false;
     }
 }
 
-// ================================ CLIENT SIDE VALIDATION - REGISTER - BEFORE SUBMIT ===========================================================
+
+
+
+
+
+// ================================ CLIENT SIDE VALIDATION - REGISTER - VALIDATE -  BEFORE SUBMIT ===========================================================
+function FormIsValid(formID)
+{     
+    var currentForm = document.getElementById(formID);
+
+    if(ValidateEmail(currentForm["email"]))  // EMAIL
+    {
+        if (ValidatePasswordCompare(currentForm["password"].id, currentForm["repeatPassword"].id)) // PASSWORD
+        {
+            if (ValidateName(currentForm["firstname"])) // FISTNAME
+            {
+                if (ValidateName(currentForm["lastname"])) // LASTNAME
+                {
+                    if (ValidateAge(currentForm["age"])) // AGE
+                    {
+                        if (ValidateAge(currentForm["phonenumber"])) // PHONENUMBER
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+
+
+
+
+
+
+
+
+
+// ================================ Register - Submit if Valid Form ===========================================================
+
+function SubmitRegisterForm(formID)
+{
+    if (FormIsValid(formID))
+    {
+      registerAccount('registerForm', '/Account/Register?');
+    }
+}
+

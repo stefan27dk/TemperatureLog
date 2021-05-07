@@ -18,7 +18,7 @@ export default class extends AbstractView {
     async getHtml() {
         return `
 
-      <form id="registerForm">
+      <form id="registerForm" onsubmit="return FormIsValid(this.id)">
        <div name="register" class="inputContainer">
 
                 <h4 class="title">Register</h4>
@@ -35,7 +35,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="password">Password: </label> <input name="showHidePass" value="true" type="checkbox" onclick="ShowPassword(this, 'password', 'repeatPassword')" id="showHidePass"/>    
-            <input name="password" type="password" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />  
+            <input name="password" type="password" onchange="ValidatePasswordCompare('password', 'repeatPassword');" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />  
             <label id="passwordValidation"></label>
         </div>
      
@@ -43,7 +43,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="repeatPassword">Repeat Password:</label>
-            <input type="password" onchange="ValidatePassword('password', 'repeatPassword')" maxlength="40" id="repeatPassword" class="form-control inputDark" />
+            <input type="password" onchange="ValidatePasswordCompare('password', 'repeatPassword');"  oninput="ValidatePasswordCompare('password', 'repeatPassword');" maxlength="40" id="repeatPassword" class="form-control inputDark" />
             <label id="repeatPasswordValidation"></label>
         </div>
 
@@ -86,7 +86,7 @@ export default class extends AbstractView {
         </div>
              </div>
 
-        <button type="submit" id="registerBtn" onkeypress="javascript:registerAccount('registerForm','/Account/Register?');" onmousedown="javascript:registerAccount('registerForm','/Account/Register?'); " class="blue-dark-button">Enter</button>    
+        <button name="triggerSubmit" type="submit" id="registerBtn" onmousedown="javascript:SubmitRegisterForm('registerForm');"  class="blue-dark-button">Enter</button>    
            </div>
    </form>
             

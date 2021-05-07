@@ -4,7 +4,7 @@ function registerAccount(formID, postUrl) {
 
      
     const currForm = document.getElementById(formID); // Get the Form
-    var submitBtn = currForm.querySelector('button[type="submit"]'); // Get the submit button of the form
+    var submitBtn = currForm.elements.namedItem("triggerSubmit"); // Get the submit button of the form
     
      // Listen for Form- Submit 
     currForm.addEventListener('submit', function handler(e) {
