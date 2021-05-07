@@ -56,3 +56,23 @@ function ValidateFromTo(a, b) {
     }
 
 }
+
+
+
+
+
+// ================================ Password Show Hide ===========================================================
+function ShowPassword(checkBox, passInputID, repeatPassInputID)
+{
+    if (checkBox.checked  == true) {
+        document.getElementById(passInputID).type = 'text';
+        document.getElementById(repeatPassInputID).type = 'text';
+    }
+    else
+    {
+        document.getElementById(passInputID).type = 'password';
+        document.getElementById(repeatPassInputID).type = 'password';
+    }
+  
+
+}

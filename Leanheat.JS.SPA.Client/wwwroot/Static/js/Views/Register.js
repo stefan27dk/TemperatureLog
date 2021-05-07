@@ -34,20 +34,20 @@ export default class extends AbstractView {
 
 
         <div class="form-group">
-            <label for="password">Password:</label>
-            <input name="password" type="text" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />
+            <label for="password">Password: </label> <input name="showHidePass" value="true" type="checkbox" onclick="ShowPassword(this, 'password', 'repeatPassword')" id="showHidePass"/>    
+            <input name="password" type="password" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />  
             <label id="passwordValidation"></label>
         </div>
-
+     
 
 
         <div class="form-group">
             <label for="repeatPassword">Repeat Password:</label>
-            <input type="text" maxlength="40" id="repeatPassword" class="form-control inputDark" />
+            <input type="password" maxlength="40" id="repeatPassword" class="form-control inputDark" />
             <label id="repeatPasswordValidation"></label>
         </div>
 
-
+            
 
         <div class="form-group">
             <label for="firstname">FirstName:</label>
