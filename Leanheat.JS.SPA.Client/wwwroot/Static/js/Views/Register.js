@@ -27,7 +27,7 @@ export default class extends AbstractView {
         <diV class="colom">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input name="email" type="text" onchange="ValidateEmail(this)" maxlength="25" id="email" class="form-control inputDark"  />
+            <input name="email" type="text" oninput="ValidateEmail(this)" maxlength="25" id="email" class="form-control inputDark"  />
             <label id="emailValidation"></label>
         </div>
 
@@ -35,7 +35,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="password">Password: </label> <input name="showHidePass" value="true" type="checkbox" onclick="ShowPassword(this, 'password', 'repeatPassword')" id="showHidePass"/>    
-            <input name="password" type="password" onchange="ValidatePasswordCompare('password', 'repeatPassword');" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />  
+            <input name="password" type="password" oninput="ValidateCurrentPasswordInput(this)" onchange="ValidatePasswordCompare('password', 'repeatPassword');" minlenght="6" maxlength="40" id="password" class="form-control inputDark" />  
             <label id="passwordValidation"></label>
         </div>
      

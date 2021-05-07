@@ -1,5 +1,6 @@
 ﻿
-
+var successColor = 'rgb(177, 255, 163)';
+var errorColor = 'rgb(255, 156, 156)';
 
 
 // ===================== Allow - Only Numbers ===============================================================
@@ -98,19 +99,34 @@ function ValidateEmail(currentInput)
     var regex = /^[a-z0-9]+(\.[a-z0-9]+)?@+[a-z0-9]+\.[a-z]{2,3}$/;
     
     if (regex.test(currentInput.value)) {
-        currentInput.style.backgroundColor = "rgb(186, 255, 97)";
+        currentInput.style.backgroundColor = successColor;
         return true;
     }
     else
     {
-        currentInput.style.backgroundColor = "rgb(255, 138, 130)";
+        currentInput.style.backgroundColor = errorColor;
         return false;
     }
 }
 
 
 
- 
+
+
+// --------------------- PASSWORD Validation  -------------------------------------------------------
+function ValidateCurrentPasswordInput(currentPasswordInput)
+{
+    if (currentPasswordInput.value.length >= 6) {
+        currentPasswordInput.style.backgroundColor = successColor;
+    }
+    else
+    {
+        currentPasswordInput.style.backgroundColor = errorColor;
+    }
+}
+
+
+
 
 
 
@@ -121,14 +137,14 @@ function ValidatePasswordCompare(passInputID, repeatPassInputID)
     var repeatPass = document.getElementById(repeatPassInputID);
 
     if ((pass.value == repeatPass.value) && pass.value.length >= 6 ) {
-        pass.style.backgroundColor = "rgb(186, 255, 97)";
-        repeatPass.style.backgroundColor = "rgb(186, 255, 97)";
+        pass.style.backgroundColor = successColor;
+        repeatPass.style.backgroundColor = successColor;
         return true;
     }
     else
     {
-        pass.style.backgroundColor = "rgb(255, 138, 130)";
-        repeatPass.style.backgroundColor = "rgb(255, 138, 130)";
+        pass.style.backgroundColor = errorColor;
+        repeatPass.style.backgroundColor = errorColor;
         return false;
     }
 
@@ -145,12 +161,12 @@ function ValidateName(currentNameInput)
     var regex = /^([a-zA-ZæøåÆØÅ]{2,20})?$/;
 
     if (regex.test(currentNameInput.value)) {
-        currentNameInput.style.backgroundColor = "rgb(186, 255, 97)";
+        currentNameInput.style.backgroundColor = successColor;
         return true;
     }
     else
     {
-        currentNameInput.style.backgroundColor = "rgb(255, 138, 130)";
+        currentNameInput.style.backgroundColor = errorColor;
         return false;
     }
 }
@@ -168,12 +184,12 @@ function ValidateAge(currentAgeInput) {
     var age = Number(currentAgeInput.value); 
     if (currentAgeInput.value == "" || (age > 0 && age <= 200))
     {
-        currentAgeInput.style.backgroundColor = "rgb(186, 255, 97)";
+        currentAgeInput.style.backgroundColor = successColor;
         return true;
     }
     else
     {
-        currentAgeInput.style.backgroundColor = "rgb(255, 138, 130)";
+        currentAgeInput.style.backgroundColor = errorColor;
         return false;
     }
 }
@@ -188,12 +204,12 @@ function ValidatePhoneNumber(currentPhonenumberInput)
     
     if (value == "" || (value.length == 8 && !isNaN(value)))
     {
-        currentPhonenumberInput.style.backgroundColor = "rgb(186, 255, 97)";
+        currentPhonenumberInput.style.backgroundColor = successColor;
         return true;
     }
     else
     {
-        currentPhonenumberInput.style.backgroundColor = "rgb(255, 138, 130)";
+        currentPhonenumberInput.style.backgroundColor = errorColor;
         return false;
     }
 }
