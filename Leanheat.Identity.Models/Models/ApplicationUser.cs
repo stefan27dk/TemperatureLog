@@ -264,7 +264,7 @@ namespace Leanheat.Identity.Models
         // ==== [EMAIL Validation] ============================================================================  
         private bool EmailIsValid(string email)
         {
-            if (Regex.IsMatch(email, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+            if (Regex.IsMatch(email, @"^[a-z0-9]+(\.[a-z0-9]+)?@+[a-z0-9]+\.[a-z]{2,3}$"))
             {
                 return true;
             }

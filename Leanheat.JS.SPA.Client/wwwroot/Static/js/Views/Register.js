@@ -27,7 +27,7 @@ export default class extends AbstractView {
         <diV class="colom">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input name="email" type="text" maxlength="25" id="email" class="form-control inputDark"  />
+            <input name="email" type="text" onchange="ValidateEmail(this)" maxlength="25" id="email" class="form-control inputDark"  />
             <label id="emailValidation"></label>
         </div>
 
@@ -43,7 +43,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="repeatPassword">Repeat Password:</label>
-            <input type="password" maxlength="40" id="repeatPassword" class="form-control inputDark" />
+            <input type="password" onchange="ValidatePassword('password', 'repeatPassword')" maxlength="40" id="repeatPassword" class="form-control inputDark" />
             <label id="repeatPasswordValidation"></label>
         </div>
 
@@ -51,7 +51,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="firstname">FirstName:</label>
-            <input name="firstname" type="text" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
+            <input name="firstname" type="text" onchange="Name(this)" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
             <label id="firstNameValidation"></label>
         </div>
 
@@ -59,7 +59,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="lastname">LastName:</label>
-            <input name="lastname" type="text" onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
+            <input name="lastname" type="text" onchange="Name(this)"  onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
             <label id="lastNameValidation"></label>
         </div>
 

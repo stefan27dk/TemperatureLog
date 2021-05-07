@@ -76,3 +76,71 @@ function ShowPassword(checkBox, passInputID, repeatPassInputID)
   
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// ================================ CLIENT SIDE VALIDATIONs - BEFORE SUBMIT ===========================================================
+
+// --------------------- EMAIL Validation -------------------------------------------------------
+function ValidateEmail(currentInput)
+{
+    var regex = /^[a-z0-9]+(\.[a-z0-9]+)?@+[a-z0-9]+\.[a-z]{2,3}$/;
+    
+    if (regex.test(currentInput.value)) {
+        currentInput.style.backgroundColor = "rgb(186, 255, 97)";
+    }
+    else
+    {
+        currentInput.style.backgroundColor = "rgb(255, 138, 130)";
+    }
+}
+
+
+
+
+// --------------------- PASSWORD Validation -------------------------------------------------------
+function ValidatePassword(passInputID, repeatPassInputID)
+{
+    var pass = document.getElementById(passInputID);
+    var repeatPass = document.getElementById(repeatPassInputID);
+
+    if (pass.value == repeatPass.value) {
+        pass.style.backgroundColor = "rgb(186, 255, 97)";
+        repeatPass.style.backgroundColor = "rgb(186, 255, 97)";
+    }
+    else
+    {
+        pass.style.backgroundColor = "rgb(255, 138, 130)";
+        repeatPass.style.backgroundColor = "rgb(255, 138, 130)";
+    }
+
+}
+
+
+
+
+
+
+// --------------------- Name Validation -------------------------------------------------------
+function Name(currentNameInput)
+{
+    var regex = /^([a-zA-ZæøåÆØÅ]{2,20})?$/;
+
+    if (regex.test(currentNameInput.value)) {
+        currentNameInput.style.backgroundColor = "rgb(186, 255, 97)";
+    }
+    else
+    {
+        currentNameInput.style.backgroundColor = "rgb(255, 138, 130)";
+    }
+}
+// ================================ CLIENT SIDE VALIDATION - REGISTER - BEFORE SUBMIT ===========================================================
