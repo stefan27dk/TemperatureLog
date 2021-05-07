@@ -35,7 +35,15 @@ function registerAccount(formID, postUrl) {
                        SuccessMsg("Success");
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
-                     return;
+                       
+                       if (document.referrer.split('/')[2] === window.location.host) // Return to previouse page if local 
+                       {
+                           history.back(); // Go back to previouse page
+                       }
+                       else
+                       {
+                           window.location.href = "/"; // RETURN TO home
+                       }
                    }
                    else // If Bad STATUS
                    {

@@ -262,7 +262,8 @@ function SubmitRegisterForm(formID)
 {
     if (FormIsValid(formID))
     {
-      registerAccount('registerForm', '/Account/Register?');
+        registerAccount('registerForm', '/Account/Register?');
+
     }
 }
 
