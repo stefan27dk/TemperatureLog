@@ -137,7 +137,8 @@ function ValidatePasswordCompare(passInputID, repeatPassInputID)
     var pass = document.getElementById(passInputID);
     var repeatPass = document.getElementById(repeatPassInputID);
 
-    if ((pass.value == repeatPass.value) && pass.value.length >= 6 ) {
+    if ((pass.value == repeatPass.value) && pass.value.length >= 6)
+    {
         pass.style.backgroundColor = successColor;
         repeatPass.style.backgroundColor = successColor;
         return true;
