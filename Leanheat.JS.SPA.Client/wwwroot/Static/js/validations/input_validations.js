@@ -131,7 +131,7 @@ function ValidatePassword(passInputID, repeatPassInputID)
 
 
 // --------------------- Name Validation -------------------------------------------------------
-function Name(currentNameInput)
+function ValidateName(currentNameInput)
 {
     var regex = /^([a-zA-ZæøåÆØÅ]{2,20})?$/;
 
@@ -143,4 +143,44 @@ function Name(currentNameInput)
         currentNameInput.style.backgroundColor = "rgb(255, 138, 130)";
     }
 }
+
+
+
+
+
+
+
+
+// --------------------- AGE Validation -------------------------------------------------------
+function ValidateAge(currentAgeInput) {
+
+    var age = Number(currentAgeInput.value); 
+    if (currentAgeInput.value == "" || (age > 0 && age <= 200))
+    {
+        currentAgeInput.style.backgroundColor = "rgb(186, 255, 97)";
+    }
+    else
+    {
+        currentAgeInput.style.backgroundColor = "rgb(255, 138, 130)";
+    }
+}
+
+
+
+
+// --------------------- PHONENUMBER Validation -------------------------------------------------------
+function ValidatePhoneNumber(currentPhonenumberInput)
+{
+    var value = currentPhonenumberInput.value;
+    
+    if (value == "" || (value.length == 8 && !isNaN(value)))
+    {
+        currentPhonenumberInput.style.backgroundColor = "rgb(186, 255, 97)";
+    }
+    else
+    {
+        currentPhonenumberInput.style.backgroundColor = "rgb(255, 138, 130)";
+    }
+}
+
 // ================================ CLIENT SIDE VALIDATION - REGISTER - BEFORE SUBMIT ===========================================================

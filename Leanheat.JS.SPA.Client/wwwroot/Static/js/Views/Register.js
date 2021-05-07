@@ -51,7 +51,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="firstname">FirstName:</label>
-            <input name="firstname" type="text" onchange="Name(this)" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
+            <input name="firstname" type="text" onchange="ValidateName(this)" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
             <label id="firstNameValidation"></label>
         </div>
 
@@ -59,7 +59,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="lastname">LastName:</label>
-            <input name="lastname" type="text" onchange="Name(this)"  onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
+            <input name="lastname" type="text" onchange="ValidateName(this)"  onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
             <label id="lastNameValidation"></label>
         </div>
 
@@ -67,14 +67,14 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="age">Age:</label>
-            <input name="age" type="text" onkeypress="return NumValidate(event)" maxlength="3" id="age" class="form-control inputDark" />
+            <input name="age" type="text" onchange="ValidateAge(this)" onkeypress="return NumValidate(event)" maxlength="3" id="age" class="form-control inputDark" />
             <label is="ageValidation"></label>
         </div>
 
 
         <div class="form-group">
             <label for="phonenumber">Phonenumber:</label>
-            <input name="phonenumber" type="text" onkeypress="return NumValidate(event)" maxlength="8" id="phonenumber" class="form-control inputDark" />
+            <input name="phonenumber" type="text" onchange="ValidatePhoneNumber(this)" onkeypress="return NumValidate(event)" maxlength="8" id="phonenumber" class="form-control inputDark" />
             <label id="phonenumberValidation"></label>
         </div>
 
