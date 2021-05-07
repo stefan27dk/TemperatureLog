@@ -74,7 +74,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="phonenumber">Phonenumber:</label>
-            <input name="phonenumber" type="text" onchange="ValidatePhoneNumber(this)" onkeypress="return NumValidate(event)" maxlength="8" id="phonenumber" class="form-control inputDark" />
+            <input name="phonenumber" type="text" oninput="ValidatePhoneNumber(this);" onkeypress="return NumValidate(event)" maxlength="8" id="phonenumber" class="form-control inputDark" />
             <label id="phonenumberValidation"></label>
         </div>
 

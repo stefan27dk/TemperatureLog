@@ -1,6 +1,7 @@
 ﻿
 var successColor = 'rgb(177, 255, 163)';
 var errorColor = 'rgb(255, 156, 156)';
+var alertColor = 'rgb(255, 215, 145)';
 
 
 // ===================== Allow - Only Numbers ===============================================================
@@ -143,8 +144,8 @@ function ValidatePasswordCompare(passInputID, repeatPassInputID)
     }
     else
     {
-        pass.style.backgroundColor = errorColor;
-        repeatPass.style.backgroundColor = errorColor;
+        pass.style.backgroundColor = alertColor;
+        repeatPass.style.backgroundColor = alertColor;
         return false;
     }
 
@@ -234,7 +235,7 @@ function FormIsValid(formID)
                 {
                     if (ValidateAge(currentForm["age"])) // AGE
                     {
-                        if (ValidateAge(currentForm["phonenumber"])) // PHONENUMBER
+                        if (ValidatePhoneNumber(currentForm["phonenumber"])) // PHONENUMBER
                         {
                             return true;
                         }
@@ -263,7 +264,6 @@ function SubmitRegisterForm(formID)
     if (FormIsValid(formID))
     {
         registerAccount('registerForm', '/Account/Register?');
-
     }
 }
 
