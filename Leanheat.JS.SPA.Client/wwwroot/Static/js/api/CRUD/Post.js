@@ -1,13 +1,14 @@
 ﻿
 
-function registerAccount(formID, postUrl) {
+function IdentityPost(formID, postUrl) {
 
      
     const currForm = document.getElementById(formID); // Get the Form
     var submitBtn = currForm.elements.namedItem("triggerSubmit"); // Get the submit button of the form
     
      // Listen for Form- Submit 
-    currForm.addEventListener('submit', function handler(e) {
+    currForm.addEventListener('submit', function handler(e)
+    {
         e.preventDefault(); // Prevent page reload on Submit  
         submitBtn.disabled = true; // Disable the submit button
 
@@ -29,7 +30,7 @@ function registerAccount(formID, postUrl) {
             }).then(function (response)
                {
                     // IF OK                       
-                   if (response.status == 201) // Status 201 = "Created"
+                if (response.status == 200 || response.status == 201) // Status 201 = "Created"
                    {
                        RemoveLoadingMsg();
                        SuccessMsg("Success");

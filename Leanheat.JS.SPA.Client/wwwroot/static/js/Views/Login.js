@@ -17,8 +17,31 @@ export default class extends AbstractView {
     // Get Html ====================================================>
     async getHtml() {
         return `
-                     <div>LOGIN</div>     
-  
+                    <form id="loginForm" onsubmit="return ValidateLogin(this.id)" class="inputContainer">
+                      <div name="loginContainer" >
+
+                           <h4 class="title">Login</h4>
+                           <hr class="hrTitle">
+
+                        <diV class="colom">
+                        
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input name="email" type="text" oninput="ValidateEmail(this)" maxlength="25" id="emailLogin" class="form-control inputDark"  />
+                                    <label id="emailValidation"></label>
+                                </div>
+                                
+                                
+                                
+                                <div class="form-group">
+                                    <label for="password">Password: </label> <input name="showHidePass" value="true" type="checkbox" onclick="ShowPassword(this, 'passwordLogin', '')" id="showHidePass"/>    
+                                    <input name="password" type="password" oninput="ValidateLoginPasswordInput(this)" minlenght="6" maxlength="40" id="passwordLogin" class="form-control inputDark" />  
+                                    <label id="passwordValidation"></label>
+                                </div>
+                        </div>
+                               <button name="triggerSubmit" type="submit" id="loginBtn" onmousedown="javascript:SubmitLogin('loginForm')"  class="blue-dark-button">Enter</button>    
+                      </div>
+                    </form>   
                   `;
     }
 

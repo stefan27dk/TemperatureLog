@@ -18,8 +18,8 @@ export default class extends AbstractView {
     async getHtml() {
         return `
 
-      <form id="registerForm" onsubmit="return FormIsValid(this.id)">
-       <div name="register" class="inputContainer">
+      <form id="registerForm" onsubmit="return RegisterFormIsValid(this.id)">
+       <div name="registerContainer" class="inputContainer">
 
                 <h4 class="title">Register</h4>
                 <hr class="hrTitle">

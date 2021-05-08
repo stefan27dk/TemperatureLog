@@ -2,6 +2,7 @@
 var successColor = 'rgb(177, 255, 163)';
 var errorColor = 'rgb(255, 156, 156)';
 var alertColor = 'rgb(255, 215, 145)';
+var blueColor = 'rgb(138, 239, 255)';
 
 
 // ===================== Allow - Only Numbers ===============================================================
@@ -70,12 +71,20 @@ function ShowPassword(checkBox, passInputID, repeatPassInputID)
 {
     if (checkBox.checked  == true) {
         document.getElementById(passInputID).type = 'text';
-        document.getElementById(repeatPassInputID).type = 'text';
+
+        if (repeatPassInputID !='')
+        {
+          document.getElementById(repeatPassInputID).type = 'text';
+        }
     }
     else
     {
         document.getElementById(passInputID).type = 'password';
+
+        if (repeatPassInputID != '')
+        {
         document.getElementById(repeatPassInputID).type = 'password';
+        }
     }
   
 
@@ -114,17 +123,44 @@ function ValidateEmail(currentInput)
 
 
 
+
+
 // --------------------- PASSWORD Validation  -------------------------------------------------------
 function ValidateCurrentPasswordInput(currentPasswordInput)
 {
-    if (currentPasswordInput.value.length >= 6) {
+    if (currentPasswordInput.value.length >= 6)
+    {
         currentPasswordInput.style.backgroundColor = successColor;
+        return true;
     }
     else
     {
         currentPasswordInput.style.backgroundColor = errorColor;
+        return false;
     }
 }
+
+
+
+
+
+
+
+// --------------------- Login PASSWORD Validation  -------------------------------------------------------
+function ValidateLoginPasswordInput(currentPasswordInput)
+{
+    if (currentPasswordInput.value.length >= 6)
+    {
+        currentPasswordInput.style.backgroundColor = blueColor;
+        return true;
+    }
+    else
+    {
+        currentPasswordInput.style.backgroundColor = alertColor;
+        return false;
+    }
+}
+
 
 
 
@@ -221,8 +257,8 @@ function ValidatePhoneNumber(currentPhonenumberInput)
 
 
 
-// ================================ CLIENT SIDE VALIDATION - REGISTER - VALIDATE -  BEFORE SUBMIT ===========================================================
-function FormIsValid(formID)
+// ================================ REGISTER - CLIENT SIDE VALIDATION - REGISTER - VALIDATE -  BEFORE SUBMIT ===========================================================
+function RegisterFormIsValid(formID)
 {     
     var currentForm = document.getElementById(formID);
 
@@ -262,9 +298,50 @@ function FormIsValid(formID)
 
 function SubmitRegisterForm(formID)
 {
-    if (FormIsValid(formID))
+    if (RegisterFormIsValid(formID))
     {
-        registerAccount('registerForm', '/Account/Register?');
+        IdentityPost(formID, '/Account/Register?');
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ================================ Login - Submit if Valid Form ===========================================================
+function ValidateLogin(formID)
+{
+    var currentLoginForm = document.getElementById(formID);
+
+    if (ValidateEmail(currentLoginForm["email"]))  // EMAIL
+    {
+        if (ValidateLoginPasswordInput(currentLoginForm["password"])) // PASSWORD
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+
+// ================================ Login - Submit if Valid Form ===========================================================
+function SubmitLogin(formID)
+{
+    if (ValidateLogin(formID))
+    {
+        IdentityPost(formID, '/Account/Login?');
+    }
+}
