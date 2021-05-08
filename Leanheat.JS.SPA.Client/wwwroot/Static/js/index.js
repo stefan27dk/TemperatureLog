@@ -3,6 +3,8 @@ import Dashboard from "./views/Dashboard.js";
 import Posts from "./views/Posts.js";
 import Settings from "./views/Settings.js";
 import Register from "./views/Register.js";
+import Login from "./views/Login.js";
+import Profile from "./views/Profile.js";
 
 
 // Navigator--------------------------------------------------------------------------------->
@@ -19,7 +21,9 @@ const router = async () => {
    {path: "/", view: Dashboard}, // On Path "/" use the dashboard class and inject html in the #app div
    {path: "/posts", view: Posts },
    {path: "/settings", view: Settings },
-   {path: "/Register", view: Register }
+   {path: "/Register", view: Register },
+   {path: "/Login", view: Login },
+   {path: "/Profile", view: Profile }
  ];
 
  
