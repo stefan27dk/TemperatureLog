@@ -345,3 +345,17 @@ function SubmitLogin(formID)
         IdentityPost(formID, '/Account/Login?');
     }
 }
+
+
+
+
+
+
+
+
+
+// ================================ Logout - Validation ===========================================================
+function LogOutValidate()
+{
+
+}

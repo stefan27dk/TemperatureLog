@@ -38,6 +38,12 @@ export default class extends AbstractView {
                                     <input name="password" type="password" oninput="ValidateLoginPasswordInput(this)" minlenght="6" maxlength="40" id="passwordLogin" class="form-control inputDark" />  
                                     <label id="passwordValidation"></label>
                                 </div>
+
+                               
+                                 <div class="form-group">
+                                     <label for="rememberMe" class="subTitle">Remember Me:</label>
+                                     <input name="rememberMe" value="true" type="checkbox" id="rememberMe" class="form-control inputDark" />
+                                 </div>
                         </div>
                                <button name="triggerSubmit" type="submit" id="loginBtn" onmousedown="javascript:SubmitLogin('loginForm')"  class="blue-dark-button">Enter</button>    
                       </div>
