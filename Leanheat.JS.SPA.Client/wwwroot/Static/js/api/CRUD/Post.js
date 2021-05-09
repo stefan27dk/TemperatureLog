@@ -7,7 +7,7 @@ function IdentityPost(formID, postUrl) {
     var submitBtn = currForm.elements.namedItem("triggerSubmit"); // Get the submit button of the form
     
      // Listen for Form- Submit 
-    currForm.addEventListener('submit', function handler(e)
+    currForm.addEventListener('submit',function handler(e)
     {
         e.preventDefault(); // Prevent page reload on Submit  
         submitBtn.disabled = true; // Disable the submit button
@@ -23,29 +23,35 @@ function IdentityPost(formID, postUrl) {
 
 
         // POST ----------------------------------------------------------------------------------
-        fetch(identityApiUri + postUrl + formQueryString,  // #1 = API-Address, #2 = API - Controller/Mehod, #3 = form data as sring
+         fetch(identityApiUri + postUrl + formQueryString,  // #1 = API-Address, #2 = API - Controller/Mehod, #3 = form data as sring
             {    
-                method: 'POST' 
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Access-Control-Allow-Origin': 'https://localhost',
+                },
+                credentials: 'include'
                 
             }).then(function (response)
-               {
+               {  
                     // IF OK                       
                 if (response.status == 200 || response.status == 201) // Status 201 = "Created"
-                   {
+                {
                        RemoveLoadingMsg();
                        SuccessMsg("Success");
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
                        
+                  
                        if (document.referrer.split('/')[2] === window.location.host) // Return to previous page if local 
                        {
                            history.back(); // Go back to previouse page
                        }
                        else
                        {
-                           window.location.href = "/"; // RETURN TO home
+                           window.location.href = "/"; // RETURN TO Home
                        }
-                   }
+                 }
                    else // If Bad STATUS
                    {
                      return Promise.reject(response);  // Triggers Catch method

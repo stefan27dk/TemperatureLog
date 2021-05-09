@@ -53,8 +53,30 @@ namespace Leanheat.Identity.API
             services.AddControllers(config => { config.Filters.AddService<UnitOfWorkFilter>(); });  // UnitOfWork for all Controllers
 
 
+
+            //CORS - Allow URL
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:44351")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+                });
+            });
+
             // CORS - Allow calling the API from WebBrowsers
-            services.AddCors();
+            //services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(builder =>
+            //        builder.SetIsOriginAllowed(_ => true)
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader()
+            //        .AllowCredentials());
+            //});
+
+
 
             // Log In
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -131,9 +153,9 @@ namespace Leanheat.Identity.API
             app.UseCors(x => x
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .AllowAnyOrigin()
+                .AllowCredentials()
                 .SetIsOriginAllowed(origin => true));// allow any origin  
-                
+
 
 
 

@@ -20,7 +20,6 @@ export default class extends AbstractView {
       {
           return `
                     <p> DASHBOARD </p>
-                   //<iframe style="width: 100%; height: 99%; box-sizing: border-box;" src="https://iconarchive.com/"></iframe>
   
                   `;
       }
