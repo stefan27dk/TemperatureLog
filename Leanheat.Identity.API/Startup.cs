@@ -54,17 +54,17 @@ namespace Leanheat.Identity.API
 
 
 
-            //CORS - Allow URL
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder.WithOrigins("http://localhost:44351")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-                });
-            });
+            ////CORS - Allow URL
+            //services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(builder =>
+            //    {
+            //        builder.WithOrigins("http://localhost:44351")
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader()
+            //        .AllowCredentials();
+            //    });
+            //});
 
             // CORS - Allow calling the API from WebBrowsers
             //services.AddCors(options =>
@@ -148,13 +148,13 @@ namespace Leanheat.Identity.API
             app.UseHttpsRedirection();
             app.UseRouting();
 
-
             // CORS - Allow calling the API from WebBrowsers
             app.UseCors(x => x
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials()
-                .SetIsOriginAllowed(origin => true));// allow any origin  
+                //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins seperated with comma
+                .SetIsOriginAllowed(origin => true));// Allow any origin  
 
 
 

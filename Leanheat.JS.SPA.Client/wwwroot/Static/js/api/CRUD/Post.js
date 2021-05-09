@@ -27,9 +27,6 @@ function IdentityPost(formID, postUrl) {
             {    
                 method: 'POST',
                 mode: 'cors',
-                headers: {
-                    'Access-Control-Allow-Origin': 'https://localhost',
-                },
                 credentials: 'include'
                 
             }).then(function (response)
