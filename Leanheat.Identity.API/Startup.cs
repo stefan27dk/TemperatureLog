@@ -52,29 +52,9 @@ namespace Leanheat.Identity.API
             services.AddScoped<UnitOfWorkFilter>(); 
             services.AddControllers(config => { config.Filters.AddService<UnitOfWorkFilter>(); });  // UnitOfWork for all Controllers
 
+            // CORS
+            services.AddCors();
 
-
-            ////CORS - Allow URL
-            //services.AddCors(options =>
-            //{
-            //    options.AddDefaultPolicy(builder =>
-            //    {
-            //        builder.WithOrigins("http://localhost:44351")
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader()
-            //        .AllowCredentials();
-            //    });
-            //});
-
-            // CORS - Allow calling the API from WebBrowsers
-            //services.AddCors(options =>
-            //{
-            //    options.AddDefaultPolicy(builder =>
-            //        builder.SetIsOriginAllowed(_ => true)
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader()
-            //        .AllowCredentials());
-            //});
 
 
 
