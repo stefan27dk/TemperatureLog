@@ -27,7 +27,7 @@ function IdentityPost(formID, postUrl) {
             {    
                 method: 'POST',
                 mode: 'cors',
-                credentials: 'include'
+                credentials: 'include' // Allows to return the Cookies with the responce // The Cors should be also set up at the server
                 
             }).then(function (response)
                {  
