@@ -1,6 +1,6 @@
 ﻿
 // ============== || Register, Login - POST || =======================================================================================
-function IdentityPost(formID, postUrl) {
+async function IdentityPost(formID, postUrl) {
 
      
     const currForm = document.getElementById(formID); // Get the Form
@@ -123,7 +123,7 @@ function Logout(logoutbtn)
                 RemoveLoadingMsg();
                 SuccessMsg("Logged Out");
                 logoutbtn.disabled = false; // Enable the Logout Button
-                window.history.replaceState({}, '', '/'); // Route to HOME without refresh
+                //window.history.replaceState({}, '', '/'); // Route to HOME without refresh
             }
             else // If Bad STATUS
             {
