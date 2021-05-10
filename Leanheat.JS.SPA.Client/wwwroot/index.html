@@ -21,7 +21,7 @@
 </head>
  <!--<input oninput=""/>-->
 <!--BODY------------------------------------------------------------------------------------------------------> 
-<body>
+<body onload="UpdateUserHtml();">
     <div class="wrapper-1">
 
         <!--SideBar - LEFT ------------------------->
@@ -33,10 +33,10 @@
         <!--<div class="sucsess-Message"><p> SUCCESS</p></div>-->
         <div class="wrapper-2">
             <div class="top-bar">
-                <a href="/Register" onclick="" data-link>Register</a>
-                <a href="/Login" onclick="" data-link>Log In</a>
-                <a href="/Profile" onclick="" data-link>Profile</a>
-                <span onclick="Logout(this);" >Log Out</span>
+                <div id="userHtml">
+                    <button type="button" onclick="GetUser();">Get USER</button>
+                    <a href="/Login" onclick="" data-link>Log In</a>
+                </div>
             </div>
       
             <!--APP - Content ------------------------>

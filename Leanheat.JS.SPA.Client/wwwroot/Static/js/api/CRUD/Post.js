@@ -34,6 +34,7 @@ function IdentityPost(formID, postUrl) {
                     // IF OK                       
                 if (response.status == 200 || response.status == 201) // Status 201 = "Created"
                 {
+                       UpdateUserHtml(); // Update the User Html - user optiona at the topbar
                        RemoveLoadingMsg();
                        SuccessMsg("Success");
                        currForm.reset();  // Reset the  form
@@ -101,7 +102,7 @@ function IdentityPost(formID, postUrl) {
 
 
 
-// ============== ||Logout - POST || =======================================================================================
+// ============== || Logout - POST || =======================================================================================
 function Logout(logoutbtn)
 {
     LoadingMsg(); // Show Loading Message
@@ -118,6 +119,7 @@ function Logout(logoutbtn)
             // IF OK                       
             if (response.status == 200)
             {
+                UpdateUserHtml();
                 RemoveLoadingMsg();
                 SuccessMsg("Logged Out");
                 logoutbtn.disabled = false; // Enable the Logout Button
@@ -150,3 +152,51 @@ function Logout(logoutbtn)
      
 }
 
+
+
+
+
+
+
+
+
+
+// ============== || Get User || =======================================================================================
+async function GetUser() {
+
+    return await fetch(identityApiUri + '/Account/GetUser',
+        {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include' // Allows to return the Cookies with the responce // The Cors should be also set up at the server
+
+        }).then(function (response) {
+            if (response.status == 200) // IF OK  
+            {
+                return response;
+            }
+            else // If Bad STATUS
+            {
+                return Promise.reject(response);  // Triggers Catch method
+            }
+
+        }).catch(function (err) // If Exception
+        {
+            // Show Error
+            try // Because of err.text()
+            {
+                err.text().then(errorMessage => {
+                    var error = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
+                    console.error(error); // Get the error and display
+                });
+            }
+            catch (e) {
+                console.warn("Get User Exception -  Probably No connection to hte server");
+                console.error(e); // Get the error and display
+            }
+            console.warn('Post Exception:', err);
+        });
+}
+
+
+ 
