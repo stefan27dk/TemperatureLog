@@ -3,18 +3,21 @@
 // ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
 async function UpdateUserHtml()
 {
-    var resPrommise = await GetUser();
+    var resPrommise = await GetUser(); // #1 - Responce from the fetch api
     var user = '';
-  user = await resPrommise.json().then(content => // Check the response content
+
+    // # 2 - Extract the Email from the Response
+    user = await resPrommise.json().then(content => // Check the response content
     {
-        if (content != null) {
+        if (content != null)
+        {
             return content['email']; // Return email from the responce
         }
+        return '';
     });
 
-    alert(user);
 
-    var userContainer = document.getElementById('userHtml'); 
+    var userContainer = document.getElementById('userHtml');  
     if (user!='')
     {
        userContainer.innerHTML = 
