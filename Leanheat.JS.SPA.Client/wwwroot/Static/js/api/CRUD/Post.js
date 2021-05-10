@@ -1,5 +1,5 @@
 ﻿
-
+// ============== || Register, Login - POST || =======================================================================================
 function IdentityPost(formID, postUrl) {
 
      
@@ -68,7 +68,7 @@ function IdentityPost(formID, postUrl) {
                        catch(e)
                        {
                            console.warn("Post Exception -  Probably No connection to hte server");
-                           ErrorMsg(err + " - Server is probably offline"); // Get the error and display
+                           ErrorMsg(err + " No connection to the server"); // Get the error and display
                        }
 
                    submitBtn.disabled = false; // Enable Submit button
@@ -79,3 +79,61 @@ function IdentityPost(formID, postUrl) {
     });
 
 }
+
+
+
+
+
+
+
+
+
+// ============== ||Logout - POST || =======================================================================================
+function Logout(logoutbtn)
+{
+    LoadingMsg(); // Show Loading Message
+    logoutbtn.disabled = true; // Disable the Logout Button
+
+
+    // POST ----------------------------------------------------------------------------------
+    fetch(identityApiUri + '/Account/LogOut',   
+        {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include' // Allows to return the Cookies with the responce // The Cors should be also set up at the server
+
+        }).then(function (response) {
+            // IF OK                       
+            if (response.status == 200)
+            {
+                RemoveLoadingMsg();
+                SuccessMsg("Logged Out");
+                logoutbtn.disabled = false; // Enable the Logout Button
+                window.location.href = "/"; // RETURN TO Home
+            }
+            else // If Bad STATUS
+            {
+                return Promise.reject(response);  // Triggers Catch method
+            }
+
+        }).catch(function (err) // If Exception
+        {
+            RemoveLoadingMsg();
+            // Show Error
+            try // Because of JSON Parse and err.text()
+            {
+                err.text().then(errorMessage => {
+                    var error = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
+                    ErrorMsg(error); // Get the error and display
+                });
+            }
+            catch (e) {
+                console.warn("Post Exception -  Probably No connection to hte server");
+                ErrorMsg(err + " - No connection to the server"); // Get the error and display
+            }
+
+            logoutbtn.disabled = false; // Enable Submit button
+            console.warn('Post Exception:', err);
+        });
+}
+

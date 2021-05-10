@@ -16,6 +16,7 @@
     <script src="static/js/api/crud/get.js"></script>
     <script src="static/js/components/messages.js"></script>
     <script src="static/js/validations/input_validations.js"></script>
+    <script src="static/js/resources/default_scripts.js"></script>
 
 </head>
  <!--<input oninput=""/>-->
@@ -35,8 +36,9 @@
                 <a href="/Register" onclick="" data-link>Register</a>
                 <a href="/Login" onclick="" data-link>Log In</a>
                 <a href="/Profile" onclick="" data-link>Profile</a>
-                <a href="/LogOut" >Log Out</a>
+                <button onclick="Logout(this)">Log Out</button>
                 <button  onclick="SuccessMsg('Success')">AAAAA</button>
+                <button  onclick="alert(getCookie('asp'))">Cookie</button>
             </div>
       
             <!--APP - Content ------------------------>

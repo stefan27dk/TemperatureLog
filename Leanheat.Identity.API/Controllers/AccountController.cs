@@ -85,7 +85,7 @@ namespace Leanheat.Identity.API.Controllers
                 var result = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
                 if (result.Succeeded) // If Login Ok
                 {
-                    return StatusCode(200, new JsonResult(result));
+                    return StatusCode(200, result);
                     //return new JsonResult(result);
                 }
                 return StatusCode(401, "[\n \"Invalid Log In\" \n]");  // If Erors return errors 
