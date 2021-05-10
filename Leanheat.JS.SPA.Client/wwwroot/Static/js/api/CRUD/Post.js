@@ -88,12 +88,24 @@ function IdentityPost(formID, postUrl) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ============== ||Logout - POST || =======================================================================================
 function Logout(logoutbtn)
 {
     LoadingMsg(); // Show Loading Message
     logoutbtn.disabled = true; // Disable the Logout Button
-
 
     // POST ----------------------------------------------------------------------------------
     fetch(identityApiUri + '/Account/LogOut',   
@@ -109,7 +121,7 @@ function Logout(logoutbtn)
                 RemoveLoadingMsg();
                 SuccessMsg("Logged Out");
                 logoutbtn.disabled = false; // Enable the Logout Button
-                window.location.href = "/"; // RETURN TO Home
+                window.history.replaceState({}, '', '/'); // Route to HOME without refresh
             }
             else // If Bad STATUS
             {
@@ -135,5 +147,6 @@ function Logout(logoutbtn)
             logoutbtn.disabled = false; // Enable Submit button
             console.warn('Post Exception:', err);
         });
+     
 }
 
