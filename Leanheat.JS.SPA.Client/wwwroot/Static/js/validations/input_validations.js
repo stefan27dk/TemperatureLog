@@ -361,11 +361,7 @@ function SubmitLogin(formID)
 
 
 
-// ================================ Update - Submit if Valid Form ===========================================================
-function SubmitUpdateUser(formID)
-{
-
-}
+ 
 
 
  

@@ -57,8 +57,7 @@ async function PopulateUpdateForm(formID)
      await resPrommise.json().then(content => // Check the response content
     {
          if (content != null)
-         { 
-             //currentForm.reset();
+         {
              currentForm['email'].value = content['email'];
              currentForm['firstname'].value = content['firstname'];
              currentForm['lastname'].value = content['lastname'];
@@ -69,5 +68,6 @@ async function PopulateUpdateForm(formID)
              currentForm['phonenumber'].value = content['phonenumber'];
          }
     
+             return;
     });
 }
