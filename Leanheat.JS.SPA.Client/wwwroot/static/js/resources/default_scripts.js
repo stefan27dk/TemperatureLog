@@ -22,7 +22,7 @@ async function UpdateUserHtml()
     {
        userContainer.innerHTML = 
            `<a href="/Profile" onclick="" data-link>${user}</a>
-           <span onclick = "Logout(this);"> Log Out</span >`;
+           <a href="" onclick = "return Logout(this, event);"> Log Out</a >`;
     }
     else
     {

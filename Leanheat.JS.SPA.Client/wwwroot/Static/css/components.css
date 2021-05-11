@@ -298,7 +298,7 @@
 
 /*LOADING - MSG -----------------------------------------------------------------------------------------------------------*/
 .loading-Message {
-    animation: loading 0.01s infinite linear;
+    animation: loading 0.1s infinite linear;
 }
 
 
@@ -310,3 +310,21 @@
         transform: rotate(359deg);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+/*================== || User - HTML - Account Options etc.||=======================================================================================*/
+  .user-Html-Container
+  {
+   float: right;
+   width: fit-content();
+   height:auto;
+  }

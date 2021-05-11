@@ -103,8 +103,9 @@ async function IdentityPost(formID, postUrl) {
 
 
 // ============== || Logout - POST || =======================================================================================
-function Logout(logoutbtn)
+function Logout(logoutbtn, event)
 {
+    event.preventDefault();
     LoadingMsg(); // Show Loading Message
     logoutbtn.disabled = true; // Disable the Logout Button
 
@@ -123,7 +124,6 @@ function Logout(logoutbtn)
                 RemoveLoadingMsg();
                 SuccessMsg("Logged Out");
                 logoutbtn.disabled = false; // Enable the Logout Button
-                //window.history.replaceState({}, '', '/'); // Route to HOME without refresh
             }
             else // If Bad STATUS
             {
