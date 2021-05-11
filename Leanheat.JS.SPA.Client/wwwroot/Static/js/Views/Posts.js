@@ -23,5 +23,12 @@ export default class extends AbstractView {
                   <p>Here are the Posts !!!!!!!!!!</p>    
           `;
       }
-  
+
+
+
+    // View Script ====================================================>
+    async executeViewScript()
+    {
+    }
+
 }

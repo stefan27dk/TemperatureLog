@@ -22,4 +22,10 @@ export default class{
     }
 
 
+
+    // View Script ====================================================>
+    async executeViewScript()
+    {
+    }
+
 }

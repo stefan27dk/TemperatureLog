@@ -18,7 +18,7 @@ export default class extends AbstractView {
     async getHtml() {
         return `
                     
-         <button type="buton" onclick="PopulateUpdateForm('updateUserForm');">GET</button>
+        
  <form id="updateUserForm" onsubmit="return UserFormIsValid(this.id)">
        <div name="registerContainer" class="inputContainer">
 
@@ -89,4 +89,9 @@ export default class extends AbstractView {
                         
     }
 
+    // View Script ====================================================>
+    async executeViewScript()
+    {
+        PopulateUpdateForm('updateUserForm');
+    }
 }

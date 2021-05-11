@@ -58,7 +58,7 @@ const router = async () => {
  const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
 
  document.querySelector("#app").innerHTML = await view.getHtml();  // Get the #app div and use the view function to inject Html in it from the view class ex."Dashboard, Posts, Settings etc."
- 
+    await view.executeViewScript(); 
 };
 
 

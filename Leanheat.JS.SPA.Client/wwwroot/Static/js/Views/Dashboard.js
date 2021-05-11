@@ -23,5 +23,12 @@ export default class extends AbstractView {
   
                   `;
       }
-  
+
+
+    // View Script ====================================================>
+    async executeViewScript()
+    {
+    }
+
+
 }
