@@ -257,8 +257,8 @@ function ValidatePhoneNumber(currentPhonenumberInput)
 
 
 
-// ================================ REGISTER - CLIENT SIDE VALIDATION - REGISTER - VALIDATE -  BEFORE SUBMIT ===========================================================
-function RegisterFormIsValid(formID)
+// ================================ REGISTER / UPDATE - CLIENT SIDE VALIDATION - REGISTER / UPDATE - VALIDATE -  BEFORE SUBMIT ===========================================================
+function UserFormIsValid(formID)
 {     
     var currentForm = document.getElementById(formID);
 
@@ -294,13 +294,13 @@ function RegisterFormIsValid(formID)
 
 
 
-// ================================ Register - Submit if Valid Form ===========================================================
+// ================================ Register / Update - Submit if Valid Form ===========================================================
 
-function SubmitRegisterForm(formID)
+function SubmitUserForm(formID, url)
 {
-    if (RegisterFormIsValid(formID))
+    if (UserFormIsValid(formID))
     {
-        IdentityPost(formID, '/Account/Register?');
+        IdentityPost(formID, url);
     }
 }
 
@@ -319,7 +319,7 @@ function SubmitRegisterForm(formID)
 
 
 
-// ================================ Login - Submit if Valid Form ===========================================================
+// ================================ Login - Validate ===========================================================
 function ValidateLogin(formID)
 {
     var currentLoginForm = document.getElementById(formID);
@@ -334,6 +334,9 @@ function ValidateLogin(formID)
 
     return false;
 }
+
+
+
 
 
 
@@ -354,8 +357,15 @@ function SubmitLogin(formID)
 
 
 
-// ================================ Logout - Validation ===========================================================
-function LogOutValidate()
+
+
+
+
+// ================================ Update - Submit if Valid Form ===========================================================
+function SubmitUpdateUser(formID)
 {
 
 }
+
+
+ 

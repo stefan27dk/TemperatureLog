@@ -18,7 +18,7 @@ export default class extends AbstractView {
     async getHtml() {
         return `
 
-      <form id="registerForm" onsubmit="return RegisterFormIsValid(this.id)">
+      <form id="registerForm" onsubmit="return UserFormIsValid(this.id)">
        <div name="registerContainer" class="inputContainer">
 
                 <h4 class="title">Register</h4>
@@ -86,7 +86,7 @@ export default class extends AbstractView {
         </div>
              </div>
 
-        <button name="triggerSubmit" type="submit" id="registerBtn" onmousedown="javascript:SubmitRegisterForm('registerForm');"  class="blue-dark-button">Enter</button>    
+        <button name="triggerSubmit" type="submit" id="registerBtn" onmousedown="javascript:SubmitUserForm('registerForm','/Account/Register?');"  class="blue-dark-button">Enter</button>    
            </div>
    </form>
             
