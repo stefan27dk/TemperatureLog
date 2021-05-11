@@ -86,7 +86,7 @@ export default class extends AbstractView {
         </div>
              </div>
 
-        <button name="triggerSubmit" type="submit" id="registerBtn" onmousedown="javascript:SubmitUserForm('registerForm','/Account/Register?');"  class="blue-dark-button">Enter</button>    
+        <button name="triggerSubmit" type="submit" id="registerBtn"  class="blue-dark-button">Enter</button>    
            </div>
    </form>
             
@@ -97,6 +97,15 @@ export default class extends AbstractView {
     // View Script ====================================================>
     async executeViewScript()
     {
+        var currForm = document.getElementById('registerForm'); // Get the Form
+
+        currForm.addEventListener('submit', function handler(e)
+        {
+            e.preventDefault(); // Prevent page reload on Submit  
+            SubmitUserForm('registerForm', '/Account/Register?');  // Validate Form than Submit the form
+
+            this.removeEventListener('submit', handler); // Remove Event Listener 
+        });
     }
 
 }

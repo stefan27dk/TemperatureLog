@@ -7,15 +7,15 @@ async function IdentityPost(formID, postUrl) {
     var submitBtn = currForm.elements.namedItem("triggerSubmit"); // Get the submit button of the form
     
      // Listen for Form- Submit 
-    currForm.addEventListener('submit',function handler(e)
-    {
-        e.preventDefault(); // Prevent page reload on Submit  
+    //currForm.addEventListener('submit',function handler(e)
+    //{
+        //e.preventDefault(); // Prevent page reload on Submit  
         submitBtn.disabled = true; // Disable the submit button
 
         LoadingMsg(); // Show Loading Message
 
         // Get form data as string---------------------------------------------------------------
-        const formData = new FormData(this); // "this" = this Form
+        const formData = new FormData(currForm); // "this" = this Form
         const searchParams = new URLSearchParams(formData); // Get the form data params  
         let formQueryString = searchParams.toString(); // Get the form data params as string
 
@@ -23,7 +23,7 @@ async function IdentityPost(formID, postUrl) {
 
 
         // POST ----------------------------------------------------------------------------------
-         fetch(identityApiUri + postUrl + formQueryString,  // #1 = API-Address, #2 = API - Controller/Mehod, #3 = form data as sring
+       fetch(identityApiUri + postUrl + formQueryString,  // #1 = API-Address, #2 = API - Controller/Mehod, #3 = form data as sring
             {    
                 method: 'POST',
                 mode: 'cors',
@@ -76,8 +76,8 @@ async function IdentityPost(formID, postUrl) {
                    console.warn('Post Exception:', err);
                });
                     
-        this.removeEventListener('submit', handler); // Remove Event Listener 
-    });
+        //this.removeEventListener('submit', handler); // Remove Event Listener 
+    //});
 
 }
 

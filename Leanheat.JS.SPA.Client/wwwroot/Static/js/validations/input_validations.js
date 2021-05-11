@@ -296,7 +296,7 @@ function UserFormIsValid(formID)
 
 // ================================ Register / Update - Submit if Valid Form ===========================================================
 
-function SubmitUserForm(formID, url)
+async function SubmitUserForm(formID, url)
 {
     if (UserFormIsValid(formID))
     {
