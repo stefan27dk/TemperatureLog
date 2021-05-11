@@ -133,7 +133,9 @@ a {
     background: linear-gradient(90deg, rgba(93,93,93,1) 0%, rgba(32,33,34,1) 1%, rgba(39,43,55,1) 5%, rgba(60,47,60,1) 93%, rgba(30,28,31,1) 96%, rgba(50,55,59,1) 97%);
     border: 1px solid rgb(75, 75, 87);
     /*font-family:'Trajan Pro 3';*/
-    font-family: Courier New, Courier, monospace;
+    /*font-family: Courier New, Courier, monospace;*/
+    font-family: Vrinda;
+    font-size: 20px;
     font-weight: 900;
 }
 

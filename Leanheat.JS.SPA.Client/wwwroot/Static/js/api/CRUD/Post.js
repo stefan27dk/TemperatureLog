@@ -110,7 +110,7 @@ function Logout(logoutbtn, event)
     logoutbtn.disabled = true; // Disable the Logout Button
 
     // POST ----------------------------------------------------------------------------------
-    fetch(identityApiUri + '/Account/LogOut',   
+   fetch(identityApiUri + '/Account/LogOut',   
         {
             method: 'POST',
             mode: 'cors',

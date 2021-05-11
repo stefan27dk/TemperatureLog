@@ -328,3 +328,11 @@
    width: fit-content();
    height:auto;
   }
+
+
+    .user-Html-Container a {
+        margin: 0 10px 0 10px;
+        font-weight: bold;
+        font-family:Vrinda;
+        font-size: 18px; 
+    }
