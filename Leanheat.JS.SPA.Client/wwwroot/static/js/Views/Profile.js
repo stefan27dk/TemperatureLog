@@ -18,7 +18,7 @@ export default class extends AbstractView {
     async getHtml() {
         return `
                     
-
+         <button type="buton" onclick="PopulateUpdateForm('updateUserForm');">GET</button>
  <form id="updateUserForm" onsubmit="return UserFormIsValid(this.id)">
        <div name="registerContainer" class="inputContainer">
 
@@ -52,7 +52,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="firstname">FirstName:</label>
-            <input name="firstname" type="text" onchange="ValidateName(this)" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
+            <input name="firstname" type="text" oninput="ValidateName(this)" onkeypress="return LettersValidate(event)" maxlength="20" id="firstname" class="form-control inputDark" />
             <label id="firstNameValidation"></label>
         </div>
 
@@ -60,7 +60,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="lastname">LastName:</label>
-            <input name="lastname" type="text" onchange="ValidateName(this)"  onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
+            <input name="lastname" type="text" oninput="ValidateName(this)"  onkeypress="return LettersValidate(event)" maxlength="20" id="lastname" class="form-control inputDark" />
             <label id="lastNameValidation"></label>
         </div>
 
@@ -68,7 +68,7 @@ export default class extends AbstractView {
 
         <div class="form-group">
             <label for="age">Age:</label>
-            <input name="age" type="text" onchange="ValidateAge(this)" onkeypress="return NumValidate(event)" maxlength="3" id="age" class="form-control inputDark" />
+            <input name="age" type="text" oninput="ValidateAge(this)" onkeypress="return NumValidate(event)" maxlength="3" id="age" class="form-control inputDark" />
             <label is="ageValidation"></label>
         </div>
 
@@ -86,6 +86,7 @@ export default class extends AbstractView {
    </form>
   
                   `;
+                        
     }
 
 }

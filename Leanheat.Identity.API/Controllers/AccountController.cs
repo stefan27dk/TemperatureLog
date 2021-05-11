@@ -1,5 +1,6 @@
 ﻿
 using Leanheat.Identity.Models;
+using Leanheat.Identity.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -114,17 +115,52 @@ namespace Leanheat.Identity.API.Controllers
 
         // Get User  ==================================================================================
         [HttpGet]
-        [Route("GetUser")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetUser()
+        [Route("GetUserData")]
+        //[AllowAnonymous]
+        public async Task<IActionResult> GetUserData()
         {
             // Get Current User
-            var user = await userManager.GetUserAsync(HttpContext.User);
-            return new JsonResult(user);
+            var user = await userManager.GetUserAsync(HttpContext.User); // Get User
+            GetUserDataViewModel userData = new GetUserDataViewModel();  // View Mdoel
+
+            if (user != null) // If Logged in
+            {                                                                         
+                userData.Email = user.Email;
+                userData.Firstname = user.FirstName;
+                userData.Lastname = user.LastName;
+                userData.Age = user.Age;
+                userData.Phonenumber = user.PhoneNumber;
+
+                return new JsonResult(userData); // Return User Data
+            }
+            return new JsonResult(userData); // Empty User Data
         }
 
 
 
+
+
+
+
+
+        // GetUserEmail - Used to check if user is logged in ============================================= 
+        [HttpGet]
+        [Route("GetUserEmail")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetUserEmail()
+        {
+            // Get Current User
+            var user = await userManager.GetUserAsync(HttpContext.User);
+            GetUserEmailViewModel userEmail = new GetUserEmailViewModel(); // ViewModel
+
+
+            if (user != null) // If User logged in
+            {
+                 userEmail.Email = user.Email.ToString();
+                 return new JsonResult(userEmail);
+            }
+            return new JsonResult(userEmail); // Return empty string "userEmail.Email is empty string as default"
+        }
 
 
 

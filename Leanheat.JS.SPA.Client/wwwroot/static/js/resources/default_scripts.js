@@ -3,11 +3,11 @@
 // ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
 async function UpdateUserHtml()
 {
-    var resPrommise = await GetUser(); // #1 - Responce from the fetch api
-    var user = '';
+    var resPrommise = await GetUserEmail(); // #1 - Responce from the fetch api
+    var userEmail = '';
 
     // # 2 - Extract the Email from the Response
-    user = await resPrommise.json().then(content => // Check the response content
+    userEmail = await resPrommise.json().then(content => // Check the response content
     {
         if (content != null)
         {
@@ -18,10 +18,10 @@ async function UpdateUserHtml()
 
 
     var userContainer = document.getElementById('userHtml');  
-    if (user!='')
+    if (userEmail!='')
     {
        userContainer.innerHTML = 
-           `<a href="/Profile" onclick="" data-link>${user}</a>
+           `<a href="/Profile" onclick="" data-link>${userEmail}</a>
            <a href="" onclick = "return Logout(this, event);"> Log Out</a >`;
     }
     else
@@ -34,3 +34,41 @@ async function UpdateUserHtml()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// ============== || Get User DATA - Populate Update - Form|| =======================================================================================
+async function PopulateUpdateForm(formID)
+{
+    var currentForm = document.getElementById(formID);  // Get the form   
+    var resPrommise = await GetUserData();  // Get responce
+ 
+
+     // populate the Form
+     await resPrommise.json().then(content => // Check the response content
+    {
+         if (content != null)
+         { 
+             currentForm.reset();
+             currentForm['email'].value = content['email'];
+             currentForm['firstname'].value = content['firstname'];
+             currentForm['lastname'].value = content['lastname'];
+             if (content['age'] != 0)
+             {
+               currentForm['age'].value = content['age'];
+             }
+             currentForm['phonenumber'].value = content['phonenumber'];
+            //return content['email']; // Return email from the responce
+         }
+    
+    });
+}
