@@ -58,7 +58,7 @@ async function PopulateUpdateForm(formID)
     {
          if (content != null)
          { 
-             currentForm.reset();
+             //currentForm.reset();
              currentForm['email'].value = content['email'];
              currentForm['firstname'].value = content['firstname'];
              currentForm['lastname'].value = content['lastname'];
@@ -67,7 +67,6 @@ async function PopulateUpdateForm(formID)
                currentForm['age'].value = content['age'];
              }
              currentForm['phonenumber'].value = content['phonenumber'];
-            //return content['email']; // Return email from the responce
          }
     
     });
