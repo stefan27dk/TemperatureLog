@@ -41,14 +41,14 @@ async function IdentityPost(formID, postUrl) {
                        submitBtn.disabled = false; // Enable Submit button
                        
                   
-                       if (document.referrer.split('/')[2] === window.location.host) // Return to previous page if local 
-                       {
-                           history.back(); // Go back to previouse page
-                       }
-                       else
-                       {
-                           window.location.href = "/"; // RETURN TO Home
-                       }
+                       //if (document.referrer.split('/')[2] === window.location.host) // Return to previous page if local 
+                       //{
+                       //    history.back(); // Go back to previouse page
+                       //}
+                       //else
+                       //{
+                       //    window.location.href = "/"; // RETURN TO Home
+                       //}
                  }
                    else // If Bad STATUS
                    {

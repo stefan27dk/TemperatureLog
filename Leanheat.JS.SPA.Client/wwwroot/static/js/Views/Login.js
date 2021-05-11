@@ -45,10 +45,21 @@ export default class extends AbstractView {
                                      <input name="rememberMe" value="true" type="checkbox" id="rememberMe" class="form-control inputDark" />
                                  </div>
                         </div>
-                               <button name="triggerSubmit" type="submit" id="loginBtn" onmousedown="javascript:SubmitLogin('loginForm')"  class="blue-dark-button">Enter</button>    
+                               <button name="triggerSubmit" type="submit" id="loginBtn" class="blue-dark-button">Enter</button>    
                       </div>
                     </form>   
                   `;
     }
 
+    async executeViewScript()
+    {
+        var currForm = document.getElementById('loginForm'); // Get the Form
+
+        currForm.addEventListener('submit', function handler(e) {
+            e.preventDefault(); // Prevent page reload on Submit  
+            SubmitLogin('loginForm', '/Account/LogIn?');  // Validate Form than Submit the form
+
+            this.removeEventListener('submit', handler); // Remove Event Listener 
+        });
+    }
 }

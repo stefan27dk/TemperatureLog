@@ -341,11 +341,11 @@ function ValidateLogin(formID)
 
 
 // ================================ Login - Submit if Valid Form ===========================================================
-function SubmitLogin(formID)
+function SubmitLogin(formID, url)
 {
     if (ValidateLogin(formID))
     {
-        IdentityPost(formID, '/Account/Login?');
+        IdentityPost(formID, url);
     }
 }
 
