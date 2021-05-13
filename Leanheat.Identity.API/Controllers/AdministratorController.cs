@@ -250,7 +250,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // ===== AddUserToRole- || Post || =====================================================================
+        // ===== Add User To Role || Post || =====================================================================
         [HttpPost]
         [Route("AddUserToRole")]
         public async Task<IActionResult> EditUserInRole(string userEmail, string roleName)
@@ -321,13 +321,17 @@ namespace Leanheat.Identity.API.Controllers
         [Route("GetUser")]
         public async Task<IActionResult> GetUser(string email)
         {
-            var user = await userManager.FindByEmailAsync(email);
-            if(user != null)
+            if(email != null)
             {
-                return StatusCode(200, user); // Get user
+                var user = await userManager.FindByEmailAsync(email);
+                if(user != null)
+                {
+                    return StatusCode(200, user); // Get user
+                }
+                return StatusCode(404, "No such user"); // No Such user error
             }
-            return StatusCode(404, "No such user"); // Get user
 
+            return StatusCode(422, "[\n \"Email cant be empty \n]");  // If Email is null Error
         }
 
 
@@ -358,6 +362,49 @@ namespace Leanheat.Identity.API.Controllers
                 return StatusCode(500, e);
             }
         }
+
+
+
+
+
+
+
+
+        // ===== Delete User - || Post || =====================================================================
+        [HttpPost]
+        [Route("DeleteUser")]
+        public async Task<IActionResult> DeleteUser(string email)
+        {
+            if (email != null)
+            {
+                    // Get User by Email
+                    var user = await userManager.FindByEmailAsync(email);
+                   
+                    if (user != null)
+                    {
+                        // Delete the User
+                        var result = await userManager.DeleteAsync(user);
+                   
+                   
+                        if (result.Succeeded)// If Success
+                        {
+                            return StatusCode(200, "[\n \"User Deleted Successfully\" \n]");
+                        }
+                        else// If Error
+                        {
+                            return new JsonResult(result.Errors.Select(e => e.Description));
+                        }
+                    }
+                    else// If no such user
+                    {
+                        return StatusCode(422, "[\n \"No such user\" \n]");
+                    }
+            }
+
+            return StatusCode(422, "[\n \"Email cant be empty \n]");
+
+        }
+
 
     }
 }
