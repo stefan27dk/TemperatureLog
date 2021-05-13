@@ -6,10 +6,7 @@ async function IdentityPost(formID, postUrl) {
     const currForm = document.getElementById(formID); // Get the Form
     var submitBtn = currForm.elements.namedItem("triggerSubmit"); // Get the submit button of the form
     
-     // Listen for Form- Submit 
-    //currForm.addEventListener('submit',function handler(e)
-    //{
-        //e.preventDefault(); // Prevent page reload on Submit  
+     
         submitBtn.disabled = true; // Disable the submit button
 
         LoadingMsg(); // Show Loading Message
@@ -40,16 +37,10 @@ async function IdentityPost(formID, postUrl) {
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
                        
-                  
-                    if (document.referrer.indexOf(window.location.host) !== -1)  // Return to previous page if local 
-                       {
-                           history.back(); // Go back to previouse page
-                       }
-                       else
-                       {
-                            window.history.replaceState({}, '', '/');
-                           //window.location.href = "/"; // RETURN TO Home
-                       }
+                   
+                    //window.history.replaceState({}, '', window.prevUrl);
+                    //window.navigate(window.prevUrl);  // Use navigate method from index.js
+                    //history.back(); // Go back to previouse page        
                  }
                    else // If Bad STATUS
                    {
@@ -77,9 +68,7 @@ async function IdentityPost(formID, postUrl) {
                    console.warn('Post Exception:', err);
                });
                     
-        //this.removeEventListener('submit', handler); // Remove Event Listener 
-    //});
-
+       
 }
 
 
