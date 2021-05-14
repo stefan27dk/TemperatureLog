@@ -58,7 +58,7 @@ export async function GetUserEmail() {
 
 
 // ============== || Get User DATA || =======================================================================================
-async function GetUserData() {
+export async function GetUserData() {
 
     return await fetch(identityApiUri + '/Account/GetUserData',
         {

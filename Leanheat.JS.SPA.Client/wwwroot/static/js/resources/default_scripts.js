@@ -1,5 +1,6 @@
-﻿import { GetUserEmail } from "/static/js/api/crud/get.js";
+﻿import { GetUserEmail, GetUserData } from "/static/js/api/crud/get.js";
 import { Logout } from "/static/js/api/crud/post.js";
+ 
 
 // ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
 export async function UpdateUserHtml()
