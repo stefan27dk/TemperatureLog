@@ -1,7 +1,7 @@
 ﻿
 
  // =============== || Succsess Message || =================================================================
-function SuccessMsg(msg) {
+export function SuccessMsg(msg) {
 
     var leftBar = document.getElementById('left-bar');
     var leftBarWidth = leftBar.offsetWidth +25;
@@ -23,7 +23,7 @@ function SuccessMsg(msg) {
 
 
  // =============== || Loading Message || ==================================================================
-function LoadingMsg() {
+export function LoadingMsg() {
 
     var leftBar = document.getElementById('left-bar'); // Get the leftbar
     var leftBarWidth = leftBar.offsetWidth + 25; // Add 25px to the leftbar width
@@ -39,7 +39,7 @@ function LoadingMsg() {
 
 
  // ----------------- || Remove Loading MSG || ---------------------------------------------------------------
-function RemoveLoadingMsg() {
+export function RemoveLoadingMsg() {
     document.getElementById('loadingMsg').remove();
 }
 
@@ -50,7 +50,7 @@ function RemoveLoadingMsg() {
 
 
  // =============== || Error Message || ====================================================================
-function ErrorMsg(msg) {
+export function ErrorMsg(msg) {
 
     var leftBar = document.getElementById('left-bar');
     var leftBarWidth = leftBar.offsetWidth + 25;

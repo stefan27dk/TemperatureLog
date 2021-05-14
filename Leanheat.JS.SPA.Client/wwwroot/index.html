@@ -12,16 +12,17 @@
 
 
     <script src="static/js/api/api_adresses.js"></script>
-    <script src="static/js/api/crud/post.js"></script>
-    <script src="static/js/api/crud/get.js"></script>
-    <script src="static/js/components/messages.js"></script>
-    <script src="static/js/validations/input_validations.js"></script>
-    <script src="static/js/resources/default_scripts.js"></script>
+    <script type="module" src="static/js/api/crud/post.js"></script>
+    <script type="module" src="static/js/api/crud/get.js"></script>
+    <script type="module" src="static/js/components/messages.js"></script>
+    <script type="module" src="static/js/validations/input_validations.js"></script>
+    <script type="module" src="static/js/resources/default_scripts.js"></script>
 
 </head>
  <!--<input oninput=""/>-->
 <!--BODY------------------------------------------------------------------------------------------------------> 
-<body onload="UpdateUserHtml();">
+<body>
+    <!--onload="UpdateUserHtml();"-->
     <div class="wrapper-1">
 
         <!--SideBar - LEFT ------------------------->
@@ -44,12 +45,12 @@
                 </div>
 
             </div>
-      
+
             <!--APP - Content ------------------------>
             <div id="app"></div>
         </div>
     </div>
-        
+
 
     <!--SPA - JS - Routing ------------------->
     <script type="module" src="static/js/index.js"></script>

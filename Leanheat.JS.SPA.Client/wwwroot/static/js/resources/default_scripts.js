@@ -1,7 +1,7 @@
-﻿
+﻿import { GetUserEmail } from "/static/js/api/crud/get.js";
 
 // ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
-async function UpdateUserHtml()
+export async function UpdateUserHtml()
 {
     var resPrommise = await GetUserEmail(); // #1 - Responce from the fetch api
     var userEmail = '';

@@ -2,7 +2,7 @@
 
 
 // ============== || Get User Email || =======================================================================================
-async function GetUserEmail() {
+export async function GetUserEmail() {
 
     return await fetch(identityApiUri + '/Account/GetUserEmail',
         {
