@@ -84,10 +84,7 @@ export async function IdentityPost(formID, postUrl) {
 
 
 
-
-
-
-
+ 
 
 
 
@@ -98,10 +95,10 @@ export async function IdentityPost(formID, postUrl) {
 
 
 // ============== || Logout - POST || =======================================================================================
-function Logout(logoutbtn, event)
+export function Logout(logoutbtn, event)
 {
     event.preventDefault();
-    LoadingMsg(); // Show Loading Message
+    msg.LoadingMsg(); // Show Loading Message
     logoutbtn.disabled = true; // Disable the Logout Button
 
     // POST ----------------------------------------------------------------------------------
@@ -115,9 +112,9 @@ function Logout(logoutbtn, event)
             // IF OK                       
             if (response.status == 200)
             {
-                UpdateUserHtml();
-                RemoveLoadingMsg();
-                SuccessMsg("Logged Out");
+                defaultScripts.UpdateUserHtml();
+                msg.RemoveLoadingMsg();
+                msg.SuccessMsg("Logged Out");
                 logoutbtn.disabled = false; // Enable the Logout Button
             }
             else // If Bad STATUS
@@ -127,18 +124,18 @@ function Logout(logoutbtn, event)
 
         }).catch(function (err) // If Exception
         {
-            RemoveLoadingMsg();
+            msg.RemoveLoadingMsg();
             // Show Error
             try // Because of JSON Parse and err.text()
             {
                 err.text().then(errorMessage => {
                     var error = errorMessage.substring(1, errorMessage.length - 1); // Remove the [..] form the Msg
-                    ErrorMsg(error); // Get the error and display
+                    msg.ErrorMsg(error); // Get the error and display
                 });
             }
             catch (e) {
                 console.warn("Post Exception -  Probably No connection to hte server");
-                ErrorMsg(err + " - No connection to the server"); // Get the error and display
+                msg.ErrorMsg(err + " - No connection to the server"); // Get the error and display
             }
 
             logoutbtn.disabled = false; // Enable Submit button

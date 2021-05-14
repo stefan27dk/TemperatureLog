@@ -1,4 +1,5 @@
 ﻿import { GetUserEmail } from "/static/js/api/crud/get.js";
+import { Logout } from "/static/js/api/crud/post.js";
 
 // ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
 export async function UpdateUserHtml()
@@ -21,8 +22,9 @@ export async function UpdateUserHtml()
     if (userEmail!='')
     {
        userContainer.innerHTML = 
-           `<a href="/Profile" onclick="" data-link>${userEmail}</a>
-           <a href="" onclick = "return Logout(this, event);"> Log Out</a >`;
+           `<a id="profile" href="/Profile" onclick="" data-link>${userEmail}</a>
+           <a id="logout" href=""> Log Out</a >`;
+        document.getElementById('logout').onclick = function () { return Logout(this, event);};
     }
     else
     {
@@ -47,7 +49,7 @@ export async function UpdateUserHtml()
 
 
 // ============== || Get User DATA - Populate Update - Form|| =======================================================================================
-async function PopulateUpdateForm(formID)
+export async function PopulateUpdateForm(formID)
 {
     var currentForm = document.getElementById(formID);  // Get the form   
     var resPrommise = await GetUserData();  // Get responce
