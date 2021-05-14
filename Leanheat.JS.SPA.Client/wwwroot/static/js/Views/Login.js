@@ -1,8 +1,9 @@
 ﻿// Imports
 // Using the abstract class
 import AbstractView from "./AbstractView.js";
+import { ValidateEmail, ShowPassword, ValidateLoginPasswordInput, ValidateLogin, SubmitLogin } from "/static/js/validations/input_validations.js";
 
-
+ 
 // Class ###########################################################>
 export default class extends AbstractView {
 
@@ -17,7 +18,7 @@ export default class extends AbstractView {
     // Get Html ====================================================>
     async getHtml() {
         return `
-                    <form id="loginForm" onsubmit="return ValidateLogin(this.id)" class="inputContainer">
+                    <form id="loginForm" class="inputContainer">
                       <div name="loginContainer" >
 
                            <h4 class="title">Login</h4>
@@ -27,15 +28,15 @@ export default class extends AbstractView {
                         
                                 <div class="form-group">
                                     <label for="email">Email:</label>
-                                    <input name="email" type="text" oninput="ValidateEmail(this)" maxlength="25" id="emailLogin" class="form-control inputDark"  />
+                                    <input name="email" type="text" maxlength="25" id="emailLogin" class="form-control inputDark"  />
                                     <label id="emailValidation"></label>
                                 </div>
                                 
                                 
                                 
                                 <div class="form-group">
-                                    <label for="password">Password: </label> <input name="showHidePass" value="true" type="checkbox" onclick="ShowPassword(this, 'passwordLogin', '')" id="showHidePass"/>    
-                                    <input name="password" type="password" oninput="ValidateLoginPasswordInput(this)" minlenght="6" maxlength="40" id="passwordLogin" class="form-control inputDark" />  
+                                    <label for="password">Password: </label> <input name="showHidePass" value="true" type="checkbox" id="showHidePassLogin"/>    
+                                    <input name="password" type="password" minlenght="6" maxlength="40" id="passwordLogin" class="form-control inputDark" />  
                                     <label id="passwordValidation"></label>
                                 </div>
 
@@ -53,13 +54,31 @@ export default class extends AbstractView {
 
     async executeViewScript()
     {
-        var currForm = document.getElementById('loginForm'); // Get the Form
+        // ############################# Events #####################################
 
+        // Email -----------------------------------------------------------------------------------------------------------------------
+        document.getElementById('emailLogin').oninput = function () { return ValidateEmail(this) }; // Email
+
+
+        // Password --------------------------------------------------------------------------------------------------------------------
+        document.getElementById('showHidePassLogin').onclick = function () { return ShowPassword(this, 'passwordLogin', '') }; // Show Hide Password
+        let password = document.getElementById('passwordLogin');
+        password.oninput = function () { ValidateLoginPasswordInput(this) }; // Password
+
+
+
+        // Form ----------------------------------------------------------------------------------------------------------------------------
+        var currForm = document.getElementById('loginForm'); // Get the Form
+        currForm.onsubmit = function () { return ValidateLogin(this.id) }; // On Submit
+
+
+
+        // SUBMIT ==========================================================================================================================
         currForm.addEventListener('submit', function handler(e) {
             e.preventDefault(); // Prevent page reload on Submit  
             SubmitLogin('loginForm', '/Account/LogIn?');  // Validate Form than Submit the form
 
-            this.removeEventListener('submit', handler); // Remove Event Listener 
+            //this.removeEventListener('submit', handler); // Remove Event Listener 
         });
     }
 }

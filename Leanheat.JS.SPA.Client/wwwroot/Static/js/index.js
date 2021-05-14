@@ -5,7 +5,7 @@ import Settings from "./views/Settings.js";
 import Register from "./views/Register.js";
 import Login from "./views/Login.js";
 import Profile from "./views/Profile.js";
-import { UpdateUserHtml } from './resources/default_scripts.js';
+import { UpdateUserHtml } from '/static/js/resources/default_scripts.js';
 
 
 
@@ -103,7 +103,5 @@ router(); // Load the content if the url is defined in our "Spa Urls"
 
 
  // Load user Html ------------------------------------------------------------------------------------------------------------------------------------->
-document.body.addEventListener("onload", function ()
-{
-   UpdateUserHtml(); // On Body load - Load user Html - username, log out etc.
-});
+document.body.onload = function () { return UpdateUserHtml() }; // On Bosy Load load UserHtml - username, logOut etc.
+ 
