@@ -20,6 +20,7 @@ export default class extends AbstractView {
       {
           return `
                     <p> DASHBOARD </p>
+                    <p> Prediction Graf</p>
   
                   `;
       }
