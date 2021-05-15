@@ -41,11 +41,7 @@ export async function IdentityPost(formID, postUrl) {
                        msg.SuccessMsg("Success");
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
-                       
-                    navigateTo(prevView[prevView.length-2]);
-                    //window.history.replaceState({}, '', window.prevUrl);
-                    //window.navigate(window.prevUrl);  // Use navigate method from index.js
-                    //history.back(); // Go back to previouse page        
+                       navigateTo(prevView[prevView.length-2]); // Navigate to previous page or to home if no prev Page/View
                  }
                    else // If Bad STATUS
                    {

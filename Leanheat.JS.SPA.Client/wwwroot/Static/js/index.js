@@ -7,16 +7,17 @@ import Login from "./views/Login.js";
 import Profile from "./views/Profile.js";
 import { UpdateUserHtml } from '/static/js/resources/default_scripts.js';
 
-
+// Previous VIEW / PAAGE -------------------------------------------------------------------->
 export let prevView = ['/'];
+
+
+
 // Navigator--------------------------------------------------------------------------------->
 export const navigateTo = url => {
      history.pushState(null, null, url); // Add the url to the history APi of Js   
      router();
 };
-
-//window.navigate = navigateTo; 
-
+ 
 
 
 
@@ -35,7 +36,7 @@ export const navigateTo = url => {
 
     
 
- // Test each route for potential match ----------------------------------------------------->
+ // Test each route for potential match ------------------------------------------------------->
  // Get the current Url and check if its defined in routes method "Check if its one of our Spa Urls" ----------------------------------------------------->
  const potentialMatches = routes.map(route => {
   return {
@@ -48,7 +49,7 @@ export const navigateTo = url => {
      
  
 
-// Check if there is Match------------------------------------------------------------------->
+    // Check if there is Match------------------------------------------------------------------->
     let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);  // Get isMatch from potentialMatches
 
      
@@ -57,20 +58,20 @@ export const navigateTo = url => {
  if(!match)
  {
      match = {
-     route: routes[0],
+     route: routes[0], // StartPage
      isMatch: true
      };
  }
 
      
    
-     prevView.push(location.href);
+  prevView.push(location.href); // Add View to PreviousView so when needed we can navigate back to previous Page/View
    
 
  const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
 
  document.querySelector("#app").innerHTML = await view.getHtml();  // Get the #app div and use the view function to inject Html in it from the view class ex."Dashboard, Posts, Settings etc."
-    await view.executeViewScript(); 
+ await view.executeViewScript(); // Execute the script forthe specific view
 };
 
 
@@ -105,5 +106,5 @@ router(); // Load the content if the url is defined in our "Spa Urls"
 
 
  // Load user Html ------------------------------------------------------------------------------------------------------------------------------------->
-document.body.onload = function () { return UpdateUserHtml() }; // On Bosy Load load UserHtml - username, logOut etc.
+document.body.onload = function () { return UpdateUserHtml() }; // On Body Load - load UserHtml - username, logOut etc.
  
