@@ -112,6 +112,8 @@ export function Logout(logoutbtn, event)
                 msg.RemoveLoadingMsg();
                 msg.SuccessMsg("Logged Out");
                 logoutbtn.disabled = false; // Enable the Logout Button
+                navigateTo('/'); // Navigate to START PAGE
+
             }
             else // If Bad STATUS
             {
