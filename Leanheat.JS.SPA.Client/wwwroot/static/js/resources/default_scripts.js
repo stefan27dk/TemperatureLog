@@ -19,13 +19,13 @@ export async function UpdateUserHtml()
     });
 
 
-    var userContainer = document.getElementById('userHtml');  
+    var userContainer = document.getElementById('userHtml'); // # Get the User Html - container
     if (userEmail!='')
     {
        userContainer.innerHTML = 
            `<a id="profile" href="/Profile" onclick="" data-link>${userEmail}</a>
            <a id="logout" href=""> Log Out</a >`;
-        document.getElementById('logout').onclick = function () { return Logout(this, event);};
+        document.getElementById('logout').onclick = function () { return Logout(this, event);}; // Log Out Event ONCLICK
     }
     else
     {
