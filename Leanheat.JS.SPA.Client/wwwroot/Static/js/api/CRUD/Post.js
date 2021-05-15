@@ -1,6 +1,6 @@
 ﻿import * as msg from "/static/js/components/messages.js";
 import * as defaultScripts from "/static/js/resources/default_scripts.js";
-
+import { navigateTo, prevView } from '/static/js/index.js';
 
 
 
@@ -42,7 +42,7 @@ export async function IdentityPost(formID, postUrl) {
                        currForm.reset();  // Reset the  form
                        submitBtn.disabled = false; // Enable Submit button
                        
-                   
+                    navigateTo(prevView[prevView.length-2]);
                     //window.history.replaceState({}, '', window.prevUrl);
                     //window.navigate(window.prevUrl);  // Use navigate method from index.js
                     //history.back(); // Go back to previouse page        

@@ -8,10 +8,10 @@ import Profile from "./views/Profile.js";
 import { UpdateUserHtml } from '/static/js/resources/default_scripts.js';
 
 
-
+export let prevView = ['/'];
 // Navigator--------------------------------------------------------------------------------->
-const navigateTo = url => {
-     history.pushState(null, null, url); // Add the url to the history APi of Js
+export const navigateTo = url => {
+     history.pushState(null, null, url); // Add the url to the history APi of Js   
      router();
 };
 
@@ -45,13 +45,13 @@ const navigateTo = url => {
  });
 
 
-        
      
  
 
 // Check if there is Match------------------------------------------------------------------->
     let match = potentialMatches.find(potentialMatch => potentialMatch.isMatch);  // Get isMatch from potentialMatches
 
+     
 
  // If no match return to StartPage
  if(!match)
@@ -63,7 +63,9 @@ const navigateTo = url => {
  }
 
      
-
+   
+     prevView.push(location.href);
+   
 
  const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
 
