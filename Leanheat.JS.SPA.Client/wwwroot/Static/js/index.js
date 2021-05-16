@@ -8,7 +8,7 @@ import Profile from "./views/Profile.js";
 import { UpdateUserHtml } from '/static/js/resources/default_scripts.js';
 
 // Previous VIEW / PAAGE -------------------------------------------------------------------->
-export let prevView = ['','/'];
+export let prevView = ['/','/'];
 
 
 
@@ -25,8 +25,8 @@ export const navigateTo = url => {
  const router = async () => {
  const routes = [
    {path: "/", view: Dashboard}, // On Path "/" use the dashboard class and inject html in the #app div
-   {path: "/posts", view: Posts },
-   {path: "/settings", view: Settings },
+   {path: "/Posts", view: Posts },
+   {path: "/Settings", view: Settings },
    {path: "/Register", view: Register },
    {path: "/Login", view: Login },
    {path: "/Profile", view: Profile }
@@ -63,10 +63,17 @@ export const navigateTo = url => {
      };
  }
 
-     
-   
-  prevView.push(location.href); // Add View to PreviousView so when needed we can navigate back to previous Page/View
-  prevView.shift(); // Remove the First element from the array
+
+
+
+     // PREVIOUS VIEW / PAGE --------------------------------------------------------------------->
+     if (location.pathname != '/Login' && location.pathname != '/Register')  // If Page Login or Register etc. dont add them to the prev view
+     {
+       prevView.push(location.href); // Add View to PreviousView so when needed we can navigate back to previous Page/View
+       prevView.shift(); // Remove the First element from the array
+     }
+
+
 
  const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
 
