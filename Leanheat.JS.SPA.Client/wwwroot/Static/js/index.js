@@ -5,7 +5,7 @@ import Settings from "./views/Settings.js";
 import Register from "./views/Register.js";
 import Login from "./views/Login.js";
 import Profile from "./views/Profile.js";
-import { UpdateUserHtml } from '/static/js/resources/default_scripts.js';
+import { GetUserEmailAsString, UpdateUserHtml } from '/static/js/resources/default_scripts.js';
 
 // Previous VIEW / PAAGE -------------------------------------------------------------------->
 export let prevView = ['/','/'];
@@ -74,6 +74,17 @@ export const navigateTo = url => {
      }
 
 
+     // Check if User logged in than show Prifile - Update
+     if (location.pathname == '/Profile') 
+     {
+         if (await GetUserEmailAsString() == '')
+         {
+             match = {
+                 route: routes[4], // Route to LogIn if not logged in
+                 isMatch: true
+             };
+         }
+     }
 
  const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
 

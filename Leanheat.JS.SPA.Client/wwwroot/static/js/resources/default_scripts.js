@@ -2,22 +2,28 @@
 import { Logout } from "/static/js/api/crud/post.js";
  
 
-// ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
-export async function UpdateUserHtml()
+export async function GetUserEmailAsString()
 {
-    var resPrommise = await GetUserEmail(); // #1 - Responce from the fetch api
-    var userEmail = '';
-
+     let resPrommise = await GetUserEmail(); // #1 - Responce from the fetch api
+     var userEmail = '';
     // # 2 - Extract the Email from the Response
     userEmail = await resPrommise.json().then(content => // Check the response content
     {
-        if (content != null)
-        {
+        if (content != null) {
             return content['email']; // Return email from the responce
         }
         return '';
     });
+    return userEmail;
+}
 
+
+
+// ================================ || Update User State - HTMl - Show Hide Login - Register etc. || ===========================================================
+export async function UpdateUserHtml()
+{
+    
+    let userEmail = await GetUserEmailAsString(); // Get User if logged in
 
     var userContainer = document.getElementById('userHtml'); // # Get the User Html - container
     if (userEmail!='')
