@@ -73,10 +73,10 @@ df = pd.DataFrame(columns=['Date','Temp'])
 df["Date"] = timeData
 df["Temp"] = tempData
 
-#2 Combined File ----------------------------------
+#2 Combined both files to one ----------------------------------
 df.to_csv('leantimetemp.csv',index=False)
 
-#print(df)
+
 print("Everthing was saved!")
 
 
@@ -89,6 +89,7 @@ df = pd.read_csv('leantimetemp.csv')
 print(df)
 
 #Create a variable for predicting 'n' days out into the futre
+#We can always change this number to less or more
 projection = 10
 #Create a new column called prediction
 df['Prediction'] = df[['Temp']].shift(-projection)
@@ -97,7 +98,7 @@ print(df)
 
 #Create the independent data set (X)
 X = np.array(df[['Temp']])
-#Remove the last 14 rows
+#Remove the last 'n' rows
 X = X[:-projection]
 print(X)
 
@@ -107,7 +108,7 @@ y = y[:-projection]
 print(y)
 
 
-#Split the data into % training and % testing data set
+#Split the data into % training and % testing data set. In this case 10% training
 x_train, x_test, y_train, y_test = train_test_split(X,y, test_size= .10)
 
 #Create and train the model
@@ -119,11 +120,12 @@ linReg.fit(x_train, y_train)
 linReg_confidence = linReg.score(x_test, y_test)
 print('Linear Regression Confidence', linReg_confidence)
 
-#Create a variable called x_projection and set it equal to the last 14 rows of data from the original data set
+#Create a variable called x_projection and set it equal to the last 'n' rows of data from the original data set
 x_projection = np.array(df[['Temp']])[-projection:]
 print(x_projection)
 
 #Print the linear regression models predictions for the next 'n' days
+#'n' days = to the days we have sat it to predict. Can always be changed
 linReg_prediction = linReg.predict(x_projection)
 print('Prediction for the next n days:',linReg_prediction)
 
@@ -144,6 +146,9 @@ class MongoDB(object):
         self.dBname = dBName
         self.collectionName = collectionName
 
+        #Database
+        #Need to have mongodb Compass for it to work
+        #With a database named Leanheat and a collection named Predicted_data
         self.client = MongoClient('mongodb+srv://Admin:Admin@projekt.j0lzw.mongodb.net/test')
 
         self.DB = self.client[self.dBname]
@@ -151,7 +156,7 @@ class MongoDB(object):
 
 
     def InsertData(self, path=None):
-        
+        #Reads the csv file and inserts the data 
         df = pd.read_csv(path) 
         data = df.to_dict('records')
 
@@ -159,7 +164,7 @@ class MongoDB(object):
         print('All the data has been exported to mongoDB')
 
 
-
+        #Giving the name of the database, the collection and the path for the csv file
 if __name__ == "__main__":
     mongodb = MongoDB(dBName= 'Leanheat', collectionName='Predicted_data')
     mongodb.InsertData(path='Predicted_data.csv')
