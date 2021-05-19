@@ -2,9 +2,15 @@ import requests
 import json
 import pandas as pd
 import csv
+import numpy as np
+import pymongo
 
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 from requests.auth import HTTPBasicAuth
 from datetime import datetime
+from sys import path
+from pymongo import MongoClient
 
 
 api = "https://api.leanheat.fi/v2/apartments/rawData?site_name=lh_lysholtalle11a_vejle&data=apt_temperature&start_time=1559347200"
@@ -24,14 +30,6 @@ if response.status_code == 401:
 #Open the json file
 with open("projektleanheatapi.json") as f:
     data = json.load(f)
-
-#Remove all the unnecessary stuff. Could be removed in the future!
-#for temp in data:
-    #del temp['series_id']
-    #del temp['series_loc']
-    #del temp['location_id']
-    #del temp['location_alias']
-    #del temp['data_version']
 
 #Open the file in json, and save it again to be more readable
 with open("projektleanheatapi.json", "w") as f:
@@ -54,7 +52,7 @@ with open('leantime.json', 'w') as f:
 #Convert unixtimestamp to datetime
 with open('leantime.json') as f:
     data = json.load(f)
-    data = [datetime.utcfromtimestamp(d).strftime('%Y-%m-%d %H:%M:%S') for d in data]
+    data = [datetime.utcfromtimestamp(d).strftime('%Y-%m-%d') for d in data]
 
 with open('leantime.json', 'w') as f:
     json.dump(data, f, indent=2)
@@ -84,100 +82,87 @@ print("Everthing was saved!")
 
 #==========================================================================================#
 
-import numpy as np
-import pandas as pd
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-plt.style.use('bmh')
-
+#Get and show the data
+#Store the data
 df = pd.read_csv('leantimetemp.csv')
-df.head(6)
+#Show the data
+print(df)
 
-plt.figure(figsize=(16,8))
-plt.title('Leanheat')
-plt.xlabel('Time')
-plt.ylabel('Temp')
-plt.plot(df['Temp'])
-#plt.show()
+#Create a variable for predicting 'n' days out into the futre
+projection = 10
+#Create a new column called prediction
+df['Prediction'] = df[['Temp']].shift(-projection)
+#Show the data set
+print(df)
 
-df = df[['Temp']]
-df.head(4)
+#Create the independent data set (X)
+X = np.array(df[['Temp']])
+#Remove the last 14 rows
+X = X[:-projection]
+print(X)
 
-
-future = 10
-df['Prediction'] = df[['Temp']].shift(-future)
-df.tail(4)
-
-X = np.array(df.drop(['Prediction'],1))[:-future]
-#print(X)
-
-y = np.array(df['Prediction'])[:-future]
-#print(y)
-
-#Training 75% and testing 25%
-x_train, x_test, y_train, y_test = train_test_split(X,y, test_size= 0.25)
-
-tree = DecisionTreeRegressor().fit(x_train, y_train)
-lr = LinearRegression().fit(x_train, y_train)
-
-x_future = df.drop(['Prediction'], 1)[:-future]
-x_future = x_future.tail(future)
-x_future = np.array(x_future)
-x_future
-
-tree_prediction = tree.predict(x_future)
-#print(tree_prediction)
-#print()
-lr_prediction = lr.predict(x_future)
-#print(lr_prediction)
-
-predictions = tree_prediction
-
-valid = df[X.shape[0]:]
-valid['Predictions'] = predictions
-
-plt.figure(figsize=(16,8))
-plt.title('Model')
-plt.xlabel('Days')
-plt.ylabel('Temp')
-plt.plot(df['Temp'])
-plt.plot(valid[['Temp', 'Predictions']])
-plt.legend(['Orignal', 'Validation', 'Prediction'])
-#plt.show()
-
-predictions = lr_prediction
-
-valid = df[X.shape[0]:]
-valid['Predictions'] = predictions
+#Create the dependent data set (y)
+y = df['Prediction'].values
+y = y[:-projection]
+print(y)
 
 
-plt.figure(figsize=(16,8))
-plt.title('Model')
-plt.xlabel('Days')
-plt.ylabel('Temp')
-plt.plot(df['Temp'])
-plt.plot(valid[['Temp', 'Predictions']])
-plt.legend(['Orignal', 'Validation', 'Prediction'])
-#plt.show()
+#Split the data into % training and % testing data set
+x_train, x_test, y_train, y_test = train_test_split(X,y, test_size= .10)
 
+#Create and train the model
+linReg = LinearRegression()
+#Train the model
+linReg.fit(x_train, y_train)
 
-print(tree_prediction)
-#print(lr_prediction)
+#Test the model using score. Closer to 1 the better
+linReg_confidence = linReg.score(x_test, y_test)
+print('Linear Regression Confidence', linReg_confidence)
 
+#Create a variable called x_projection and set it equal to the last 14 rows of data from the original data set
+x_projection = np.array(df[['Temp']])[-projection:]
+print(x_projection)
+
+#Print the linear regression models predictions for the next 'n' days
+linReg_prediction = linReg.predict(x_projection)
+print('Prediction for the next n days:',linReg_prediction)
+
+#Create a CSV file with a column name and saves the data in it
 df = pd.DataFrame(columns=['Predicted Data'])
 
-df['Predicted Data'] = tree_prediction
+df['Predicted Data'] = linReg_prediction
 
-df.to_csv('Storeddata.csv', index=False)
+df.to_csv('Predicted_data.csv', index=False)
 
-df = pd.read_csv('Storeddata.csv')
-df.head(6)
+df = pd.read_csv('Predicted_data.csv')
 
-plt.figure(figsize=(16,8))
-plt.title('Leanheat')
-plt.xlabel('Time')
-plt.ylabel('Temp')
-plt.plot(df['Predicted Data'])
-#plt.show()
+#==========================================================================================#
+
+class MongoDB(object):
+
+    def __init__(self, dBName=None, collectionName=None):
+        self.dBname = dBName
+        self.collectionName = collectionName
+
+        self.client = MongoClient('mongodb+srv://Admin:Admin@projekt.j0lzw.mongodb.net/test')
+
+        self.DB = self.client[self.dBname]
+        self.collection = self.DB[self.collectionName]
+
+
+    def InsertData(self, path=None):
+        
+        df = pd.read_csv(path) 
+        data = df.to_dict('records')
+
+        self.collection.insert_many(data, ordered=False)
+        print('All the data has been exported to mongoDB')
+
+
+
+if __name__ == "__main__":
+    mongodb = MongoDB(dBName= 'Leanheat', collectionName='Predicted_data')
+    mongodb.InsertData(path='Predicted_data.csv')
+
+
+print('Done!')
