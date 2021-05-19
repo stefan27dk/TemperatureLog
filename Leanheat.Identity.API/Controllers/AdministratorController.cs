@@ -43,7 +43,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-
+            
 
 
         // ===== Create Role || POST || =====================================================================
@@ -51,24 +51,24 @@ namespace Leanheat.Identity.API.Controllers
         [Route("CreateRole")]
         public async Task<IActionResult> CreateRole(string roleName)
         {
-            if (roleName != null)
+            if (roleName != null)   // If not emopty input
             {
                 IdentityRole identityRole = new IdentityRole { Name = roleName }; // Set New Role
                 var result = await roleManager.CreateAsync(identityRole);
 
                 if (result.Succeeded)// If OK
                 {
-                    return StatusCode(200, "Role Created Successfully");
+                    return StatusCode(200, "[\n \"Role Created Successfully\" \n]");
                 }
-                return StatusCode(500, result.Errors);
+                return StatusCode(500, result.Errors.Select(e => e.Description));
             }
-            return StatusCode(409, "Input was null - Cant create Role without rolename");
+            return StatusCode(409, "[\n \"Input was null - Cant create Role without rolename\" \n]");
         }
 
 
 
 
-
+     
 
 
               
@@ -95,8 +95,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-
-
+   
 
 
         // ===== Edit Role - || Post || =====================================================================
@@ -104,23 +103,27 @@ namespace Leanheat.Identity.API.Controllers
         [Route("EditRole")]
         public async Task<IActionResult> EditRole(string oldName, string newName)
         {
-            // Find Role
-            var role = await roleManager.FindByNameAsync(oldName);
-            if(role != null) // If found
-            {     
-                role.Name = newName; // Change name
-                var result = await roleManager.UpdateAsync(role); // Update
-
-                if (result.Succeeded) // If Update OK
-                {
-                    return StatusCode(200, "Role Updated Successfully");
-                }
-                return StatusCode(500, result.Errors);  // If Update Error
-            }
-            else // If no such Role
+            if(oldName != null && newName != null)  // If not emopty input
             {
-                return StatusCode(404, "No such role");
+                // Find Role
+                var role = await roleManager.FindByNameAsync(oldName);
+                if(role != null) // If found
+                {     
+                    role.Name = newName; // Change Name
+                    var result = await roleManager.UpdateAsync(role); // Update
+                
+                    if (result.Succeeded) // If Update OK
+                    {
+                        return StatusCode(200, "[\n \"Role Updated Successfully\" \n]");
+                    }
+                    return StatusCode(500, result.Errors.Select(e => e.Description));  // If Update Error
+                }
+                else // If no such Role
+                {
+                    return StatusCode(404, "[\n \"No such role\" \n]");
+                }
             }
+            return StatusCode(409, "[\n \"Empty input: Role - OldName or Role - New Name or both were empty\" \n]");
         }
 
 
@@ -131,73 +134,79 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
+    
+
 
 
 
         // ===== Remove Role - || Post || =====================================================================
-         [HttpPost]
+        [HttpPost]
          [Route("RemoveRole")]
          public async Task<IActionResult> RemoveRole(string roleName, string reAssignRole)
          {
-            var role = await roleManager.FindByNameAsync(roleName); // Find the role
-            if(role != null)
-            {
-                var roleToDelete = await roleManager.FindByNameAsync(roleName); // Get the role
-                var usersInRole = await userManager.GetUsersInRoleAsync(roleName); // Get List of user in the Role
-
-                     // Reassign Users to another role----------------------------------------------------------
-                    if (usersInRole != null && reAssignRole != null) // If there are users in the role and added role for reassigning the users
-                    {
-                        var roleToReAssign = await roleManager.FindByNameAsync(reAssignRole); // Get the role for reassigning
-                        if(roleToReAssign != null) // If reassigning role exists
-                        {
-                            List<ApplicationUser> rollbackList = new List<ApplicationUser>(); // Rollback list if erors
-                            IdentityResult changeRoleResult;
-
-
-                            for (int i = 0; i < usersInRole.Count; i++) // Loop and reassign users
-                            {
-                               changeRoleResult = await userManager.AddToRoleAsync(usersInRole[i], reAssignRole);
-                               if(changeRoleResult.Succeeded)
+               if(roleName != null) // If not emopty input
+               {
+                   var role = await roleManager.FindByNameAsync(roleName); // Find the role
+                   if(role != null)
+                   {
+                       var roleToDelete = await roleManager.FindByNameAsync(roleName); // Get the role
+                       var usersInRole = await userManager.GetUsersInRoleAsync(roleName); // Get List of user in the Role
+                  
+                            // Reassign Users to another role----------------------------------------------------------
+                           if (usersInRole != null && reAssignRole != null) // If there are users in the role and added role for reassigning the users
+                           {
+                               var roleToReAssign = await roleManager.FindByNameAsync(reAssignRole); // Get the role for reassigning
+                               if(roleToReAssign != null) // If reassigning role exists
                                {
-                                 rollbackList.Add(usersInRole[i]);
-                               }
-
-
-                               else // If cant reassign users
-                               {
-
-                                   if(rollbackList.Count != 0)  // If list not empty Rollback
+                                   List<ApplicationUser> rollbackList = new List<ApplicationUser>(); // Rollback list if erors
+                                   IdentityResult changeRoleResult;
+                  
+                  
+                                   for (int i = 0; i < usersInRole.Count; i++) // Loop and reassign users
                                    {
-                                      for (int k = 0; k < rollbackList.Count; k++)
+                                      changeRoleResult = await userManager.AddToRoleAsync(usersInRole[i], reAssignRole);
+                                      if(changeRoleResult.Succeeded)
                                       {
-                                        await userManager.AddToRoleAsync(rollbackList[k], roleName);  // Rollback
+                                        rollbackList.Add(usersInRole[i]);
                                       }
+                  
+                  
+                                      else // If cant reassign users
+                                      {
+                  
+                                          if(rollbackList.Count != 0)  // If list not empty Rollback
+                                          {
+                                             for (int k = 0; k < rollbackList.Count; k++)
+                                             {
+                                               await userManager.AddToRoleAsync(rollbackList[k], roleName);  // Rollback
+                                             }
+                                          }
+                                          return StatusCode(500, "[\n \"Fatal error: could not reassign one or more of the users - Please try again\" \n]"); // If list empty return just message
+                                      }
+                  
                                    }
-                                   return StatusCode(500, "Fatal error: could not reassign one or more of the users - Please try again"); // If list empty return just message
                                }
-
-                            }
-                        }
-                        else
-                        {
-                           return StatusCode(404, $"The Role: \"{reAssignRole}\" for reassigning the users cant be found");
-                        }
-                    }
-                     
-                
-
-
-                        // Delete the Role-----------------------------------------------------------------------
-                        var result = await roleManager.DeleteAsync(roleToDelete); // Delete Role
-                        if(result.Succeeded) // If Ok
-                        {
-                           return StatusCode(200, $"Role: \"{roleName} \" was Successfully Deleted");  // Role Deleted msg
-                        }
-                           return StatusCode(500, result.Errors); // Delete Errors
-                    
-            }
-            return StatusCode(401,"Role not found"); // Role not found msg
+                               else
+                               {
+                                  return StatusCode(404, $"[\n \"The Role: \"{reAssignRole}\" for reassigning the users cant be found\" \n]");
+                               }
+                           }
+                            
+                       
+                  
+                  
+                               // Delete the Role-----------------------------------------------------------------------
+                               var result = await roleManager.DeleteAsync(roleToDelete); // Delete Role
+                               if(result.Succeeded) // If Ok
+                               {
+                                  return StatusCode(200, $"[\n \"Role: \"{roleName} \" was Successfully Deleted\" \n]");  // Role Deleted msg
+                               }
+                                  return StatusCode(500, result.Errors.Select(e => e.Description)); // Delete Errors
+                           
+                   }
+                    return StatusCode(401, "[\n \"Role not found\" \n]"); // Role not found msg
+               }
+            return StatusCode(409, "[\n \"Empty input: Rolename cant be empty\" \n]");
 
          }
 
@@ -214,29 +223,33 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // ===== Remove Role from User - || Post || =====================================================================
+        // ===== Remove User from Role - || Post || =====================================================================
          [HttpPost]
          [Route("RemoveUserFromRole")]
         public async Task<IActionResult> RemoveRoleFromUser(string email, string roleName)
          {
-            var user = await userManager.FindByEmailAsync(email);  // Get User
-            if (user != null) // If user found
-            {
-                var role = await roleManager.FindByNameAsync(roleName); // Get Role
-                if(role != null) // If role found
-                {
-                    var result = await userManager.RemoveFromRoleAsync(user,roleName); // Remove User from Role
-                    if(result.Succeeded) // If Ok
-                    {
-                        return StatusCode(200, $"User: \"{user.Email}\" was removed from Role: \" {roleName} \" "); // Remove User from Role msg
-                    }
-                    return StatusCode(500, result.Errors); // If Remove User from role error
-                }
-                return StatusCode(404, "No such Role"); // If Role not found msg
-            }
-            return StatusCode(404, "No such User"); // If User not found msg
-         }
 
+            if(email !=null && roleName !=null) // If Input not empty
+            {      
+                 var user = await userManager.FindByEmailAsync(email);  // Get User
+                 if (user != null) // If user found
+                 {
+                     var role = await roleManager.FindByNameAsync(roleName); // Get Role
+                     if(role != null) // If role found
+                     {
+                         var result = await userManager.RemoveFromRoleAsync(user,roleName); // Remove User from Role
+                         if(result.Succeeded) // If Ok
+                         {
+                             return StatusCode(200, $"[\n \"User: \"{user.Email}\" was removed from Role: \" {roleName} \" \n]"); // Remove User from Role msg
+                         }
+                         return StatusCode(500, result.Errors.Select(e => e.Description)); // If Remove User from role error
+                     }
+                     return StatusCode(404, "[\n \"No such Role\" \n]"); // If Role not found msg
+                 }
+                 return StatusCode(404, "[\n \"No such User\" \n]"); // If User not found msg
+            }
+            return StatusCode(409, "[\n \"Empty input: Email or RoleName cant be empty\" \n]");
+        }
 
 
 
@@ -255,25 +268,31 @@ namespace Leanheat.Identity.API.Controllers
         [Route("AddUserToRole")]
         public async Task<IActionResult> EditUserInRole(string userEmail, string roleName)
         {
-            var user = await userManager.FindByEmailAsync(userEmail); // Find user
-            if (user != null)
+            if (userEmail != null && roleName != null)  // If Input not empty
             {
-                var role = await roleManager.FindByNameAsync(roleName); // Find role
-                if (role != null)
+                var user = await userManager.FindByEmailAsync(userEmail); // Find user
+                if (user != null)
                 {
-                    if (!await userManager.IsInRoleAsync(user, roleName)) // If user is not in that role
+                    var role = await roleManager.FindByNameAsync(roleName); // Find role
+                    if (role != null)
                     {
-                        var result = await userManager.AddToRoleAsync(user, roleName);  // Add the user to the ROLE
-                        if (result.Succeeded)
+                        if (!await userManager.IsInRoleAsync(user, roleName)) // If user is not in that role
                         {
-                            return StatusCode(200, $"The user was Successfully added to the Role: - \"{roleName}\" ");
+                            var result = await userManager.AddToRoleAsync(user, roleName);  // Add the user to the ROLE
+                            if (result.Succeeded)
+                            {
+                                return StatusCode(200, $"[\n \"The user was Successfully added to the Role: - \"{roleName}\" \n]");
+                            }
+                            return StatusCode(500, result.Errors.Select(e => e.Description));
                         }
+                        return StatusCode(200, "[\n \"The User is already member of that role\" \n]"); // Already memeber of that role msg
                     }
-                    return StatusCode(200, "The User is already member of that role"); // Already memeber of that role msg
+                    return StatusCode(404, "[\n \"Role not found\" \n]");  // Role not found
                 }
-                return StatusCode(404, "Role not found");  // Role not found
+                return StatusCode(404, "[\n \"User not found\" \n]"); // User not found
             }
-            return StatusCode(404, "User not found"); // User not found
+
+            return StatusCode(409, "[\n \"Empty input: Email or RoleName cant be empty\" \n]");
         }
 
 
@@ -301,7 +320,7 @@ namespace Leanheat.Identity.API.Controllers
             }
             catch(Exception e)
             {
-                return StatusCode(500, e);
+                return StatusCode(500, e.Message);
             }
         }
 
