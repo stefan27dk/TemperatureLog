@@ -19,6 +19,14 @@ namespace Leanheat.Temperature.Api.Core
             return temp;
         }
 
+        public void DeleteTemp(string id)
+        {
+            _temps.DeleteOne(temp => temp.Id == id);
+        }
+
+        public Temp GetTemp(string id) => _temps.Find(temp => temp.Id == id).First();
+       
+
         public List<Temp> GetTemps() => _temps.Find(temp => true).ToList();
         
             

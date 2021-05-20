@@ -25,12 +25,26 @@ namespace Leanheat.Temperature.Prediction.API.Controllers
             return Ok(_tempServices.GetTemps());
         }
 
+        [HttpGet("{id}", Name = "GetTemp")]
+        public IActionResult GetTemp(string id)
+        {
+            return Ok(_tempServices.GetTemp(id));
+        }
+
         [HttpPost]
         public IActionResult AddTemp(Temp temp)
         {
             _tempServices.AddTemp(temp);
-            return Ok(temp);
+            return CreatedAtRoute("GetTemp", new { id = temp.Id }, temp);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTemp(string id)
+        {
+            _tempServices.DeleteTemp(id);
+            return NoContent();
+        }
+     
 
        
     }
