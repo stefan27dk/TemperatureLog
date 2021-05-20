@@ -38,13 +38,12 @@ export const navigateTo = url => {
 
  // Test each route for potential match ------------------------------------------------------->
  // Get the current Url and check if its defined in routes method "Check if its one of our Spa Urls" ----------------------------------------------------->
- const potentialMatches = routes.map(route => {
+ const potentialMatches = routes.map(route => {   // The Map method loops routes and stores each route as variable route
   return {
       route: route,
       isMatch: location.pathname === route.path  // True if match else false - location.pathname = the path of the current page / View
   };
  });
-
 
      
  
