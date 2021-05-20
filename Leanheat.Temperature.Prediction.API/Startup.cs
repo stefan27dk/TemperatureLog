@@ -1,3 +1,4 @@
+using Leanheat.Temperature.Api.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +27,20 @@ namespace Leanheat.Temperature.Prediction.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
 
+            services.Configure<TempDbConfig>(
+                options =>
+                {
+                    options.Connection_String = Configuration.GetSection("ConnectionStrings:MongoDbContext").Value;
+                    options.Database_Name = Configuration.GetSection("ConnectionStrings").Value;
+                });
+
+            //Inject the client using dependency injection
+            //One instance of the client through the application
+            services.AddSingleton<IDbClient, DbClient>();
+            services.Configure<TempDbConfig>(Configuration);
+            services.AddTransient<ITempServices, TempServices>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
