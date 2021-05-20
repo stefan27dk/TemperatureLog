@@ -22,17 +22,10 @@ namespace Leanheat.JS.SPA.Client
         }
 
 
-
-
-
-
         // Configure Services ================================================================================= 
         public void ConfigureServices(IServiceCollection services) // This method gets called by the runtime. Use this method to add services to the container.         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         {
         }
-
-
-
 
 
         // Configure ===========================================================================================
@@ -44,18 +37,14 @@ namespace Leanheat.JS.SPA.Client
                 app.UseDeveloperExceptionPage();
             }
 
- 
-
             // SPA
-            app.UseDefaultFiles(); // Means search for the index.html or default files in wwwroot
-            app.UseStaticFiles(); // Static files are files in the wwwroot
+            app.UseDefaultFiles(); // Means search for the index.html or default files in wwwroot - 
+            app.UseStaticFiles(); // Static files are files in the wwwroot - Use wwwroot files
 
 
             // Https
             app.UseHsts();
             app.UseHttpsRedirection();
-
-
             app.UseRouting();
 
             // Endpoints
