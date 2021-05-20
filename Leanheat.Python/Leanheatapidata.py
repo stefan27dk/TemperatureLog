@@ -130,9 +130,9 @@ linReg_prediction = linReg.predict(x_projection)
 print('Prediction for the next n days:',linReg_prediction)
 
 #Create a CSV file with a column name and saves the data in it
-df = pd.DataFrame(columns=['Predicted Data'])
+df = pd.DataFrame(columns=[])
 
-df['Predicted Data'] = linReg_prediction
+df['Predicted_data'] = linReg_prediction
 
 df.to_csv('Predicted_data.csv', index=False)
 
