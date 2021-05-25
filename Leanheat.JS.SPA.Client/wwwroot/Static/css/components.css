@@ -336,3 +336,47 @@
         font-family:Vrinda;
         font-size: 18px; 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+/*================== ||Graph ||=======================================================================================*/
+
+.graphContainer {
+    position: relative;
+    width: min-content;
+    height: 350px;
+    background: rgb(60,7,51);
+    background: radial-gradient(circle, rgba(60,7,51,1) 0%, rgba(14,14,29,1) 100%);
+    display: flex;
+    margin: calc(50% - 350px) auto;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgb(0, 251, 255);
+}
+
+.graphData {
+    background: rgb(0,255,145);
+    background: radial-gradient(circle, rgba(0,255,145,1) 23%, rgba(0,255,226,1) 100%);
+    border: solid 2px black;
+    border-top: solid 5px red;
+    position: relative;
+    display: inline-flex;
+    width: auto;
+    margin-top: auto;
+}
+
+
+
+
+    .graphData:hover {
+        background: rgb(65,200,255);
+        background: radial-gradient(circle, rgba(65,200,255,1) 47%, rgba(0,74,255,1) 100%);
+    }

@@ -50,6 +50,8 @@ namespace Leanheat.Temperature.Prediction.API
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<TempDbConfig>(Configuration);
 
+            // CORS
+            services.AddCors();
 
             // Services
             services.AddTransient<ITempServices, TempServices>();
@@ -84,6 +86,16 @@ namespace Leanheat.Temperature.Prediction.API
             app.UseHsts();
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            // CORS - Allow calling the API from WebBrowsers
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins seperated with comma
+                .SetIsOriginAllowed(origin => true));// Allow any origin  
+
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
