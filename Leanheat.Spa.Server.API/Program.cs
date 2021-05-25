@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SpaServer
+namespace Leanheat.Spa.Server.API
 {
     public class Program
     {

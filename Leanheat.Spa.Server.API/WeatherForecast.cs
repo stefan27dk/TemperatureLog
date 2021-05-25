@@ -1,6 +1,6 @@
 using System;
 
-namespace SpaServer
+namespace Leanheat.Spa.Server.API
 {
     public class WeatherForecast
     {
