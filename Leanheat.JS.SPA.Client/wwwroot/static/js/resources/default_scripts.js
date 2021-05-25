@@ -1,4 +1,4 @@
-﻿import { GetUserEmail, GetUserData } from "/static/js/api/crud/get.js";
+﻿import { GetUserEmail} from "/static/js/api/crud/get.js";
 import { Logout } from "/static/js/api/crud/post.js";
  
 
@@ -47,51 +47,3 @@ export async function UpdateUserHtml()
 
 
 
-
-
-
-
-
-
-
-
-// ============== || Get User DATA - Populate Update - Form|| =======================================================================================
-export async function PopulateUpdateForm(formID)
-{
-    var currentForm = document.getElementById(formID);  // Get the form   
-    var resPrommise = await GetUserData();  // Get responce
- 
-
-     // populate the Form
-     await resPrommise.json().then(content => // Check the response content
-    {
-         if (content != null)
-         {
-             currentForm['email'].value = content['email'];
-             currentForm['firstname'].value = content['firstname'];
-             currentForm['lastname'].value = content['lastname'];
-             if (content['age'] != 0)
-             {
-               currentForm['age'].value = content['age'];
-             }
-             currentForm['phonenumber'].value = content['phonenumber'];
-         }
-    
-             return;
-    });
-}
-
-
-
-
-
-
-
-
-
-
-//// Listen for Location Change - Record Previouse URL
-//var prevUrl = '/';
-//window.addEventListener('locationchange', function () {
-//    prevUrl = window.location.href;
-//});

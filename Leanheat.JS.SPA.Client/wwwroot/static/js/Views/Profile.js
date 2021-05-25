@@ -2,7 +2,7 @@
 // Using the abstract class
 import AbstractView from "./AbstractView.js";
 import * as Validate from "/static/js/validations/input_validations.js";
-import { PopulateUpdateForm } from "/static/js/resources/default_scripts.js";
+import { PopulateUpdateForm } from "/static/js/api/crud/get.js"; 
 
 
 // Class ###########################################################>
