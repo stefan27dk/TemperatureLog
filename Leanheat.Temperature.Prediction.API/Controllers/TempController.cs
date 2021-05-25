@@ -1,4 +1,6 @@
-﻿using Leanheat.Temperature.Api.Core;
+﻿
+using Leanheat.Temperature.Prediction.API.Application.Interfaces;
+using Leanheat.Temperature.Prediction.API.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

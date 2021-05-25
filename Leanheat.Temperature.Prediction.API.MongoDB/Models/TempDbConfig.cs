@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leanheat.Temperature.Api.Core
+namespace Leanheat.Temperature.Prediction.API.MongoDB.Models
 {
     public class TempDbConfig
     {

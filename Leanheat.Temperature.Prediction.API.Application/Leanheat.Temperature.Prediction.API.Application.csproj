@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Leanheat.Temperature.Prediction.API.Domain\Leanheat.Temperature.Prediction.API.Domain.csproj" />
+    <ProjectReference Include="..\Leanheat.Temperature.Prediction.API.MongoDB\Leanheat.Temperature.Prediction.API.MongoDB.csproj" />
   </ItemGroup>
 
 </Project>

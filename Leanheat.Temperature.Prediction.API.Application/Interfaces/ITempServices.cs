@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Leanheat.Temperature.Prediction.API.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leanheat.Temperature.Api.Core
+namespace Leanheat.Temperature.Prediction.API.Application.Interfaces
 {
     public interface ITempServices
     {

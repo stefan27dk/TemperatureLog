@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Leanheat.Temperature.Api.Core\Leanheat.Temperature.Api.Core.csproj" />
+    <ProjectReference Include="..\Leanheat.Temperature.Prediction.API.Application\Leanheat.Temperature.Prediction.API.Application.csproj" />
   </ItemGroup>
 
 </Project>
