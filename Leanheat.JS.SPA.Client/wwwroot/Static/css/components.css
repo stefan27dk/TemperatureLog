@@ -352,7 +352,8 @@
 
     .graphContainer {
         position: relative;
-        width: min-content;
+        width: max-content;
+        max-width: 65vw;
         height: 350px;
         background: rgb(60,7,51);
         background: radial-gradient(circle, rgba(60,7,51,1) 0%, rgba(14,14,29,1) 100%);
@@ -360,6 +361,7 @@
         margin: calc(50% - 350px) auto;
         border-radius: 4px;
         box-shadow: 0px 0px 10px rgb(0, 251, 255);
+        overflow-y: auto;
     }
     
     .graphData {
@@ -371,6 +373,7 @@
         display:grid;
         width: auto;
         margin-top: auto;
+        min-width:70px;
     }
 
 

@@ -29,28 +29,27 @@ export default class extends AbstractView {
     // View Script ====================================================>
     async executeViewScript()
     {  
-        //// Get the Temp Data in Array 
-        //let resPrommise = await GetTemperatureData(); // Get Responce
-        //const tempArr = new Array(10); // Create Temp Array
+        // Get the Temp Data in Array 
+        let resPrommise = await GetTemperatureData(); // Get Responce
+        const tempArr = new Array(10); // Create Temperature Array
 
-        //// Extract the Data From the Responce - Prommise - and add it to array
-        //await resPrommise.json().then(content => // Get the Temp list
-        //{
-        //    const contentSize = content.length;
-        //    for (var i = 0; i < contentSize; i++)  // Insert Objects to Array (Objects contain - "id" and "predicted_data")
-        //    {
-        //        tempArr[i] = content[i];
-        //    } 
-        //});
-
+        // Extract the Data From the Responce - Prommise - and add it to array
+        await resPrommise.json().then(content => // Get the Temp list
+        {
+            for (var i = 0; i < 10; i++)  // Insert Objects to Array (Objects contain - "id" and "predicted_data")
+            {
+                tempArr[i] = content[i];
+            } 
+        });
 
 
-        // TEMP - DATA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        let tempArr = [{ "date": "25-05-2021", "time": "17:00", "temp": "22.04" }, { "date": "25-05-2021", "time": "18:00", "temp": "21.07" },
-        { "date": "25-05-2021", "time": "19:00", "temp": "19.02" }, { "date": "25-05-2021", "time": "20:00", "temp": "23.09" },
-        { "date": "25-05-2021", "time": "21:00", "temp": "16.47" }, { "date": "25-05-2021", "time": "22:00", "temp": "21.72" },
-        { "date": "25-05-2021", "time": "23:00", "temp": "18.51" }, { "date": "25-05-2021", "time": "24:00", "temp": "24.05" },
-        { "date": "25-05-2021", "time": "1:00", "temp": "27.74" }, { "date": "25-05-2021", "time": "2:00", "temp": "30.06" }];
+
+        //// TEMP - DATA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //let tempArr = [{ "date": "25-05-2021", "time": "17:00", "temp": "22.04" }, { "date": "25-05-2021", "time": "18:00", "temp": "21.07" },
+        //{ "date": "25-05-2021", "time": "19:00", "temp": "19.02" }, { "date": "25-05-2021", "time": "20:00", "temp": "23.09" },
+        //{ "date": "25-05-2021", "time": "21:00", "temp": "16.47" }, { "date": "25-05-2021", "time": "22:00", "temp": "21.72" },
+        //{ "date": "25-05-2021", "time": "23:00", "temp": "18.51" }, { "date": "25-05-2021", "time": "24:00", "temp": "24.05" },
+        //{ "date": "25-05-2021", "time": "1:00", "temp": "27.74" }, { "date": "25-05-2021", "time": "2:00", "temp": "30.06" }];
 
 
 
@@ -64,7 +63,7 @@ export default class extends AbstractView {
 
         // Adjustable - Factors
         let heightFactor = 10; //Used - heightFactor * height
-        let unitWidth = 70; // In Pixels
+        let unitWidth = 100; // In Pixels
 
 
 
@@ -76,15 +75,20 @@ export default class extends AbstractView {
         const arrSize = tempArr.length; // Arr length - for better performance
         for (var t = 0; t < arrSize; t++)
         {
-            let currentTemp = tempArr[t]['temp'];
+            let currentTemp = tempArr[t]['predicted_temp'];
             let currentUnitHeight = currentTemp * heightFactor; // Generate the height of the data-unit
 
-
+            // Work on Elelemnt
             let cloneCurrentUnitData = currentUnitData.cloneNode(true); // Colone the div template 
             cloneCurrentUnitData.id = `tempData${t}`; // Give it ID
             cloneCurrentUnitData.style = `width:${unitWidth}px; height:${currentUnitHeight}px`; // Graph - Data - Unit Size
-            cloneCurrentUnitData.innerHTML = `<span class="graphDataTemp">${currentTemp} C</span> <span class="graphDataTime">${tempArr[t]['time']}</span>`; // Add TEMP to the graph - Text  // Add time to graph
-            documentFragment.appendChild(cloneCurrentUnitData); // Add to Fragment - Store it in the fragment
+
+            // Add Text-Data to the current Data - Unit
+            cloneCurrentUnitData.innerHTML = `<span class="graphDataTemp">${currentTemp} C
+            </span> <span class="graphDataTime">${tempArr[t]['time']}</span>`; // Add TEMP to the graph - Text  // Add time to graph
+
+            // Add to Fragment - Store it in the fragment
+            documentFragment.appendChild(cloneCurrentUnitData);
         }
          
         graph.appendChild(documentFragment); // Add all Data - Units to the Graph
