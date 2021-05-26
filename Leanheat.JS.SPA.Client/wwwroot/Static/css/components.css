@@ -400,3 +400,18 @@
        margin: auto auto 20px auto;
        font-weight: 900;
       }
+
+
+
+
+
+       .dataInfoContainer
+      {
+        background-color: red;
+      }
+
+
+       .dataInfo
+       {
+           margin:0 auto;
+       }

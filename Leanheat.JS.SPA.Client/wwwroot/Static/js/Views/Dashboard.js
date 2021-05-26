@@ -90,10 +90,65 @@ export default class extends AbstractView {
             // Add to Fragment - Store it in the fragment
             documentFragment.appendChild(cloneCurrentUnitData);
         }
-         
+
+
+
+
+
+         // Data Info - Div - Max - Min - AVG --------------------------------------------------------
+        let dataInfoContainer = document.createElement("div"); // Create container for the data Info
+        dataInfoContainer.classList.add("dataInfoContainer"); // Add Class
+
+        const allValues = tempArr.map(function (r) { return r.predicted_temp });
+
+        const max = Math.max.apply(Math, allValues); // MAX -  Using MATH MAX --> Apply is used to extract the data from the array object into variables ---> than use the array together with map "map is like loop" --> than specify in the map function which variable to loop and it returns it
+        const min = Math.min.apply(Math, allValues); // MIN
+
+
+        const avg = (allValues.reduce((a, b) => a + b, 0) / tempArr.length).toFixed(2); // AVG
+        const biggestDif = (max - min).toFixed(2); // Biggest Differnece
+        const mode = ""; // Typpetal
+        const median = Median(allValues); // Middle talet
+
+
+        // Get Median ----------------------------------------------------------------------------------
+        function Median(values)
+        {
+            const valuesLength = values.length; // Array length
+            // If 0
+            if (valuesLength === 0)
+            {
+                return 0;
+            }
+
+            // Sort
+            let sorted = values.sort();
+
+            // If Even
+            if (valuesLength % 2 == 0 ) // IF Even length
+            {
+                const theEvenMedianIndex = valuesLength / 2;
+                const theOddMedianIndex = theEvenMedianIndex - 1;
+
+                return (sorted[theEvenMedianIndex] + sorted[theOddMedianIndex]) / 2;
+            }
+
+                 // If Odd
+                return sorted[valuesLength / 2];
+        }
+
+
+
+        dataInfoContainer.innerHTML = `<span class="dataInfo">Min: ${min}</span> <span class="dataInfo">Max: ${max}</span> 
+        <span class="dataInfo">Avg: ${avg}</span> <span class="dataInfo">Biggest Difference: ${biggestDif}</span>
+        <span class="dataInfo">Median: ${median}</span> <span class="dataInfo">Mode: ${mode}</span>`;
+
+        documentFragment.appendChild(dataInfoContainer);
+
+
+        // Append
         graph.appendChild(documentFragment); // Add all Data - Units to the Graph
         document.getElementById("app").appendChild(graph); // Add the graph to the Dashboard
-
 
     }
 }
