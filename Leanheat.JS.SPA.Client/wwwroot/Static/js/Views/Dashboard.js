@@ -55,38 +55,40 @@ export default class extends AbstractView {
 
 
         // Generate Graph-------------------------------------------------
-        let graph = document.createElement("div");  // Create holder
-        graph.id = 'graph'; // Give ID
+        let graph = document.createElement("div");  // Create DIV - Graph container holder
+        graph.id = 'graph'; // Give it ID
         graph.className = "graphContainer"; // Add Class to the graph container
 
 
-        let documentFragment = document.createDocumentFragment();
+        let documentFragment = document.createDocumentFragment();  // Create document fragment - Used to store all the graph data - units and append them at once to the graph container to achive better performance
 
         // Adjustable - Factors
-        let heightFactor = 10;
-        let unitWidth = 50; // In Pixels
+        let heightFactor = 10; //Used - heightFactor * height
+        let unitWidth = 70; // In Pixels
 
 
 
 
 
         let currentUnitData = document.createElement("div"); // Create the data-unit element once
-        currentUnitData.classList.add("graphData");
+        currentUnitData.classList.add("graphData"); // Add Class
 
-        const arrSize = tempArr.length; // Arr length
+        const arrSize = tempArr.length; // Arr length - for better performance
         for (var t = 0; t < arrSize; t++)
         {
-            let currentunitHeight = tempArr[t]['temp'] * heightFactor; // Generate the height of the data-unit
+            let currentTemp = tempArr[t]['temp'];
+            let currentUnitHeight = currentTemp * heightFactor; // Generate the height of the data-unit
 
 
-            let cloneCurrentUnitData = currentUnitData.cloneNode(true);
+            let cloneCurrentUnitData = currentUnitData.cloneNode(true); // Colone the div template 
             cloneCurrentUnitData.id = `tempData${t}`; // Give it ID
-            cloneCurrentUnitData.style = `width:${unitWidth}px; height:${currentunitHeight}px`; // Style
-            documentFragment.appendChild(cloneCurrentUnitData); // Add to Fragment
+            cloneCurrentUnitData.style = `width:${unitWidth}px; height:${currentUnitHeight}px`; // Graph - Data - Unit Size
+            cloneCurrentUnitData.innerHTML = `<span class="graphDataTemp">${currentTemp} C</span> <span class="graphDataTime">${tempArr[t]['time']}</span>`; // Add TEMP to the graph - Text  // Add time to graph
+            documentFragment.appendChild(cloneCurrentUnitData); // Add to Fragment - Store it in the fragment
         }
          
-        graph.appendChild(documentFragment); // Add all dataUnits to the graph
-        document.getElementById("app").appendChild(graph); // Add graph to Dashboard
+        graph.appendChild(documentFragment); // Add all Data - Units to the Graph
+        document.getElementById("app").appendChild(graph); // Add the graph to the Dashboard
 
 
     }
