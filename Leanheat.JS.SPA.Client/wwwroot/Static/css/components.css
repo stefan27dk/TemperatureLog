@@ -350,68 +350,124 @@
 
 /*================== ||Graph ||=======================================================================================*/
 
-    .graphContainer {
-        position: relative;
-        width: max-content;
-        max-width: 65vw;
-        height: 350px;
-        background: rgb(60,7,51);
-        background: radial-gradient(circle, rgba(60,7,51,1) 0%, rgba(14,14,29,1) 100%);
-        display: flex;
-        margin: calc(50% - 350px) auto;
-        border-radius: 4px;
-        box-shadow: 0px 0px 10px rgb(0, 251, 255);
-        overflow-y: auto;
-    }
+.graphContainer {
+    position: relative;
+    max-width: 80vw;
+    height: 350px;
+    background: rgb(60,7,51);
+    background: radial-gradient(circle, rgba(60,7,51,1) 0%, rgba(14,14,29,1) 100%);
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-end;
     
-    .graphData {
-        background: rgb(0,255,145);
-        background: radial-gradient(circle, rgba(0,255,145,1) 23%, rgba(0,255,226,1) 100%);
-        border: solid 2px black;
-        border-top: solid 5px red;
-        position: relative;
-        display:grid;
-        width: auto;
-        margin-top: auto;
-        min-width:70px;
-    }
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgb(0, 251, 255);
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+.graphData {
+    background: rgb(0,255,145);
+    background: radial-gradient(circle, rgba(0,255,145,1) 23%, rgba(0,255,226,1) 100%);
+    /*background-color: rgb(205, 255, 163);*/
+    border: solid 2px black;
+    border-top: solid 5px rgb(214, 9, 111);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    display: grid;
+    width: auto;
+    margin-top: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 70px;
+    text-align: center;
+    min-width: 90px;
+    box-sizing: border-box;
+    box-shadow: 5px -10px 8px black;
+}
 
 
 
 
     .graphData:hover {
-        background: rgb(65,200,255);
-        background: radial-gradient(circle, rgba(65,200,255,1) 47%, rgba(0,74,255,1) 100%);
-        border-top: 5px solid gold;
+        background: rgb(118,241,194);
+        background: radial-gradient(circle, rgb(205, 255, 163) 0%, rgba(202, 255, 117,1) 100%);
+        border-top: 5px solid orange;
     }
 
 
 
-     .graphDataTemp
-     {
-      margin: 20px auto;
-      font-weight: 900;
-     }
-
-
-
-      .graphDataTime
-      {
-       margin: auto auto 20px auto;
-       font-weight: 900;
-      }
+.graphDataTemp {
+    margin: 20px auto;
+    font-weight: 900;
+    color: blue;
+    filter: drop-shadow(1px 1px 2px blue);
+}
 
 
 
 
+.graphDataTime {
+    margin: auto auto 20px auto;
+    font-weight: 900;
+    color: black;
+    filter: drop-shadow(1px 1px 4px #4444dd);
+    font-family: DotumChe;
+    font-size: 14px;
+}
 
-       .dataInfoContainer
-      {
-        background-color: red;
-      }
 
 
-       .dataInfo
+
+       .innerGraphHolder
        {
-           margin:0 auto;
+           display:flex;
+           min-width:auto;
+           box-sizing: border-box;
+           box-sizing: border-box;
+           min-width: 1000px;
        }
+
+
+
+
+.dataInfoContainer {
+    border-top: 2px solid rgb(61, 123, 255);
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(31,67,112,1) 100%);
+    display: table-row;
+    height: 25px;
+    min-width: 1000px;
+    width:inherit;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+
+
+
+.dataInfo {
+    color: rgb(255, 180, 82);
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: 800;
+    /*font-family:FangSong;*/
+    font-family:'Noto Mono';
+    font-size: 14px;
+}
+
+.dataInfo:hover
+{
+    background-color:black;
+    border: solid 1px red;
+    border-radius: 4px;
+    padding: 5px;
+}

@@ -12,7 +12,7 @@
 /*--------|| HTML - BODY ||--------------------------------------------------------------------*/
 html, body {
     padding: 0;
-    margin: 0;
+    margin: 0; 
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -53,6 +53,8 @@ body {
     background: rgb(22,26,54);
     background: radial-gradient(circle, rgba(22,26,54,1) 0%, rgba(37,32,32,1) 100%);
     overflow-y: auto;
+    display: flexbox;
+    align-items: flex-start;
 }
 
 

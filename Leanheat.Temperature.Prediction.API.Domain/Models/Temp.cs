@@ -15,7 +15,6 @@ namespace Leanheat.Temperature.Prediction.API.Domain.Models
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
         public double Predicted_temp { get; set; }
-        public string Date { get; set; }
-        public string Time { get; set; }
+        public string Datetime { get; set; }
     }
 }
