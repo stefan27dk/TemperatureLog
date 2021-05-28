@@ -17,7 +17,7 @@ export default class extends AbstractView {
     // Get Html ====================================================>
     async getHtml() {
         return `
-                  <h1>Mongo test</h1>
+                  <h1>Graph</h1>
                   <div class="container">
                       <iframe class="responsive-iframe" style="background: #21313C;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-project-esbwm/embed/charts?id=ede2c842-c4c3-42ad-880d-7010f1437ad0&autoRefresh=300&theme=dark"></iframe>
                   </div>
