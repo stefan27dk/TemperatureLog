@@ -47,3 +47,31 @@ export async function UpdateUserHtml()
 
 
 
+
+
+
+
+
+// ================================ || GET HTML - FROM URL || ===========================================================
+
+//export var postsIframeHtml = postsIfra FetchPostsIframe('https://leanheat.com/').then(text => { return text });
+
+   
+                
+
+        // Get PostsHtml
+        //export async function GetPostsIframeHtml()
+        //{
+        //   return await FetchHtml('https://leanheat.com/').then(text => { return text });
+        //}
+
+
+
+
+       // // Getting the HTML
+       //export  async function FetchPostsIframe(url) 
+       //{
+       //     let response = await fetch('url');
+       //     return await response.text(); // Returns it as Promise
+       //}
+
