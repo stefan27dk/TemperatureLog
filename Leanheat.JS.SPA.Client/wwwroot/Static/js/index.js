@@ -5,6 +5,7 @@ import Settings from "./views/Settings.js";
 import Register from "./views/Register.js";
 import Login from "./views/Login.js";
 import Profile from "./views/Profile.js";
+import MongoGraph from "./views/MongoGraph.js";
 import { GetUserEmailAsString, UpdateUserHtml } from '/static/js/resources/default_scripts.js';
 
 // Previous VIEW / PAAGE -------------------------------------------------------------------->
@@ -29,7 +30,10 @@ export const navigateTo = url => {
    {path: "/Settings", view: Settings },
    {path: "/Register", view: Register },
    {path: "/Login", view: Login },
-   {path: "/Profile", view: Profile }
+     { path: "/Profile", view: Profile },
+     { path: "/MongoGraph", view: MongoGraph }
+
+
  ];
 
  

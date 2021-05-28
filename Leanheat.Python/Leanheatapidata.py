@@ -4,6 +4,7 @@ import pandas as pd
 import csv
 import numpy as np
 import pymongo
+import schedule
 
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -11,7 +12,7 @@ from requests.auth import HTTPBasicAuth
 from datetime import datetime
 from sys import path
 from pymongo import MongoClient
-
+from datetime import timedelta
 
 api = "https://api.leanheat.fi/v2/apartments/rawData?site_name=lh_lysholtalle11a_vejle&data=apt_temperature&start_time=1559347200"
 key = "GZXXOHQ90LJSJDBKUC19R0QYFWOAUX67KZZGLK5UOPPA0EG3MCNT9TQEOIEEDPJ1TR88BBWHEMLCCNRL7CCCZFRUOSZN9HIAG078Y3254NP44XL6NELAKYN7UMXO47DI"
@@ -52,7 +53,8 @@ with open('leantime.json', 'w') as f:
 #Convert unixtimestamp to datetime
 with open('leantime.json') as f:
     data = json.load(f)
-    data = [datetime.utcfromtimestamp(d).strftime('%Y-%m-%d') for d in data]
+    #%Y-%m-%d
+    data = [datetime.utcfromtimestamp(d).strftime('%H:%M') for d in data]
 
 with open('leantime.json', 'w') as f:
     json.dump(data, f, indent=2)
@@ -73,11 +75,11 @@ df = pd.DataFrame(columns=['Date','Temp'])
 df["Date"] = timeData
 df["Temp"] = tempData
 
-#2 Combined both files to one ----------------------------------
+#2 Combined File ----------------------------------
 df.to_csv('leantimetemp.csv',index=False)
 
-
-print("Everthing was saved!")
+#print(df)
+#print("Everthing was saved!")
 
 
 #==========================================================================================#
@@ -86,29 +88,28 @@ print("Everthing was saved!")
 #Store the data
 df = pd.read_csv('leantimetemp.csv')
 #Show the data
-print(df)
+#print(df)
 
 #Create a variable for predicting 'n' days out into the futre
-#We can always change this number to less or more
 projection = 10
 #Create a new column called prediction
 df['Prediction'] = df[['Temp']].shift(-projection)
 #Show the data set
-print(df)
+#print(df)
 
 #Create the independent data set (X)
 X = np.array(df[['Temp']])
-#Remove the last 'n' rows
+#Remove the last 14 rows
 X = X[:-projection]
-print(X)
+#print(X)
 
 #Create the dependent data set (y)
 y = df['Prediction'].values
 y = y[:-projection]
-print(y)
+#print(y)
 
 
-#Split the data into % training and % testing data set. In this case 10% training
+#Split the data into % training and % testing data set
 x_train, x_test, y_train, y_test = train_test_split(X,y, test_size= .10)
 
 #Create and train the model
@@ -120,22 +121,43 @@ linReg.fit(x_train, y_train)
 linReg_confidence = linReg.score(x_test, y_test)
 print('Linear Regression Confidence', linReg_confidence)
 
-#Create a variable called x_projection and set it equal to the last 'n' rows of data from the original data set
+#Create a variable called x_projection and set it equal to the last 14 rows of data from the original data set
 x_projection = np.array(df[['Temp']])[-projection:]
-print(x_projection)
+#print(x_projection)
 
 #Print the linear regression models predictions for the next 'n' days
-#'n' days = to the days we have sat it to predict. Can always be changed
 linReg_prediction = linReg.predict(x_projection)
-print('Prediction for the next n days:',linReg_prediction)
+#print('Prediction for the next n days:',linReg_prediction)
 
+#==========================================================================================#
+
+now = datetime.now()
 #Create a CSV file with a column name and saves the data in it
-df = pd.DataFrame(columns=[])
+df = pd.DataFrame(columns=['Predicted_temp','Datetime']) # Create Columns
 
-df['Predicted_data'] = linReg_prediction
+df['Predicted_temp'] = np.around(linReg_prediction, decimals=1) # Add Predicted Temp
+
+
+
+
+lastTime = now.strftime('%d-%m-%Y %H:%M') # Hours and Minutes
+
+for index, items in df.iterrows():
+    df['Datetime'][index] = (datetime.strptime(lastTime, '%d-%m-%Y %H:%M') + timedelta(hours=2.4)).strftime('%d-%m-%Y %H:%M')
+    lastTime = df['Datetime'][index]
+    
+   
+    
+
+
+
+
+ 
+
+
 
 df.to_csv('Predicted_data.csv', index=False)
-
+ 
 df = pd.read_csv('Predicted_data.csv')
 
 #==========================================================================================#
@@ -146,9 +168,6 @@ class MongoDB(object):
         self.dBname = dBName
         self.collectionName = collectionName
 
-        #Database
-        #Need to have mongodb Compass for it to work
-        #With a database named Leanheat and a collection named Predicted_data
         self.client = MongoClient('mongodb+srv://Admin:Admin@projekt.j0lzw.mongodb.net/test')
 
         self.DB = self.client[self.dBname]
@@ -156,7 +175,7 @@ class MongoDB(object):
 
 
     def InsertData(self, path=None):
-        #Reads the csv file and inserts the data 
+        
         df = pd.read_csv(path) 
         data = df.to_dict('records')
 
@@ -164,9 +183,9 @@ class MongoDB(object):
         print('All the data has been exported to mongoDB')
 
 
-        #Giving the name of the database, the collection and the path for the csv file
+
 if __name__ == "__main__":
-    mongodb = MongoDB(dBName= 'Leanheat', collectionName='Predicted_data')
+    mongodb = MongoDB(dBName= 'Tempdata', collectionName='Data')
     mongodb.InsertData(path='Predicted_data.csv')
 
 
