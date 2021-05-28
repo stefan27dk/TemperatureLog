@@ -417,11 +417,14 @@
 
 .graphDataTime {
     margin: auto auto 20px auto;
+    color:blue;
+    /*filter: drop-shadow(1px 1px 1px red);*/
+    /*font-family: DotumChe;*/
+    font-family: Kartika;
     font-weight: 900;
-    color: black;
-    filter: drop-shadow(1px 1px 4px #4444dd);
-    font-family: DotumChe;
     font-size: 14px;
+    /*text-shadow: 1px 1px 1px black, 1px 1px 1px black;*/
+    /* box-shadow: 10px 0px 10px 20px rgba( 55, 135, 134,0.5);*/
 }
 
 
