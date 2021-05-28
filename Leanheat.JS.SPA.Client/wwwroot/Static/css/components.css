@@ -445,7 +445,7 @@
     background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(31,67,112,1) 100%);
     display: table-row;
     height: 25px;
-    min-width: 1000px;
+    min-width: 1100px;
     width:inherit;
     white-space: nowrap;
     box-sizing: border-box;
