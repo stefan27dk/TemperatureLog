@@ -93,7 +93,8 @@ a {
    
 
 
-/*=============|| TOP ||============================================*/
+/*=============|| TOP ||============================================*/    
+
 .top-bar {
     height: 60px;
     max-width: 100%;
@@ -112,6 +113,11 @@ a {
 .top-bar > a {
     margin: 0 15px 0 15px;
 }
+
+
+
+
+
 
 
 
@@ -185,11 +191,45 @@ a {
 
 
 
+
+
+
+
+
+
+/*================== || TOPBAR - Content ||=======================================================================================*/
+     .icon-img {
+         width: 30px;
+         height: auto;
+         margin-right: 7px;
+         display: inline-flex;
+         filter: drop-shadow(1px 1px 5px black);
+     }
+     
+     
+     .topBarItem {
+         display: inline-flex;
+         filter: drop-shadow(1px 1px 5px black);
+         text-shadow: 1px 1px black;
+     }
+
+    .topBarItem:hover
+    {
+      filter: drop-shadow(1px 1px 5px aqua);
+    }
+        
+
+
+
+
+
+
+
 /*=============|| Titles ||============================================*/
 
 .viewTitle {
     position: relative;
-    margin: 0 auto 0 20px; 
+    margin: 0 auto 0 20px;
     display: inline-flex;
     color: rgb(255, 174, 100);
     text-shadow: 1px 10px 10px black;
@@ -198,8 +238,8 @@ a {
     font-size: calc(15px + (26 - 20) * ((100vw - 300px) / (1600 - 300)));
 }
 
- 
- 
+
+
 
 /*.baseTitleView {
     text-align: center;
@@ -222,8 +262,6 @@ a {
     text-align: center;
     font-family: Miriam;
 }
-
-
 
 
 

@@ -29,15 +29,17 @@ export async function UpdateUserHtml()
     if (userEmail!='')
     {
        userContainer.innerHTML = 
-           `<a id="profile" href="/Profile" onclick="" data-link>${userEmail}</a>
-           <a id="logout" href=""> Log Out</a >`;
+           `<a id="profile" href="/Profile" class="topBarItem" onclick="" data-link> <img class="icon-img" src="img/TopBar/user-icon.png"/> ${userEmail}</a>
+           <a id="logout" class="topBarItem" href=""> <img class="icon-img" src="img/TopBar/logout-icon.png"/>Log Out</a >`;
         document.getElementById('logout').onclick = function () { return Logout(this, event);}; // Log Out Event ONCLICK
     }
     else
     {
         userContainer.innerHTML =
-            `<a href="/Register" onclick="" data-link>Register</a>
-                    <a href="/Login" onclick="" data-link>Log In</a>`;
+            `<a href="/Register" class="topBarItem" onclick="" data-link><img class="icon-img" src="img/TopBar/register-icon.png" /> Register</a>
+            <a href="/Login" class="topBarItem" onclick="" data-link> <img class="icon-img" src="img/TopBar/login-icon.png"/>Log In</a>
+
+`;
     }
 }
 
