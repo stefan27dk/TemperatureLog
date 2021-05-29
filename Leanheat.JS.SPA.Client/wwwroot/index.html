@@ -18,6 +18,7 @@
     <script type="module" src="static/js/validations/input_validations.js"></script>
     <script type="module" src="static/js/resources/default_scripts.js"></script>
     <script type="module" src="static/js/components/temp_graph.js"></script>
+    <script src="static/js/resources/getExternal html.js"></script>
 
 </head>
  <!--<input oninput=""/>-->
@@ -26,15 +27,16 @@
     <!--onload="UpdateUserHtml();"-->
     <div class="wrapper-1">
 
-        <!--SideBar - LEFT ------------------------->
+        <!--LEFT - SideBar------------------------------------>
         <div id="left-bar" class="left-bar">
             <a href="/" class="left-bar__link" onclick="" data-link>Dashboard</a>
             <a href="/Posts" class="left-bar__link" data-link>Posts</a>
             <a href="/Settings" class="left-bar__link" data-link>Settings</a>
             <a href="/MongoGraph" class="left-bar__link" data-link>Mongo Graph</a>
-            
         </div>
-        <!--<div class="sucsess-Message"><p> SUCCESS</p></div>-->
+
+
+        <!---TOP - TopBar--------------------------------------->
         <div class="wrapper-2">
             <div class="top-bar">
 
@@ -45,10 +47,11 @@
 
             </div>
 
-            <!--APP - Content ------------------------>
+            <!----Center - APP - Content ------------------------>
             <div id="app"></div>
         </div>
     </div>
+
 
 
     <!--SPA - JS - Routing ------------------->

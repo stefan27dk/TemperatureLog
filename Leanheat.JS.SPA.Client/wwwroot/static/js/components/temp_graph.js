@@ -13,7 +13,7 @@ export async function TempGraph()
     {
         for (var i = 0; i < 10; i++)  // Insert Objects to Array (Objects contain - "id" and "predicted_data")
         {
-            tempArr[i] = content[i];
+            tempArr[i] = content[i];  // Map data from the Response to the Array
         }
     });
 
@@ -50,18 +50,22 @@ export async function TempGraph()
     currentUnitData.classList.add("graphData"); // Add Class
 
     const arrSize = tempArr.length; // Arr length - for better performance
-    for (var t = 0; t < arrSize; t++) {
+    for (var t = 0; t < arrSize; t++)
+    {
         let currentTemp = tempArr[t]['predicted_temp'];
         let currentUnitHeight = currentTemp * heightFactor; // Generate the height of the data-unit
+
 
         // Work on Elelemnt
         let cloneCurrentUnitData = currentUnitData.cloneNode(true); // Colone the div template 
         cloneCurrentUnitData.id = `tempData${t}`; // Give it ID
         cloneCurrentUnitData.style = `width:${unitWidth}px; height:${currentUnitHeight}px`; // Graph - Data - Unit Size
 
+
         // Add Text-Data to the current Data - Unit
         cloneCurrentUnitData.innerHTML = `<span class="graphDataTemp">${currentTemp} C
             </span> <span class="graphDataTime">${tempArr[t]['datetime']}</span>`; // Add TEMP to the graph - Text  // Add time to graph
+
 
         // Add to Fragment - Store it in the fragment
         documentFragment.appendChild(cloneCurrentUnitData);
@@ -86,7 +90,7 @@ export async function TempGraph()
     const avg = (allValues.reduce((a, b) => a + b, 0) / tempArr.length).toFixed(2); // AVG
     const biggestDif = (max - min).toFixed(2); // Biggest Differnece
     const mode = ""; // Typpetal
-    const median = Median(allValues); // Middle talet
+    const median = Median(allValues); // Midel talet
 
    // Data Info Container
     dataInfoContainer.innerHTML = `<span class="dataInfo" style="color:rgb(0, 255, 234);">Min: ${min}°C</span> <span class="dataInfo" style="color:rgb(255, 136, 120);">Max: ${max}°C</span>

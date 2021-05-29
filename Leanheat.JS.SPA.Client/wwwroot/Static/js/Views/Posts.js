@@ -1,7 +1,6 @@
 // Imports
 // Using the abstract class
 import AbstractView from "./AbstractView.js";
-//import { FetchPostsIframe } from "/static/js/resources/default_scripts.js";
 
 
 // Class ###########################################################>
@@ -20,7 +19,7 @@ export default class extends AbstractView {
       async getHtml()
       {     
           return `
-                  <div id="postsIframe" class="iframe"></div>
+               <iframe src="https://leanheat.com" class="iframeApp"></iframe>
           `;
       }
 
@@ -29,10 +28,7 @@ export default class extends AbstractView {
     // View Script ====================================================>
     async executeViewScript()
     {
-        //var a = await FetchPostsIframe('https://leanheat.com/').then(text => { return text });
-        //let iframePost = document.getElementById('postsIframe');
-        //iframePost.innerHTML = a;
-         
+       
     }
 
 }
