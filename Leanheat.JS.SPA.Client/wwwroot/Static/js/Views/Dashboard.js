@@ -18,17 +18,16 @@ export default class extends AbstractView {
       // Get Html ====================================================>
       async getHtml()
       {
-          return `
-                    <p> DASHBOARD </p>
-                    <p> Prediction Graf</p>
-  
+          return `  
+                    <p class="subTitleView"> Prediction Graf</p>
                   `;
       }
 
 
     // View Script ====================================================>
     async executeViewScript()
-    {  
+    {
+        document.getElementById('viewTitle').innerText = 'DASHBOARD'; // Change Tittle
         await TempGraph();
     }
 }

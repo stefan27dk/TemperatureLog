@@ -322,12 +322,12 @@
 
 
 /*================== || User - HTML - Account Options etc.||=======================================================================================*/
-  .user-Html-Container
-  {
-   float: right;
-   width: fit-content();
-   height:auto;
-  }
+.user-Html-Container {
+    float: right;
+    width: fit-content();
+    height: auto;
+    white-space: nowrap;
+}
 
 
     .user-Html-Container a {
@@ -453,6 +453,7 @@
     width:inherit;
     white-space: nowrap;
     box-sizing: border-box;
+    /*text-align: center;*/
 }
 
 
@@ -495,6 +496,8 @@
 
 
  
+
+
 
 
 

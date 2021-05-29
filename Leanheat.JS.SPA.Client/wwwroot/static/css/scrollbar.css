@@ -51,10 +51,6 @@ div::-webkit-scrollbar-thumb {
 
 
 
-
-
-
-
 /*REMEMBER THIS IN THE BODY AND HTML TAG*/
 
 /*HTML TAG*/
@@ -63,4 +59,4 @@ div::-webkit-scrollbar-thumb {
 
 /*BODY*/
 /*scrollbar-width: thin;
-scrollbar-color: var(--thumbBG) var(--scrollbarBG);*/
+scrollbar-color: var(--thumbBG) var(--scrollbarBG);*/     

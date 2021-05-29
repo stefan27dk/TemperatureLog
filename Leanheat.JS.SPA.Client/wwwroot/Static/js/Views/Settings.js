@@ -28,6 +28,7 @@ export default class extends AbstractView {
     // View Script ====================================================>
     async executeViewScript()
     {
+        document.getElementById('viewTitle').innerText = 'Settings'; // Change Tittle
     }
 
 }
