@@ -78,7 +78,7 @@ export const navigateTo = url => {
 
 
      // Check if User logged in than show Prifile - Update
-     if (location.pathname == '/Profile') 
+     if (location.pathname == '/Profile' || location.pathname == '/' || location.pathname == '/MongoGraph')
      {
          if (await GetUserEmailAsString() == '')
          {
