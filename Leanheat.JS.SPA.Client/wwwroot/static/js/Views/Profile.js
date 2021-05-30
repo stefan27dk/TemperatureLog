@@ -94,6 +94,7 @@ export default class extends AbstractView {
     // View Script ====================================================>
     async executeViewScript()
     {
+        document.getElementById('viewTitle').innerText = 'Profile'; // Change Title
 
         // ############################# Events #####################################
 
