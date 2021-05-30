@@ -24,22 +24,41 @@ export async function UpdateUserHtml()
 {
     
     let userEmail = await GetUserEmailAsString(); // Get User if logged in
-
     var userContainer = document.getElementById('userHtml'); // # Get the User Html - container
-    if (userEmail!='')
+
+    if (userEmail!='') // If Not Logged In
     {
        userContainer.innerHTML = 
            `<a id="profile" href="/Profile" class="topBarItem" onclick="" data-link> <img class="icon-img" src="img/TopBar/user-icon.png"/> ${userEmail}</a>
            <a id="logout" class="topBarItem" href=""> <img class="icon-img" src="img/TopBar/logout-icon.png"/>Log Out</a >`;
         document.getElementById('logout').onclick = function () { return Logout(this, event);}; // Log Out Event ONCLICK
     }
-    else
+    else // If Logged In
     {
-        userContainer.innerHTML =
-            `<a href="/Register" class="topBarItem" onclick="" data-link><img class="icon-img" src="img/TopBar/register-icon.png" /> Register</a>
-            <a href="/Login" class="topBarItem" onclick="" data-link> <img class="icon-img" src="img/TopBar/login-icon.png"/>Log In</a>
+        userContainer.replaceChildren(); // Remove All children
 
-`;
+        // Shared
+        let aTag = document.createElement('a');
+        aTag.className = "topBarItem";
+        aTag.setAttribute("data-link", "");
+
+
+        // Register - Create A Tag 
+        let registerATag = aTag.cloneNode(true); //A Tag
+        registerATag.href = "/Register";
+        registerATag.text = "Register";
+
+
+
+        // Login A - Create A Tag
+        let loginATag = aTag.cloneNode(true);
+        loginATag.href = "/Login";
+        loginATag.text = "Log in";
+
+        userContainer.append(registerATag, loginATag);
+
+        // Why not .innerHtml - Because it slower and it breaks the SPA routing sometimes if the links are clicked fast - insertAdjacent is not working too for this job.
+        //userContainer.insertAdjacentHTML('afterbegin', '<a href="/Register" class="topBarItem"   data-link><img class="icon-img" src="img/TopBar/register-icon.png" /> Register</a> <a href = "/Login" class="topBarItem"  data-link> <img class="icon-img" src="img/TopBar/login-icon.png"/>Log In</a>');
     }
 }
 
