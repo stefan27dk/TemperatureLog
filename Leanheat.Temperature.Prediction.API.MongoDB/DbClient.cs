@@ -1,5 +1,5 @@
 ﻿using Leanheat.Temperature.Prediction.API.Domain.Models;
-using Leanheat.Temperature.Prediction.API.MongoDB.Interfaces;
+using Leanheat.Temperature.Prediction.API.Application.Interfaces.Infrastructure;
 using Leanheat.Temperature.Prediction.API.MongoDB.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;

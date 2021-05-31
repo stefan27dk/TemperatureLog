@@ -1,9 +1,9 @@
 
 using Leanheat.Temperature.Prediction.API.Application.Interfaces;
 using Leanheat.Temperature.Prediction.API.Application.Services;
-using Leanheat.Temperature.Prediction.API.MongoDB;
-using Leanheat.Temperature.Prediction.API.MongoDB.Interfaces;
-using Leanheat.Temperature.Prediction.API.MongoDB.Models;
+ 
+using Leanheat.Temperature.Prediction.API.Application.Interfaces.Infrastructure;
+ 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +17,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Leanheat.Temperature.Prediction.API.MongoDB;
+using Leanheat.Temperature.Prediction.API.MongoDB.Models;
 
 namespace Leanheat.Temperature.Prediction.API
 {

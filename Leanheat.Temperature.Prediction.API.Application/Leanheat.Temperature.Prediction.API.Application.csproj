@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Leanheat.Temperature.Prediction.API.Domain\Leanheat.Temperature.Prediction.API.Domain.csproj" />
-    <ProjectReference Include="..\Leanheat.Temperature.Prediction.API.MongoDB\Leanheat.Temperature.Prediction.API.MongoDB.csproj" />
   </ItemGroup>
 
 </Project>

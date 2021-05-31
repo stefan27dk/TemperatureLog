@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leanheat.Temperature.Prediction.API.MongoDB.Interfaces
+namespace Leanheat.Temperature.Prediction.API.Application.Interfaces.Infrastructure
 {
     public interface IDbClient
     {
