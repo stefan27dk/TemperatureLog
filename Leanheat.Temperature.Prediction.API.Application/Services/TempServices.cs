@@ -1,5 +1,4 @@
-﻿
-using Leanheat.Temperature.Prediction.API.Application.Interfaces;
+﻿using Leanheat.Temperature.Prediction.API.Application.Interfaces;
 using Leanheat.Temperature.Prediction.API.Domain.Models;
 using Leanheat.Temperature.Prediction.API.Application.Interfaces.Infrastructure;
 using MongoDB.Driver;
