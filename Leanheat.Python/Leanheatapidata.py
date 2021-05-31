@@ -188,53 +188,6 @@ if __name__ == "__main__":
 
 #==========================================================================================#
 
-
-with open("projektleanheatapi.json") as f:
-    data = json.load(f)
-
-#Open the file in json, and save it again to be more readable
-with open("projektleanheatapi.json", "w") as f:
-    json.dump(data, f, indent=2,)
-
-#Goes sorts everything in temp and time
-with open('projektleanheatapi.json') as json_file:
-    data = json.load(json_file)
-    for i in data:
-      for k in i['data']:
-        leanheat_temp.append(k[1])
-        leanheat_time.append(k[0])
-
-with open('leantemp.json', 'w') as f:
-    json.dump(leanheat_temp, f, indent=2)
-
-with open('leantime.json', 'w') as f:
-    json.dump(leanheat_time, f, indent=2)
-
-#Convert unixtimestamp to datetime
-with open('leantime.json') as f:
-    data = json.load(f)
-    #%Y-%m-%d
-    data = [datetime.utcfromtimestamp(d).strftime('%d-%m-%Y %H:%M') for d in data]
-
-with open('leantime.json', 'w') as f:
-    json.dump(data, f, indent=2)
-
-#1 Date -------------------------------
-with open('leantime.json','r') as time:
-    timeData = json.load(time)
-
-#2 Temp----------------------------------
-with open('leantemp.json', 'r') as date:
-    tempData = json.load(date)
-
-df = pd.DataFrame(columns=['Date','Temp'])
-
-df["Date"] = timeData
-df["Temp"] = tempData
-
-#2 Combined File ----------------------------------
-df.to_csv('leansearchdata.csv',index=False)
-
 class MongoDB(object):
 
     def __init__(self, dBName=None, collectionName=None):
@@ -259,6 +212,6 @@ class MongoDB(object):
 
 if __name__ == "__main__":
     mongodb = MongoDB(dBName= 'LeanheatSearch', collectionName='SearchData')
-    mongodb.InsertData(path='leansearchdata.csv')
+    mongodb.InsertData(path='Predicted_data.csv')
 
 print('Done!')
