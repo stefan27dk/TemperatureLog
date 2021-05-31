@@ -10,7 +10,7 @@ export default class extends AbstractView {
     constructor()
     {
         super(); // The abstract class Constructor "Base constructor"
-        this.setTitle("Settings");
+        this.setTitle("Search");
     }
 
 
@@ -28,7 +28,7 @@ export default class extends AbstractView {
     // View Script ====================================================>
     async executeViewScript()
     {
-        document.getElementById('viewTitle').innerText = 'Settings'; // Change Tittle
+        document.getElementById('viewTitle').innerText = 'Search'; // Change Tittle
     }
 
 }

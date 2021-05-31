@@ -1,7 +1,7 @@
 // Imports
 import Dashboard from "./views/Dashboard.js";
 import Posts from "./views/Posts.js";
-import Settings from "./views/Settings.js";
+import Settings from "./views/Search.js";
 import Register from "./views/Register.js";
 import Login from "./views/Login.js";
 import Profile from "./views/Profile.js";
@@ -27,7 +27,7 @@ export const navigateTo = url => {
  const routes = [
    {path: "/", view: Dashboard}, // On Path "/" use the dashboard class and inject html in the #app div
    {path: "/Posts", view: Posts },
-   {path: "/Settings", view: Settings },
+     { path: "/Search", view: Settings },
    {path: "/Register", view: Register },
    {path: "/Login", view: Login },
      { path: "/Profile", view: Profile },
