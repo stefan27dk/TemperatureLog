@@ -25,10 +25,19 @@ namespace Leanheat.Temperature.Search.API.Controllers
        
         [HttpGet]
         [Route("GetSearchResult")]
-        public IActionResult GetSearchResult()
+        public IActionResult GetSearchResult(string searchParam)
         {
-            return Ok(_searchServices.GetSearchResult());
+            return Ok(_searchServices.GetSearchResult(searchParam));
         }
-       
+
+
+
+
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult GetAll()
+        {
+            return Ok(_searchServices.GetAll());
+        }
     }
 }
