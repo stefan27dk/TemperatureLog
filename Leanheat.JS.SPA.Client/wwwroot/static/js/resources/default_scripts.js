@@ -2,9 +2,14 @@
 import { Logout } from "/static/js/api/crud/post.js";
 
 
-// Route
+
+// ================================ || Route to View || ===========================================================
 export async function routeTo(localPath) { window.history.replaceState({}, '', localPath) }; // Route to any local SPA Link - used  with data-link decoration on the element- Used for ex. Function - Add Link to the img
 
+
+
+
+// ================================ || Get User Email || ===========================================================
 export async function GetUserEmailAsString()
 {
      let resPrommise = await GetUserEmail(); // #1 - Responce from the fetch api
@@ -19,6 +24,9 @@ export async function GetUserEmailAsString()
     });
     return userEmail;
 }
+
+
+
 
 
 
@@ -48,5 +56,17 @@ export async function UpdateUserHtml()
 
 
 
-     
+
+
+
+
+
+
+
+
+// ================================ || Format Date Picker || ===========================================================
+export function GetFormatedDate()
+{
+
+}
            

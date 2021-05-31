@@ -19,8 +19,11 @@ export default class extends AbstractView {
       async getHtml()
       {
           return `
-                  <h1>Settings</h1>
-                  <p>Here are the Settings !!!!!!!!!!</p>    
+               <h1 class="subTitleView">Search by Date</h1>
+
+               <form>
+                <input id="datePicker" type="date"  name="date">
+          </form>
           `;
       }
 
@@ -29,6 +32,12 @@ export default class extends AbstractView {
     async executeViewScript()
     {
         document.getElementById('viewTitle').innerText = 'Search'; // Change Tittle
+
+
+
+
+        // Events ------------------------------------------------------->
+        document.getElementById('datePicker').onchange = function () { alert(document.getElementById('datePicker').value);};
     }
 
 }
