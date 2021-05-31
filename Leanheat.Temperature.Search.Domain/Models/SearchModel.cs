@@ -13,7 +13,7 @@ namespace Leanheat.Temperature.Search.Domain.Models
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
-        public double Temp { get; set; }
-        public string  Date { get; set; }
+        public double Predicted_temp { get; set; }
+        public string Datetime { get; set; }
     }
 }
