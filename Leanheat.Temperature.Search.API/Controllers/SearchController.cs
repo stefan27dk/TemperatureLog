@@ -1,4 +1,4 @@
-﻿using Leanheat.Temperature.Search.API.Application.Interfaces;
+﻿using Leanheat.Temperature.Search.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,20 +12,23 @@ namespace Leanheat.Temperature.Search.API.Controllers
     [Route("[controller]")]
     public class SearchController : ControllerBase
     {
-
         private readonly ISearchServices _searchServices;
 
+
+        // Constructor
         public SearchController(ISearchServices searchServices)
         {
             _searchServices = searchServices;
         }
 
-        [HttpGet]
-        [Route("GetAllTemp")]
-        public IActionResult GetAllTemp()
-        {
-            return Ok(_searchServices.GetSearchTemps());
-        }
 
+       
+        [HttpGet]
+        [Route("GetSearchResult")]
+        public IActionResult GetSearchResult()
+        {
+            return Ok(_searchServices.GetSearchResult());
+        }
+       
     }
 }

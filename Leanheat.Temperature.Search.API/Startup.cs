@@ -1,6 +1,8 @@
-using Leanheat.Temperature.Search.API.MongoDB;
-using Leanheat.Temperature.Search.API.MongoDB.Interfaces;
-using Leanheat.Temperature.Search.API.MongoDB.Models;
+using Leanheat.Temperature.Search.Application.Interfaces;
+using Leanheat.Temperature.Search.Application.Interfaces.Infrastructure;
+using Leanheat.Temperature.Search.Application.Services;
+using Leanheat.Temperature.Search.MongoDB;
+using Leanheat.Temperature.Search.MongoDB.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,8 +28,13 @@ namespace Leanheat.Temperature.Search.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+
+
+
+
+
+        
+        public void ConfigureServices(IServiceCollection services)// This method gets called by the runtime. Use this method to add services to the container.
         {
             services.AddMvc();
 
@@ -39,8 +46,18 @@ namespace Leanheat.Temperature.Search.API
                     options.Database_Name = Configuration.GetSection("ConnectionStrings").Value;
                 });
 
+            //Inject the client using dependency injection
+            //One instance of the client through the application
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<SearchDbConfig>(Configuration);
+
+            // CORS
+            services.AddCors();
+
+            // Services
+            services.AddTransient<ISearchServices, SearchServices>();
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -49,8 +66,15 @@ namespace Leanheat.Temperature.Search.API
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+
+
+
+
+
+
+        
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         {
             if (env.IsDevelopment())
             {
@@ -59,6 +83,7 @@ namespace Leanheat.Temperature.Search.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Leanheat.Temperature.Search.API v1"));
             }
 
+            // Https
             app.UseHsts();
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -69,11 +94,9 @@ namespace Leanheat.Temperature.Search.API
                 .AllowAnyHeader()
                 .AllowCredentials()
                 //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins seperated with comma
-                .SetIsOriginAllowed(origin => true));// Allow any origin  
+                .SetIsOriginAllowed(origin => true));// Allow any origin 
 
-            app.UseHttpsRedirection();
 
-            app.UseRouting();
 
             app.UseAuthorization();
 
