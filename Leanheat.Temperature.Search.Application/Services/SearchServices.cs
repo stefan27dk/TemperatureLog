@@ -28,23 +28,10 @@ namespace Leanheat.Temperature.Search.Application.Services
       
 
     
-        public List<SearchModel> GetSearchResult(string searchParam) => _searchs.Find(x => x.Datetime == searchParam).ToList();
+        //public List<SearchModel> GetSearchResult(string searchParam) => _searchs.Find(x => x.Datetime == searchParam).ToList();
+        public List<SearchModel> GetSearchResult(string searchParam) => _searchs.Find(new BsonDocument { { "Datetime", new BsonDocument { { "$regex", searchParam }, { "$options", "i" } } } }).ToList(); // Search DateTime "*like"
 
         public List<SearchModel> GetAll() => _searchs.Find(x => true).ToList();
-
-
-        //public List<SearchModel> GetSearchResult(string searchParam)
-        //{
-        //    //var filter = new BsonDocument { { "datetime", new BsonDocument { { "$regex", searchParam }, { "$options", "i" } } } };
-        //    //var result = _searchs.Find(filter).ToList();
-
-        //    //public List<Temp> GetTemps() => _temps.Find(temp => true).ToList();
-        //    //public Temp GetTemp(string id) => _temps.Find(temp => temp.Id == id).First();
-        //    var result = _searchs.Find(x => x.Datetime == searchParam).First();
-        //    var resiltList = new List<SearchModel>();
-        //    resiltList.Add(result);
-
-        //    return resiltList;
-        //}
+ 
     }
 }
