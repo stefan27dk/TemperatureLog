@@ -14,7 +14,7 @@ namespace Leanheat.Temperature.Search.MongoDB
     public class DbClient : IDbClient
     {
 
-        private readonly IMongoCollection<SearchModel> _searchs;
+        private readonly IMongoCollection<SearchModel> _collection;
 
         
         
@@ -23,11 +23,11 @@ namespace Leanheat.Temperature.Search.MongoDB
         {
             var client = new MongoClient(searchDbConfig.Value.Connection_String);
             var database = client.GetDatabase(searchDbConfig.Value.Database_Name);
-            _searchs = database.GetCollection<SearchModel>(searchDbConfig.Value.Search_Collection_Name);
+            _collection = database.GetCollection<SearchModel>(searchDbConfig.Value.Search_Collection_Name);
         }
 
 
-        public IMongoCollection<SearchModel> GetSearchCollection() => _searchs;
+        public IMongoCollection<SearchModel> GetSearchCollection() => _collection;
      
     }
 }
