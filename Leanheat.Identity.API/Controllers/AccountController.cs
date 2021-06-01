@@ -143,7 +143,7 @@ namespace Leanheat.Identity.API.Controllers
 
 
 
-        // GetUserEmail - Used to check if user is logged in ============================================= 
+        // Get User Email - Used to check if user is logged in ============================================= 
         [HttpGet]
         [Route("GetUserEmail")]
         [AllowAnonymous]
