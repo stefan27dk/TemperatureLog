@@ -1,7 +1,11 @@
+using Leanheat.Spa.Server.Application.Interfaces.Identity;
+using Leanheat.Spa.Server.Application.Services.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +33,9 @@ namespace Leanheat.Spa.Server.API
         // Configure Services ================================================================================= 
         public void ConfigureServices(IServiceCollection services)// This method gets called by the runtime. Use this method to add services to the container.
         {
+            // Services
+            services.AddTransient<IIdentityAccountService, IdentityAccountService>();
+
             // CORS
             services.AddCors();
 
@@ -44,7 +51,8 @@ namespace Leanheat.Spa.Server.API
 
             //// Log In
             //// Make all Controllers protected by default so only Authorized Users can accsess them, for Anonymouse Users use [AlloAnonymouse] over the controllers.
-            //services.AddMvc(options => {
+            //services.AddMvc(options =>
+            //{
             //    var policy = new AuthorizationPolicyBuilder()
             //      .RequireAuthenticatedUser()
             //      .Build();

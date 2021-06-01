@@ -20,7 +20,7 @@ namespace Leanheat.Spa.Server.Application.Interfaces.Identity
 
 
         // Log In =============================================================================================================== 
-        public Task<IActionResult> LogIn(string email, string password, bool rememberMe);
+        public Task<object> LogIn(string email, string password, bool rememberMe);
 
 
         // Log Out ==============================================================================================================

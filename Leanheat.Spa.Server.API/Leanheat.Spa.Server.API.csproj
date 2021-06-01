@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Leanheat.Spa.Server.Application\Leanheat.Spa.Server.Application.csproj" />
   </ItemGroup>
 
 </Project>
