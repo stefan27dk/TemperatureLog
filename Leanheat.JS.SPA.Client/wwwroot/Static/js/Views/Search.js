@@ -1,6 +1,12 @@
 // Imports
 // Using the abstract class
 import AbstractView from "./AbstractView.js";
+import { GetFormatedDate } from '/static/js/resources/default_scripts.js';
+//import { Get } from "/static/js/api/crud/get.js";
+
+
+
+
 
 
 // Class ###########################################################>
@@ -34,10 +40,12 @@ export default class extends AbstractView {
         document.getElementById('viewTitle').innerText = 'Search'; // Change Tittle
 
 
-
+        
 
         // Events ------------------------------------------------------->
-        document.getElementById('datePicker').onchange = function () { alert(document.getElementById('datePicker').value);};
+        document.getElementById('datePicker').onchange = function () { alert(GetFormatedDate('datePicker')); };
+
+        //alert(document.getElementById('datePicker').value);
     }
 
 }

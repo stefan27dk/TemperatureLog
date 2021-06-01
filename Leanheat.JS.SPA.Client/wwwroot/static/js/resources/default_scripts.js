@@ -65,8 +65,9 @@ export async function UpdateUserHtml()
 
 
 // ================================ || Format Date Picker || ===========================================================
-export function GetFormatedDate()
+export function GetFormatedDate(datePickerID)
 {
-
+    let rawDate = document.getElementById(datePickerID).value; // Get the Raw Date
+    return rawDate.split('-').reverse().join("-"); // Reverse the date
 }
            
