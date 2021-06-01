@@ -10,7 +10,11 @@ namespace Leanheat.Spa.Server.Application.Interfaces.Identity
     public interface IIdentityAccountService
     {
 
+
         // Register ============================================================================================================== 
+        /// <summary>
+        ///
+        /// </summary>
         public Task<IActionResult> Register(string firstname, string lastname, string email, string age, string phonenumber, string password, bool rememberMe);
 
 
@@ -23,7 +27,7 @@ namespace Leanheat.Spa.Server.Application.Interfaces.Identity
         public Task<IActionResult> LogOut();
 
 
-        // Get User  ============================================================================================================ 
+        // Get User Data ============================================================================================================ 
         public Task<IActionResult> GetUserData();
 
 
