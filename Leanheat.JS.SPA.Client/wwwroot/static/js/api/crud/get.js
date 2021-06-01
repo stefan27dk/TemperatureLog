@@ -135,3 +135,6 @@ export async function GetTemperatureData()
     return Get(tempAPI, '/Temp/GetAllTemp');
 }
 
+
+
+
