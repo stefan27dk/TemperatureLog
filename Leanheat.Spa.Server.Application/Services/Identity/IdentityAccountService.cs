@@ -10,9 +10,15 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
 {
     public class IdentityAccountService : IIdentityAccountService
     {
+        // Constructor
+        public IdentityAccountService()
+        {
+
+        }
+
 
         // Register ======================================================================================================== 
-        public Task<IActionResult> Register(string firstname, string lastname, string email, string age, string phonenumber, string password, bool rememberMe)
+        public async Task<IActionResult> Register(string firstname, string lastname, string email, string age, string phonenumber, string password, bool rememberMe)
         {
             throw new NotImplementedException();
         }
@@ -20,16 +26,19 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
 
 
         // Log In ==========================================================================================================
-        public Task<IActionResult> LogIn(string email, string password, bool rememberMe)                                    
-        {                                                                                                                   
-            throw new NotImplementedException();                                                                            
+        public async Task<IActionResult> LogIn(string email, string password, bool rememberMe)                                    
+        {
+            throw new NotImplementedException();
+
+            //"https://localhost:44347/Account/LogIn?email=a%40a.dk&password=123456&rememberMe=true"
+              //private static readonly HttpClient client = new HttpClient();
         }                                                                                                                   
                                                                                                                             
                                                                                                                             
                                                                                                                             
                                                                                                                             
         // Log Out =========================================================================================================
-        public Task<IActionResult> LogOut()                                                                                 
+        public async Task<IActionResult> LogOut()                                                                                 
         {                                                                                                                   
             throw new NotImplementedException();                                                                            
         }                                                                                                                   
@@ -38,7 +47,7 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
                                                                                                                                                                        
                                                                                                                                                                        
         // Get User Data ===================================================================================================                                           
-        public Task<IActionResult> GetUserData()                                                                                                                       
+        public async Task<IActionResult> GetUserData()                                                                                                                       
         {                                                                                                                                                              
             throw new NotImplementedException();                                                                                                                       
         }                                                                                                                                                              
@@ -47,7 +56,7 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
                                                                                                                                                                        
                                                                                                                                                                        
         // Get User Email - Used to check if user is logged in =============================================================
-        public Task<IActionResult> GetUserEmail()                                                                           
+        public async Task<IActionResult> GetUserEmail()                                                                           
         {                                                                                                                   
             throw new NotImplementedException();                                                                            
         }                                                                                                                   
@@ -57,7 +66,7 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
                                                                                                                             
                                                                                                                             
         // Delete LogIn ====================================================================================================
-        public Task<IActionResult> DeleteLogIn(string email)
+        public async Task<IActionResult> DeleteLogIn(string email)
         {
             throw new NotImplementedException();
         }

@@ -29,12 +29,30 @@ namespace Leanheat.Spa.Server.API
         // Configure Services ================================================================================= 
         public void ConfigureServices(IServiceCollection services)// This method gets called by the runtime. Use this method to add services to the container.
         {
+            // CORS
+            services.AddCors();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Leanheat.Spa.Server.API", Version = "v1" });
             });
+
+
+
+
+
+            //// Log In
+            //// Make all Controllers protected by default so only Authorized Users can accsess them, for Anonymouse Users use [AlloAnonymouse] over the controllers.
+            //services.AddMvc(options => {
+            //    var policy = new AuthorizationPolicyBuilder()
+            //      .RequireAuthenticatedUser()
+            //      .Build();
+            //    options.Filters.Add(new AuthorizeFilter(policy));
+
+            //}).AddXmlSerializerFormatters();
+
+
         }
 
 
@@ -55,8 +73,18 @@ namespace Leanheat.Spa.Server.API
             // HTTPS
             app.UseHsts(); // Allow HTTPS
             app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            // CORS - Allow calling the API from WebBrowsers
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins seperated with comma
+                .SetIsOriginAllowed(origin => true));// Allow any origin  
+
+
+
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
