@@ -14,8 +14,8 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
 {
     public class IdentityAccountService : IIdentityAccountService
     {
-        private static readonly HttpClient client = new HttpClient();
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private static readonly HttpClient client = new HttpClient();
+        private readonly IHttpContextAccessor _httpContextAccessor; // Used for ex. Getting cookies --> Injected in Startup.cs --> By default works in Controllers without injection
 
 
         // Constructior
@@ -24,12 +24,8 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
             _httpContextAccessor = httpContextAccessor;
         }
 
-        // Constructor
-        public IdentityAccountService()
-        {
-
-        }
-
+    
+      
 
         // Register ======================================================================================================== 
         public async Task<IActionResult> Register(string firstname, string lastname, string email, string age, string phonenumber, string password, bool rememberMe)
@@ -39,16 +35,17 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
 
 
 
+
+
         // Log In ==========================================================================================================
         public async Task<HttpResponseMessage> LogIn(string email, string password, bool rememberMe)                                    
         {
 
-            CookieContainer cookies = new CookieContainer();
+            CookieContainer cookies = new CookieContainer(); // Cookie JAR
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = cookies;
 
             HttpClient client = new HttpClient(handler);
-            //HttpResponseMessage response = client.GetAsync("http://google.com").Result;
             HttpResponseMessage response = client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null).Result;
             
 
@@ -56,55 +53,16 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
             IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
             foreach (Cookie cookie in responseCookies)
             {
-
+                  // Create Cookie
                 _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddYears(500), HttpOnly = true, Secure = true, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
-                //Console.WriteLine(cookie.Name + ": " + cookie.Value);
             }
 
-
-
-            //HttpResponseMessage response = await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
-            //IEnumerable<string> cookies = response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value;
-
-            ////response.Headers.Add("Set-Cookie", "WWTHREADSID=ThisIsThEValue; path=/");
-
-
-            //for (int i = 0; i < cookies.Count(); i++)
-            //{
-            //  _httpContextAccessor.HttpContext.Response.Cookies.Append(".AspIdentity", cookies.ElementAt(i), new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddYears(500), HttpOnly = true, Secure = true, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
-            //}
-
-            ///////////////////////////////////
-
-
-            //var request = (HttpWebRequest)HttpWebRequest.Create("https://localhost:44358/api/Account/Login?email=a%40a.dk&password=123456&rememberMe=true");
-            //request.CookieContainer = new CookieContainer();
-
-            //var response = await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
-
-
-            //response.Headers.Remove("Expires");
-            //response.Content.Headers.Expires = DateTime.Now.AddYears(500);
-
-            //response.RequestMessage.RequestUri = new Uri("https://localhost:44358/api/Account/Login?email=a%40a.dk&password=123456&rememberMe=true");
-            //response.Headers.Location = new Uri("https://localhost:44358");
-
-
-
-
-
-
-
-
-
-
-
-
-
             return response;
-            //return response;
-            //"https://localhost:44347/Account/LogIn?email=a%40a.dk&password=123456&rememberMe=true"
         }
+
+
+
+
 
 
 
