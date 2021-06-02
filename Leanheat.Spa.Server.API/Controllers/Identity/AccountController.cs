@@ -55,9 +55,16 @@ namespace Leanheat.Spa.Server.API.Controllers.Identity
 
                                                       
 
-            var result = await _IdentityAccountService.LogIn(email, password, rememberMe);
-            HttpContext.Response.Cookies.Append("cookie-name", "cookie-value", new CookieOptions { IsEssential = true });
-            return  StatusCode(200, result);
+            var response = await _IdentityAccountService.LogIn(email, password, rememberMe);
+
+            //var cookie = response.Headers.GetValues("Set-Cookie").FirstOrDefault();
+
+            //var a =
+
+
+
+            //HttpContext.Response.Cookies.Append(".AspIdentity", cookie, new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddYears(500), HttpOnly = true, Secure = true, SameSite = SameSiteMode.Lax });
+            return  StatusCode(200, response);
         }
     }
 }
