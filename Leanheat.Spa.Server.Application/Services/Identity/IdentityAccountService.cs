@@ -39,25 +39,16 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
             var response = await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
 
 
-            //response.Headers.Remove("requestUri");
-            //response.RequestMessage.RequestUri = new Uri("https://localhost:44358/api/Account/Login?email=a%40a.dk&password=123456&rememberMe=true");
+            //response.Headers.Remove("Expires");
+            response.Content.Headers.Expires = DateTime.Now.AddYears(500);
 
-    
-
-
-
-            //// Cookie Container
-            //CookieContainer cookies = new CookieContainer();
-            //HttpClientHandler handler = new HttpClientHandler();
-            //handler.CookieContainer = cookies;
-
-            //var response =  await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
+            response.RequestMessage.RequestUri = new Uri("https://localhost:44358/api/Account/Login?email=a%40a.dk&password=123456&rememberMe=true");
 
 
-            //Uri uri = new Uri("https://localhost:44358");
-            //IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
-            //foreach (Cookie cookie in responseCookies)
-            //    Console.WriteLine(cookie.Name + ": " + cookie.Value);
+
+
+
+           
 
 
 

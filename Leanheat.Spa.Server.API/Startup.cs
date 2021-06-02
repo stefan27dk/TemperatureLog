@@ -1,5 +1,6 @@
 using Leanheat.Spa.Server.Application.Interfaces.Identity;
 using Leanheat.Spa.Server.Application.Services.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +49,15 @@ namespace Leanheat.Spa.Server.API
             });
 
 
+            // Cookie
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = false
+        ? CookieSecurePolicy.None : CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+    });
 
 
 
