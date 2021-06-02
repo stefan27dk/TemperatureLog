@@ -1,4 +1,5 @@
 ﻿using Leanheat.Spa.Server.Application.Interfaces.Identity;
+using Leanheat.Spa.Server.Application;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,16 @@ using System.Net;
 
 namespace Leanheat.Spa.Server.Application.Services.Identity
 {
+    // Class ============= || Identity - Account - Service ||=============================================================
     public class IdentityAccountService : IIdentityAccountService
     {
-        //private static readonly HttpClient client = new HttpClient();
+         
         private readonly IHttpContextAccessor _httpContextAccessor; // Used for ex. Getting cookies --> Injected in Startup.cs --> By default works in Controllers without injection
+        private readonly string _identityApiAddress = ServicesAddresses.IdentityApiAddress; // Identity Api Address
 
 
-        // Constructior
+
+        // || Constructor || ==============================================================================================
         public IdentityAccountService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
@@ -46,15 +50,18 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
             handler.CookieContainer = cookies;
 
             HttpClient client = new HttpClient(handler);
-            HttpResponseMessage response = client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null).Result;
+            HttpResponseMessage response = client.PostAsync($"{_identityApiAddress}/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null).Result;  // The Response
             
 
-            Uri uri = new Uri("https://localhost:44347");
-            IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+            //Uri uri = new Uri(_identityApiAddress);
+            IEnumerable<Cookie> responseCookies = cookies.GetCookies(new Uri(_identityApiAddress)).Cast<Cookie>(); // Get the Cookies to list from the specified URI - Address
+           
+
+            // Create Cookies
             foreach (Cookie cookie in responseCookies)
             {
                   // Create Cookie
-                _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddYears(500), HttpOnly = true, Secure = true, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
+                _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddYears(1), HttpOnly = true, Secure = true, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
             }
 
             return response;

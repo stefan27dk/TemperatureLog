@@ -22,13 +22,14 @@ namespace Leanheat.Spa.Server.API
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         // Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
       
-        public IConfiguration Configuration { get; }
 
 
 
@@ -50,8 +51,7 @@ namespace Leanheat.Spa.Server.API
            
 
             // Cookie
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-     .AddCookie();
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 
 
@@ -66,8 +66,6 @@ namespace Leanheat.Spa.Server.API
             //    options.Filters.Add(new AuthorizeFilter(policy));
 
             //}).AddXmlSerializerFormatters();
-
-
         }
 
 
@@ -89,6 +87,8 @@ namespace Leanheat.Spa.Server.API
             app.UseHsts(); // Allow HTTPS
             app.UseHttpsRedirection();
             app.UseRouting();
+
+
 
             // CORS - Allow calling the API from WebBrowsers
             app.UseCors(x => x
