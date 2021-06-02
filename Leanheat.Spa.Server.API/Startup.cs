@@ -3,6 +3,7 @@ using Leanheat.Spa.Server.Application.Services.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -35,7 +36,8 @@ namespace Leanheat.Spa.Server.API
         {
             // Services
             services.AddTransient<IIdentityAccountService, IdentityAccountService>();
-
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            
             // CORS
             services.AddCors();
 

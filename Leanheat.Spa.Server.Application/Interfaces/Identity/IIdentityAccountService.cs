@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Leanheat.Spa.Server.Application.Interfaces.Identity
 
 
         // Log In =============================================================================================================== 
-        public Task<object> LogIn(string email, string password, bool rememberMe);
+        public Task<HttpResponseMessage> LogIn(string email, string password, bool rememberMe);
 
 
         // Log Out ==============================================================================================================

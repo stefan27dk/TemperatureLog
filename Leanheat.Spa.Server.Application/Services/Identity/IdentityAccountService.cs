@@ -7,7 +7,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks; 
 using Microsoft.AspNetCore.Http;
- 
+using Microsoft.Net.Http.Headers;
+using System.Net;
 
 namespace Leanheat.Spa.Server.Application.Services.Identity
 {
@@ -32,13 +33,38 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
 
 
         // Log In ==========================================================================================================
-        public async Task<object> LogIn(string email, string password, bool rememberMe)                                    
+        public async Task<HttpResponseMessage> LogIn(string email, string password, bool rememberMe)                                    
         {
-           
-            //var content = new StringContent("", Encoding.UTF8, "application/x-www-form-urlencoded");
-          
-            var response =  await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
-            return response; 
+
+            var response = await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
+
+
+            //response.Headers.Remove("requestUri");
+            //response.RequestMessage.RequestUri = new Uri("https://localhost:44358/api/Account/Login?email=a%40a.dk&password=123456&rememberMe=true");
+
+    
+
+
+
+            //// Cookie Container
+            //CookieContainer cookies = new CookieContainer();
+            //HttpClientHandler handler = new HttpClientHandler();
+            //handler.CookieContainer = cookies;
+
+            //var response =  await client.PostAsync($"https://localhost:44347/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);
+
+
+            //Uri uri = new Uri("https://localhost:44358");
+            //IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+            //foreach (Cookie cookie in responseCookies)
+            //    Console.WriteLine(cookie.Name + ": " + cookie.Value);
+
+
+
+
+
+            return response;
+            //return response;
             //"https://localhost:44347/Account/LogIn?email=a%40a.dk&password=123456&rememberMe=true"
         }
 
