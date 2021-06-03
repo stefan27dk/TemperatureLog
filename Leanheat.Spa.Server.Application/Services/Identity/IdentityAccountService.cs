@@ -50,28 +50,30 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
             handler.CookieContainer = cookies;
 
             HttpClient client = new HttpClient(handler);
-            HttpResponseMessage response = client.PostAsync($"{_identityApiAddress}/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null).Result;  // The Response
+            HttpResponseMessage response = await client.PostAsync($"{_identityApiAddress}/Account/LogIn?email={email}&password={password}&rememberMe={rememberMe}", null);  // The Response
             
-
-            //Uri uri = new Uri(_identityApiAddress);
-            IEnumerable<Cookie> responseCookies = cookies.GetCookies(new Uri(_identityApiAddress)).Cast<Cookie>(); // Get the Cookies to list from the specified URI - Address
-           
-
-            // Create Cookies -------------------------------------------------------------------------------------------------------------------------------------------------------
-            foreach (Cookie cookie in responseCookies)
+            // IF OK
+           if(response.StatusCode == HttpStatusCode.OK)
             {
-                if (cookie.Expires == DateTime.Parse("01 - 01 - 0001 00:00:00")) // If Session Cookie
-                {
-                   // Create Cookie
-                   _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
-                }
-                else  // Persitent Cookie
-                {
-                    // Create Cookie
-                    _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = cookie.Expires, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
-                }
+               //Uri uri = new Uri(_identityApiAddress);
+               IEnumerable<Cookie> responseCookies = cookies.GetCookies(new Uri(_identityApiAddress)).Cast<Cookie>(); // Get the Cookies to list from the specified URI - Address
+               
+               
+               // Create Cookies -------------------------------------------------------------------------------------------------------------------------------------------------------
+               foreach (Cookie cookie in responseCookies)
+               {
+                   if (cookie.Expires == DateTime.Parse("01 - 01 - 0001 00:00:00")) // If Session Cookie
+                   {
+                      // Create Cookie
+                      _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
+                   }
+                   else  // Persitent Cookie
+                   {
+                       // Create Cookie
+                       _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = cookie.Expires, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
+                   }
+               }
             }
-
            
             return new JsonResult(response.StatusCode);
         }
