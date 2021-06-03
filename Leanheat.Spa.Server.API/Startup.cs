@@ -48,7 +48,7 @@ namespace Leanheat.Spa.Server.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Leanheat.Spa.Server.API", Version = "v1" });
             });
-           
+
 
             // Cookie
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();

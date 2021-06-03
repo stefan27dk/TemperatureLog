@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace Leanheat.Spa.Server.Application.Services.Identity
 {
@@ -42,9 +43,8 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
 
 
         // Log In ==========================================================================================================
-        public async Task<HttpResponseMessage> LogIn(string email, string password, bool rememberMe)                                    
+        public async Task<IActionResult> LogIn(string email, string password, bool rememberMe)                                    
         {
-
             CookieContainer cookies = new CookieContainer(); // Cookie JAR
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = cookies;
@@ -57,14 +57,22 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
             IEnumerable<Cookie> responseCookies = cookies.GetCookies(new Uri(_identityApiAddress)).Cast<Cookie>(); // Get the Cookies to list from the specified URI - Address
            
 
-            // Create Cookies
+            // Create Cookies -------------------------------------------------------------------------------------------------------------------------------------------------------
             foreach (Cookie cookie in responseCookies)
             {
-                  // Create Cookie
-                _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = cookie.Expires, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
+                if (cookie.Expires == DateTime.Parse("01 - 01 - 0001 00:00:00")) // If Session Cookie
+                {
+                   // Create Cookie
+                   _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
+                }
+                else  // Persitent Cookie
+                {
+                    // Create Cookie
+                    _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = cookie.Expires, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
+                }
             }
-
-            return response;
+        
+            return new JsonResult(response);
         }
 
 
