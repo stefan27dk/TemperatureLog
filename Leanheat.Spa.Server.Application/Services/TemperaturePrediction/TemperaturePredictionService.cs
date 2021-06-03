@@ -66,9 +66,6 @@ namespace Leanheat.Spa.Server.Application.Services.TemperaturePrediction
 
             //return new JsonResult(_httpContextAccessor.HttpContext.Response);
         }
-
-
-
-
+             
     }
 }
