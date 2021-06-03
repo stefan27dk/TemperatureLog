@@ -72,7 +72,7 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
                 }
             }
         
-            return new JsonResult(response);
+            return new JsonResult(response.StatusCode);
         }
 
 
