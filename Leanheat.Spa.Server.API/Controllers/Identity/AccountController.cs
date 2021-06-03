@@ -16,12 +16,13 @@ namespace Leanheat.Spa.Server.API.Controllers.Identity
     {
         // Services
         private readonly IIdentityAccountService _IdentityAccountService;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
 
+
+
+        // || Constructor || ======================================================================
         public AccountController(IIdentityAccountService IdentityAccountService, IHttpContextAccessor HttpContextAccessor)
         {
             _IdentityAccountService = IdentityAccountService;
-            //_httpContextAccessor = HttpContextAccessor;
         }
 
 

@@ -1,5 +1,7 @@
 using Leanheat.Spa.Server.Application.Interfaces.Identity;
+using Leanheat.Spa.Server.Application.Interfaces.TemperaturePrediction;
 using Leanheat.Spa.Server.Application.Services.Identity;
+using Leanheat.Spa.Server.Application.Services.TemperaturePrediction;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +40,7 @@ namespace Leanheat.Spa.Server.API
         {
             // Services
             services.AddTransient<IIdentityAccountService, IdentityAccountService>();
+            services.AddTransient<ITemperaturePredictionService, TemperaturePredictionService>();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             
             // CORS
