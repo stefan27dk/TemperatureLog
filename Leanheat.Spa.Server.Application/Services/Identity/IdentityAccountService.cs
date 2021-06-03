@@ -71,7 +71,8 @@ namespace Leanheat.Spa.Server.Application.Services.Identity
                     _httpContextAccessor.HttpContext.Response.Cookies.Append(cookie.Name, cookie.Value, new CookieOptions { IsEssential = true, Expires = cookie.Expires, HttpOnly = cookie.HttpOnly, Secure = cookie.Secure, SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax });
                 }
             }
-        
+
+           
             return new JsonResult(response.StatusCode);
         }
 
