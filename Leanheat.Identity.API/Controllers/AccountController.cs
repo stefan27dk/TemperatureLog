@@ -25,13 +25,14 @@ namespace Leanheat.Identity.API.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
-
+        private readonly DataProtectorTokenProvider<ApplicationUser> _dataProtectorTokenProvider;
 
         // || Constructor || ===================================================================
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, DataProtectorTokenProvider<ApplicationUser> dataProtectorTokenProvider = null)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            _dataProtectorTokenProvider = dataProtectorTokenProvider;
         }
 
 
@@ -81,7 +82,7 @@ namespace Leanheat.Identity.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LogIn(string email, string password, bool rememberMe)
         {
-            if(email != null && password !=null)
+            if (email != null && password !=null)
             {
                 var result = await signInManager.PasswordSignInAsync(email, password, rememberMe, false);
                 if (result.Succeeded) // If Login Ok

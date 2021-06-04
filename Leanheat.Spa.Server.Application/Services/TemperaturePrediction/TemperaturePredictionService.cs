@@ -33,7 +33,7 @@ namespace Leanheat.Spa.Server.Application.Services.TemperaturePrediction
 
 
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_predictTemperatureApiAddress + "/Temp/GetAllTemp");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_predictTemperatureApiAddress + $"/Temp/GetAllTemp");
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
             using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())

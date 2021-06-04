@@ -38,26 +38,24 @@ namespace Leanheat.Temperature.Prediction.API.Controllers
         [Route("GetAllTemp")]
         public async Task<IActionResult> GetAllTemp()
         {
-            //HttpCookie MyCookie = Request.Cookies;
 
-            //String[] arr1 = cookies.AllKeys;
-            //// Request
-            //var requestCookies = HttpContext.Request.Cookies; // Get cookies from the request
 
-            //CookieContainer cookies = new CookieContainer(); // Cookie JAR
-            //HttpClientHandler handler = new HttpClientHandler();
-            //handler.CookieContainer = cookies;
+            // Request
+            var requestCookies = HttpContext.Request.Cookies; // Get cookies from the request
 
-            //HttpClient client = new HttpClient(handler);
-            ////HttpResponseMessage response = await client.DefaultRequestHeaders.GetValues();  // The Response
+            CookieContainer cookies = new CookieContainer(); // Cookie JAR
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.CookieContainer = cookies;
 
+            HttpClient client = new HttpClient(handler);
+            var response = client.DefaultRequestHeaders;  // The Response
 
 
 
 
-            //var cookies1 = HttpContext.Request.Cookies;
+          var cookies1 = HttpContext.Request.Cookies;
 
-            //var myCookie = Request.Cookies;
+            var myCookie = Request.Cookies;
 
 
 
