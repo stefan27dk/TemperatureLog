@@ -3,6 +3,7 @@ using Leanheat.Temperature.Search.Application.Interfaces.Infrastructure;
 using Leanheat.Temperature.Search.Application.Services;
 using Leanheat.Temperature.Search.MongoDB;
 using Leanheat.Temperature.Search.MongoDB.Models;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +22,8 @@ namespace Leanheat.Temperature.Search.API
 {
     public class Startup
     {
+
+        // Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,10 +36,30 @@ namespace Leanheat.Temperature.Search.API
 
 
 
-        
+        // Configure Services ================================================================================= 
         public void ConfigureServices(IServiceCollection services)// This method gets called by the runtime. Use this method to add services to the container.
         {
             services.AddMvc();
+
+            // Rabit MQ
+            services.AddMassTransit(x =>
+            {
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.UseHealthCheck(provider);
+                    config.Host(new Uri("rabbitmq://localhost"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
+
+
+
+
+
 
             // MongoDB - Config - Connectionstring-------------------------------------------------------------
             services.Configure<SearchDbConfig>(
@@ -51,6 +74,9 @@ namespace Leanheat.Temperature.Search.API
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<SearchDbConfig>(Configuration);
 
+          
+            
+            
             // CORS
             services.AddCors();
 
@@ -73,7 +99,7 @@ namespace Leanheat.Temperature.Search.API
 
 
 
-        
+        // Configure ===========================================================================================
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         {
             if (env.IsDevelopment())
@@ -88,6 +114,8 @@ namespace Leanheat.Temperature.Search.API
             app.UseHttpsRedirection();
             app.UseRouting();
 
+          
+            
             // CORS - Allow calling the API from WebBrowsers
             app.UseCors(x => x
                 .AllowAnyMethod()

@@ -1,8 +1,11 @@
+using GreenPipes;
 using Leanheat.SearchLogger.Application.Interfaces;
 using Leanheat.SearchLogger.Application.Interfaces.Infrastructure;
 using Leanheat.SearchLogger.Application.Services;
+using Leanheat.SearchLogger.Application.Services.RabitMq;
 using Leanheat.SearchLogger.MongoDB;
 using Leanheat.SearchLogger.MongoDB.Models;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,8 +25,7 @@ namespace Leanheat.SearchLogger.API
     public class Startup
     {
 
-
-
+        // Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,10 +33,12 @@ namespace Leanheat.SearchLogger.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
 
+
+
+        // Configure Services ================================================================================= 
+        public void ConfigureServices(IServiceCollection services)// This method gets called by the runtime. Use this method to add services to the container.
+        {
             services.AddMvc();
 
             // MongoDB - Config - Connectionstring-------------------------------------------------------------
@@ -50,11 +54,43 @@ namespace Leanheat.SearchLogger.API
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<SearchLogDbConfig>(Configuration);
 
+
+
             // CORS
             services.AddCors();
 
+            
 
+            // Services
             services.AddTransient<ISearchLoggerService, SearchLoggerService>();
+
+
+
+            // RABIT MQ
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<SearchLogConsumer>();
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                {
+                    cfg.UseHealthCheck(provider);
+                    cfg.Host(new Uri("rabbitmq://localhost"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+
+                    cfg.ReceiveEndpoint("searchLogQueue", ep =>
+                    {
+                        ep.PrefetchCount = 16;
+                        ep.UseMessageRetry(r => r.Interval(2, 100));
+                        ep.ConfigureConsumer<SearchLogConsumer>(provider);
+                    });
+                }));
+            });
+            services.AddMassTransitHostedService();
+
+
 
 
             services.AddControllers();
@@ -70,8 +106,8 @@ namespace Leanheat.SearchLogger.API
 
 
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // Configure ===========================================================================================
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         {
             if (env.IsDevelopment())
             {
@@ -85,6 +121,7 @@ namespace Leanheat.SearchLogger.API
             app.UseHttpsRedirection();
             app.UseRouting();
 
+           
             // CORS - Allow calling the API from WebBrowsers
             app.UseCors(x => x
                 .AllowAnyMethod()

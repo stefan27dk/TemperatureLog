@@ -9,7 +9,7 @@ namespace Leanheat.Temperature.Search.Application.Interfaces
 {
     public interface ISearchServices
     {
-        List<SearchModel> GetSearchResult(string searchParam);
-        List<SearchModel> GetAll();
+        Task<List<SearchModel>> GetSearchResult(string searchParam);
+        Task<List<SearchModel>> GetAll();
     }
 }
