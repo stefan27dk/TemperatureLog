@@ -1,4 +1,5 @@
-﻿using Leanheat.Temperature.Search.Application.Interfaces;
+﻿using Leanheat.SearchLogger.Domain.Models;
+using Leanheat.Temperature.Search.Application.Interfaces;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -34,9 +35,11 @@ namespace Leanheat.Temperature.Search.API.Controllers
         {
             if (searchParam != null)
             {
-                Uri uri = new Uri("rabbitmq://localhost/searchLogQueue");
+                var a = new SearchLog();
+                a.Search = searchParam;
+                Uri uri = new Uri("rabbitmq://192.168.99.100/searchLogQueue");
                 var endPoint = await _bus.GetSendEndpoint(uri);
-                await endPoint.Send(searchParam);
+                await endPoint.Send(a);
             }
             return StatusCode(200, await _searchServices.GetSearchResult(searchParam));
         }

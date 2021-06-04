@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Leanheat.SearchLogger.Domain\Leanheat.SearchLogger.Domain.csproj" />
     <ProjectReference Include="..\Leanheat.Temperature.Search.Application\Leanheat.Temperature.Search.Application.csproj" />
     <ProjectReference Include="..\Leanheat.Temperature.Search.MongoDB\Leanheat.Temperature.Search.MongoDB.csproj" />
   </ItemGroup>

@@ -73,10 +73,10 @@ namespace Leanheat.SearchLogger.API
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
                     cfg.UseHealthCheck(provider);
-                    cfg.Host(new Uri("rabbitmq://localhost"), h =>
+                    cfg.Host(new Uri("rabbitmq://192.168.99.100"), h =>
                     {
-                        h.Username("guest");
-                        h.Password("guest");
+                        h.Username("user123");
+                        h.Password("user123");
                     });
 
 

@@ -47,10 +47,10 @@ namespace Leanheat.Temperature.Search.API
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
                 {
                     config.UseHealthCheck(provider);
-                    config.Host(new Uri("rabbitmq://localhost"), h =>
+                    config.Host(new Uri("rabbitmq://192.168.99.100"), h =>
                     {
-                        h.Username("guest");
-                        h.Password("guest");
+                        h.Username("user123");
+                        h.Password("user123");
                     });
                 }));
             });

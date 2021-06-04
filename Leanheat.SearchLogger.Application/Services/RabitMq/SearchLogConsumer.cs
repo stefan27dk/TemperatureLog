@@ -27,7 +27,8 @@ namespace Leanheat.SearchLogger.Application.Services.RabitMq
         public async Task Consume(ConsumeContext<SearchLog> context)
         {
             //var data = context.Message;
-            await _searchLoggerService.AddLog(context.Message);  // Save to DB
+            var msg = context.Message;
+            await _searchLoggerService.AddLog(msg);  // Save to DB
         }
 
     }
