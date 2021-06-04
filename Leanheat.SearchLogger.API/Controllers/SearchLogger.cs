@@ -32,8 +32,10 @@ namespace Leanheat.SearchLogger.API.Controllers
         [Route("AddLog")]
         public async Task<IActionResult> AddLog(SearchLog searchString)
         {
-            await _searchLoggerService.AddLog(searchString);
-            return CreatedAtRoute("AddLog", new { id = searchString.Id }, searchString);
+
+            return StatusCode(200, await _searchLoggerService.AddLog(searchString));
+            //return CreatedAtRoute("AddLog", new { id = searchString.Id }, searchString);
+            
 
         }
 

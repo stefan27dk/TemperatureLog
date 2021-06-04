@@ -1,4 +1,5 @@
 ﻿using Leanheat.SearchLogger.Application.Interfaces;
+using Leanheat.SearchLogger.Application.Interfaces.Infrastructure;
 using Leanheat.SearchLogger.Domain.Models;
 using MongoDB.Driver;
 using System;
@@ -17,9 +18,9 @@ namespace Leanheat.SearchLogger.Application.Services
 
 
         // Cosntructor
-        public SearchLoggerService(IMongoCollection<SearchLog> searchLogs)
+        public SearchLoggerService(IDbClient dbClient)
         {
-            _SearchLogs = searchLogs;
+            _SearchLogs = dbClient.GetSearchLogCollection();
         }
 
 
