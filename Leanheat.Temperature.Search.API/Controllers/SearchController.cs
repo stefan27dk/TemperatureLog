@@ -1,6 +1,8 @@
-﻿using Leanheat.SearchLogger.Domain.Models;
+﻿
+using Leanheat.Common.Models;
 using Leanheat.Temperature.Search.Application.Interfaces;
 using Leanheat.Temperature.Search.Application.Settings;
+using Leanheat.Temperature.Search.Domain.Models;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -40,11 +42,12 @@ namespace Leanheat.Temperature.Search.API.Controllers
             // Send RabbitMQ - MSG
             if (searchParam != null)
             {
-                var a = new SearchLog();
-                a.Search = searchParam;
+                SearchLog searchLog = new SearchLog();
+                searchLog.Search = searchParam;
+
                 Uri uri = new Uri(ConnectionSettings.RabbitMqAddress + "/searchLogQueue");
                 var endPoint = await _bus.GetSendEndpoint(uri);
-                await endPoint.Send(a);
+                await endPoint.Send(searchLog);
             }
 
             // Return the Search Result
@@ -58,7 +61,7 @@ namespace Leanheat.Temperature.Search.API.Controllers
 
         // Get - All================================================================================================
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetAll")]                  
         public IActionResult GetAll()
         {
             return Ok(_searchServices.GetAll());

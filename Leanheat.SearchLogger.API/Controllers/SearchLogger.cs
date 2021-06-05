@@ -1,5 +1,5 @@
-﻿using Leanheat.SearchLogger.Application.Interfaces;
-using Leanheat.SearchLogger.Domain.Models;
+﻿using Leanheat.Common.Models;
+using Leanheat.SearchLogger.Application.Interfaces; 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

@@ -1,5 +1,5 @@
-﻿using Leanheat.SearchLogger.Application.Interfaces;
-using Leanheat.SearchLogger.Domain.Models;
+﻿using Leanheat.Common.Models;
+using Leanheat.SearchLogger.Application.Interfaces;   
 using MassTransit;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,8 @@ namespace Leanheat.SearchLogger.Application.Services.RabitMq
         // Services
         private readonly ISearchLoggerService _searchLoggerService;
 
-
+        // Props
+        //SearchLog log = new SearchLog();
 
         // || Constructor || =============================================================================================
         public SearchLogConsumer(ISearchLoggerService searchLoggerService)
@@ -28,10 +29,9 @@ namespace Leanheat.SearchLogger.Application.Services.RabitMq
 
         // Consume - Search - Parameter ===================================================================================
         public async Task Consume(ConsumeContext<SearchLog> context)
-        {
-            //var data = context.Message;
-            var msg = context.Message;
-            await _searchLoggerService.AddLog(msg);  // Save to DB
+        {  
+            //log.Search = context.Message.Search;
+            await _searchLoggerService.AddLog(context.Message);  // Save to DB
         }
 
     }

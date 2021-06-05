@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leanheat.SearchLogger.Domain.Models
+namespace Leanheat.Common.Models
 {
-
     [Serializable]
     public class SearchLog
     {
@@ -15,6 +14,6 @@ namespace Leanheat.SearchLogger.Domain.Models
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }
 
-        public string Search { get; set;}
+        public string Search { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Leanheat.SearchLogger.Domain.Models;
+﻿using Leanheat.Common.Models;  
 using System;
 using System.Collections.Generic;
 using System.Linq;

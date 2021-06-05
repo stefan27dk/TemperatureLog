@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Leanheat.Common\Leanheat.Common.csproj" />
     <ProjectReference Include="..\Leanheat.SearchLogger.Domain\Leanheat.SearchLogger.Domain.csproj" />
   </ItemGroup>
 

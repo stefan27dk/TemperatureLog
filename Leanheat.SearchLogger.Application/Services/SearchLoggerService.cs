@@ -1,6 +1,7 @@
-﻿using Leanheat.SearchLogger.Application.Interfaces;
+﻿using Leanheat.Common.Models;
+using Leanheat.SearchLogger.Application.Interfaces;
 using Leanheat.SearchLogger.Application.Interfaces.Infrastructure;
-using Leanheat.SearchLogger.Domain.Models;
+ 
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
