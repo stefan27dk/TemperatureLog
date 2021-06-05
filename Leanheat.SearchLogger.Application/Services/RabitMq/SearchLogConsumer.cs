@@ -16,7 +16,8 @@ namespace Leanheat.SearchLogger.Application.Services.RabitMq
         private readonly ISearchLoggerService _searchLoggerService;
 
 
-        // Cosntructor
+
+        // || Constructor || =============================================================================================
         public SearchLogConsumer(ISearchLoggerService searchLoggerService)
         {
             _searchLoggerService = searchLoggerService;
@@ -24,6 +25,8 @@ namespace Leanheat.SearchLogger.Application.Services.RabitMq
 
 
 
+
+        // Consume - Search - Parameter ===================================================================================
         public async Task Consume(ConsumeContext<SearchLog> context)
         {
             //var data = context.Message;

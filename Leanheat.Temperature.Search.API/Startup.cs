@@ -1,6 +1,7 @@
 using Leanheat.Temperature.Search.Application.Interfaces;
 using Leanheat.Temperature.Search.Application.Interfaces.Infrastructure;
 using Leanheat.Temperature.Search.Application.Services;
+using Leanheat.Temperature.Search.Application.Settings;
 using Leanheat.Temperature.Search.MongoDB;
 using Leanheat.Temperature.Search.MongoDB.Models;
 using MassTransit;
@@ -47,10 +48,10 @@ namespace Leanheat.Temperature.Search.API
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
                 {
                     config.UseHealthCheck(provider);
-                    config.Host(new Uri("rabbitmq://192.168.99.100"), h =>
+                    config.Host(new Uri(ConnectionSettings.RabbitMqAddress), h =>
                     {
-                        h.Username("user123");
-                        h.Password("user123");
+                        h.Username(ConnectionSettings.RabbitMqUsername);
+                        h.Password(ConnectionSettings.RabbitMqPassword);
                     });
                 }));
             });

@@ -3,6 +3,7 @@ using Leanheat.SearchLogger.Application.Interfaces;
 using Leanheat.SearchLogger.Application.Interfaces.Infrastructure;
 using Leanheat.SearchLogger.Application.Services;
 using Leanheat.SearchLogger.Application.Services.RabitMq;
+using Leanheat.SearchLogger.Application.Settings;
 using Leanheat.SearchLogger.MongoDB;
 using Leanheat.SearchLogger.MongoDB.Models;
 using MassTransit;
@@ -73,10 +74,10 @@ namespace Leanheat.SearchLogger.API
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
                     cfg.UseHealthCheck(provider);
-                    cfg.Host(new Uri("rabbitmq://192.168.99.100"), h =>
+                    cfg.Host(new Uri(ConnectionSettings.RabbitMqAddress), h =>
                     {
-                        h.Username("user123");
-                        h.Password("user123");
+                        h.Username(ConnectionSettings.RabbitMqUsername);
+                        h.Password(ConnectionSettings.RabbitMqPassword);
                     });
 
 
