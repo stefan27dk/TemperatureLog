@@ -89,13 +89,13 @@ export async function TempGraph()
 
     const avg = (allValues.reduce((a, b) => a + b, 0) / tempArr.length).toFixed(2); // AVG
     const biggestDif = (max - min).toFixed(2); // Biggest Differnece
-    const mode = ""; // Typpetal
+    //const mode = ""; // Typpetal
     const median = Median(allValues); // Midel talet
 
    // Data Info Container
     dataInfoContainer.innerHTML = `<span class="dataInfo" style="color:rgb(0, 255, 234);">Min: ${min}°C</span> <span class="dataInfo" style="color:rgb(255, 136, 120);">Max: ${max}°C</span>
         <span class="dataInfo">Avg: ${avg}°C</span> <span class="dataInfo" style="color:lime;">Median: ${median}°C</span>  <span class="dataInfo" style="color:rgb(221, 110, 255);">Biggest Difference: ${biggestDif}°C</span>
-        <span class="dataInfo">Mode: ${mode}</span>`;
+       `;
 
     /*documentFragment.appendChild(dataInfoContainer);*/
 
