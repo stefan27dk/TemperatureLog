@@ -29,14 +29,11 @@
 
         <!--LEFT - SideBar------------------------------------>
         <div id="left-bar" class="left-bar">
-            <a href="/" class="left-bar__link" onclick="" data-link>Dashboard</a>
-            <a href="/Posts" class="left-bar__link" data-link>Posts</a>
-            <a href="/Search" class="left-bar__link" data-link>Search</a>
-            <a href="/MongoGraph" class="left-bar__link" data-link>Mongo Graph</a>
+            <a href="/" id="dashboardLink" class="left-bar__link" onclick="" data-link><img id="dashboardImg" class="icon-img" src="img/SideBar/dashboard-icon.png" data-link />Dashboard</a>
+            <a href="/Search" id="searchLink" class="left-bar__link" onclick="" data-link><img id="searchImg" class="icon-img" src="img/SideBar/search-icon.png" data-link />Search</a>
+            <a href="/Posts" id="mongographLink" class="left-bar__link" onclick="" data-link><img id="mongographImg" class="icon-img" src="img/SideBar/mongo-graph-icon.png" data-link /> Mongo Graph</a>
+            <a href="/Posts" id="postsLink" class="left-bar__link" onclick="" data-link><img id="postsImg" class="icon-img" src="img/SideBar/posts-icon.png" data-link /> Posts</a>
 
-        
-            <a href="/Register" class="topBarItem" data-link><img class="icon-img" src="img/TopBar/register-icon.png" /> Register</a>
-            <a href="/Login" class="topBarItem" data-link> <img class="icon-img" src="img/TopBar/login-icon.png" />Log In</a>
         </div>
 
 
@@ -47,8 +44,8 @@
                 <hr5 id="viewTitle" class="viewTitle"></hr5>
 
                 <div class="user-Html-Container" id="userHtml">
-                    <a href="/Register" class="topBarItem" onclick="" data-link>Register</a>
-                    <a href="/Login" class="topBarItem" onclick="" data-link>Log In</a>
+                    <a href="/Register" class="barItem " onclick="" data-link>Register</a>
+                    <a href="/Login" class="barItem " onclick="" data-link>Log In</a>
                 </div>
 
             </div>

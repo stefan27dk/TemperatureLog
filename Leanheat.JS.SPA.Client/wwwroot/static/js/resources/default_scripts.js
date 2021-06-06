@@ -40,15 +40,15 @@ export async function UpdateUserHtml()
     if (userEmail!='') // If Not Logged In
     {
        userContainer.innerHTML = 
-           `<a id="profile" href="/Profile" class="topBarItem" onclick="" data-link> <img id="profileImg" class="icon-img" src="img/TopBar/user-icon.png" data-link/> ${userEmail}</a>
-           <a id="logout" class="topBarItem" href=""> <img class="icon-img" src="img/TopBar/logout-icon.png"/>Log Out</a >`;
+           `<a id="profile" href="/Profile" class="barItem " onclick="" data-link> <img id="profileImg" class="icon-img" src="img/TopBar/user-icon.png" data-link/> ${userEmail}</a>
+           <a id="logout" class="barItem " href=""> <img class="icon-img" src="img/TopBar/logout-icon.png"/>Log Out</a >`;
 
         document.getElementById('profileImg').onclick = function () { routeTo('/Profile') }; // Add Link to the img
         document.getElementById('logout').onclick = function () { return Logout(this, event); }; // Log Out Event ONCLICK
     }
     else // If Logged In
     {
-        userContainer.innerHTML = '<a href="/Register" class="topBarItem" data-link> <img id="registerImg" class="icon-img" src="img/TopBar/register-icon.png" data-link/> Register</a> <a href = "/Login" class="topBarItem"  data-link> <img class="icon-img" id="loginImg" src="img/TopBar/login-icon.png"  data-link />Log In</a>';
+        userContainer.innerHTML = '<a href="/Register" class="barItem " data-link> <img id="registerImg" class="icon-img" src="img/TopBar/register-icon.png" data-link/> Register</a> <a href = "/Login" class="barItem "  data-link> <img class="icon-img" id="loginImg" src="img/TopBar/login-icon.png"  data-link />Log In</a>';
         document.getElementById('loginImg').onclick = function () { routeTo('/Login') }; // Add Link to the img
         document.getElementById('registerImg').onclick = function () { routeTo('/Register') }; // Add Link to the img
     }     
