@@ -258,7 +258,8 @@
 
 /*================== || MESSAGES ||=======================================================================================*/
 
-.base-Message {
+.base-Message 
+{    
     top: 50px;
     padding: 10px;
     border-radius: 40px;
@@ -273,7 +274,7 @@
     z-index: 100;
     font-weight: bold;
     font-family: Andale Mono, monospace;
- 
+  
 }
 
 
@@ -281,6 +282,7 @@
     .base-Message p {
         background-color: rgb(0, 0, 0, 0.8);
         filter: drop-shadow(0px 0px 10px rgb(0, 0, 0));
+        border-radius: 5px;
     }
 
 
