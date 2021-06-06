@@ -27,11 +27,14 @@ export default class extends AbstractView {
           return `
                <h1 class="subTitleView">Search by Date</h1>
 
-               <form>
-                <input id="datePicker" type="date"  name="date">
-               </form>
+              <div class="searchContainer">
+                    <form>
+                      <input id="datePicker" type="date"  name="date">
+                     </form>
+                    
+                     <div id="searchResultContainer" class="searchResultContainer"></div>
 
-                <div id="searchResultContainer" style="background-color: white; border-radius: 4px; width: 400px; height: auto; padding: 20px; color: yellow; " class="graphContainer"></div>
+               </div>
           `;
       }
 
@@ -57,8 +60,8 @@ export default class extends AbstractView {
             });
 
       
-            //alert(searchResult);
-            let txt ="";
+            let txt = "";
+
             // Extract data from Content Object
             let size = searchResult.length;
             for (var i = 0; i < size; i++)
@@ -69,8 +72,7 @@ export default class extends AbstractView {
 
             searchResultContainer.innerHTML = txt;
         };
-         //https://localhost:44352/Search/GetSearchResult?searchParam=31
-        //alert(document.getElementById('datePicker').value);
+       
     }
 
 }
@@ -79,25 +81,4 @@ export default class extends AbstractView {
 
 
 
-//// ============== || Get User DATA - Populate Update - Form|| =======================================================================================
-//export async function PopulateUpdateForm(formID) {
-//    var currentForm = document.getElementById(formID);  // Get the form   
-//    var resPrommise = await GetUserData();  // Get responce
-
-
-//    // populate the Form
-//    await resPrommise.json().then(content => // Check the response content
-//    {
-//        if (content != null) {
-//            currentForm['email'].value = content['email'];
-//            currentForm['firstname'].value = content['firstname'];
-//            currentForm['lastname'].value = content['lastname'];
-//            if (content['age'] != 0) {
-//                currentForm['age'].value = content['age'];
-//            }
-//            currentForm['phonenumber'].value = content['phonenumber'];
-//        }
-
-//        return;
-//    });
-//}
+ 
