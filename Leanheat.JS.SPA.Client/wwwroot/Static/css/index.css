@@ -175,6 +175,7 @@ a {
     font-family: Arial;
     text-align: center;
     border: solid 1px transparent;
+    filter: drop-shadow(0px 1px 2px black);
 }
 
 
