@@ -25,13 +25,13 @@ export const navigateTo = url => {
 // Router------------------------------------------------------------------------------------>
  const router = async () => {
  const routes = [
-   {path: "/", view: Dashboard}, // On Path "/" use the dashboard class and inject html in the #app div
-   {path: "/Posts", view: Posts },
-     { path: "/Search", view: Settings },
-   {path: "/Register", view: Register },
-   {path: "/Login", view: Login },
-     { path: "/Profile", view: Profile },
-     { path: "/MongoGraph", view: MongoGraph }
+     {path: "/", view: Dashboard}, // On Path "/" use the dashboard class and inject html in the #app div
+     {path: "/Posts", view: Posts },
+     {path: "/Search", view: Settings },
+     {path: "/Register", view: Register },
+     {path: "/Login", view: Login },
+     {path: "/Profile", view: Profile },
+     {path: "/MongoGraph", view: MongoGraph }
 
 
  ];
@@ -89,7 +89,7 @@ export const navigateTo = url => {
          }
      }
 
- const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
+     const view = new match.route.view(); // If match  use the routes array of the router and get the view function for the route
      document.getElementById("app").innerHTML = await view.getHtml();  // Get the #app div and use the view function to inject Html in it from the view class ex."Dashboard, Posts, Settings etc."
      await view.executeViewScript(); // Execute the script forthe specific view
 };

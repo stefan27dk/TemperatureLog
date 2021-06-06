@@ -134,7 +134,7 @@ a {
 /*-------|| SideBar - Left || ----------------------------------------*/
 .left-bar {
     min-width: 100px;
-    max-width: 120px;
+    max-width: 100px;
   
     /*    background: rgb(84,84,84);
     background: linear-gradient(90deg, rgba(84,84,84,1) 0%, rgba(32,31,30,1) 1%, rgba(59,57,59,1) 89%, rgba(30,28,31,1) 94%, rgba(82,80,77,1) 95%);
@@ -158,28 +158,39 @@ a {
 
 
 
-    .left-bar__link {
-        display: block;
-        filter: drop-shadow(1px 1px 5px black);
-        text-shadow: 1px 1px black;
-        padding: 12px;
-        text-decoration: none;
-        color: rgb(255, 186, 112);
-        font-size: 12px;
-        font-weight: 900;
-        font-family:Arial; 
-        text-align: center;
-    }
+.left-bar__link {
+    display: block;
+    filter: drop-shadow(1px 1px 5px black);
+    text-shadow: 1px 1px black;
+    padding: 15px 3px 15px 3px;
+    text-decoration: none;
+    color: rgb(255, 186, 112);
+    font-size: 12px;
+    font-weight: 900;
+    font-family: Arial;
+    text-align: center;
+
+    background: rgba(92, 163, 255, 0.1);
+    /*filter: drop-shadow(1px 1px 5px aqua);*/
+    margin-bottom: 7px;
+    border-radius: 4px;
+}
 
 
     .left-bar__link:hover {
-        background: rgba(255, 255, 255, 0.05);
-        filter: drop-shadow(1px 1px 5px aqua);
+        background: rgba( 0, 255, 251, 0.3);
+        filter: drop-shadow(1px 1px 5px black);
     }
 
 
 
-
+.icon-img-lef-bar {
+    width: 30px;
+    height: auto;
+    margin: auto;
+    display: block;
+    filter: drop-shadow(1px 1px 5px black);
+}
  
 
  
@@ -279,3 +290,37 @@ a {
 
 
 
+
+
+
+
+
+
+
+
+/*=============|| MOBILE ||============================================*/
+
+@media screen and (max-width: 600px) 
+{
+    .left-bar {
+       min-width: 65px;
+       max-width:65px;
+       width: 65px;
+    }
+
+
+    .left-bar__link {
+        padding: 14px 2px 14px 2px;
+        font-size: 9px;
+        word-break:break-word;
+    }
+
+
+
+    .icon-img-lef-bar {
+    }
+}
+
+   
+   
+ 
