@@ -19,7 +19,7 @@ export default class extends AbstractView {
       async getHtml()
       {
           return `  
-                    <p class="subTitleView"> Prediction Graf</p>
+                    <p class="subTitleView"> Prediction Graph</p>
                   `;
       }
 
