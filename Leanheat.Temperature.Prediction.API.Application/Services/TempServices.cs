@@ -4,6 +4,7 @@ using Leanheat.Temperature.Prediction.API.Application.Interfaces.Infrastructure;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Leanheat.Temperature.Prediction.API.Application.Services
 {
@@ -11,27 +12,46 @@ namespace Leanheat.Temperature.Prediction.API.Application.Services
     {
         private readonly IMongoCollection<Temp> _temps;
 
+
+        // Controller
         public TempServices(IDbClient dbClient)
         {
             _temps = dbClient.GetTempCollection();
         }
 
-        public Temp AddTemp(Temp temp)
+
+        // Add Temp
+        public async Task AddTempAsync(Temp temp)
         {
-            _temps.InsertOne(temp);
-            return temp;
+           await _temps.InsertOneAsync(temp);  
         }
 
-        public void DeleteTemp(string id)
+
+        // Delete Temp
+        public async Task DeleteTempAsync(string id)
         {
-            _temps.DeleteOne(temp => temp.Id == id);
+           await _temps.DeleteOneAsync(temp => temp.Id == id);
         }
 
-        public Temp GetTemp(string id) => _temps.Find(temp => temp.Id == id).First();
-       
 
-        public List<Temp> GetTemps() => _temps.Find(temp => true).ToList();
-        
-            
+
+        // Get Temp
+        public async Task<Temp> GetTempByIdAsync(string id)
+        {
+            //return Task.FromResult(_temps.Find(temp => temp.Id == id).First());
+            return await _temps.FindAsync(temp => temp.Id == id).Result.FirstOrDefaultAsync();
+
+        }
+
+
+
+        // Get All Temps
+        //public Task<List<Temp>> GetAllTemps() => _temps.Find(temp => true).ToList();
+
+        public Task<List<Temp>> GetAllTempsAsync()
+        {
+           return  _temps.FindAsync(temp => true).Result.ToListAsync();
+        }
+      
     }
 }

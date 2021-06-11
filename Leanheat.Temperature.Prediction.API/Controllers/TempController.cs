@@ -38,55 +38,51 @@ namespace Leanheat.Temperature.Prediction.API.Controllers
         [Route("GetAllTemp")]
         public async Task<IActionResult> GetAllTemp()
         {
+           // COOKIES------------->
+            //// Request
+            //var requestCookies = HttpContext.Request.Cookies; // Get cookies from the request
 
+            //CookieContainer cookies = new CookieContainer(); // Cookie JAR
+            //HttpClientHandler handler = new HttpClientHandler();
+            //handler.CookieContainer = cookies;
 
-            // Request
-            var requestCookies = HttpContext.Request.Cookies; // Get cookies from the request
+            //HttpClient client = new HttpClient(handler);
+            //var response = client.DefaultRequestHeaders;  // The Response
 
-            CookieContainer cookies = new CookieContainer(); // Cookie JAR
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.CookieContainer = cookies;
+          //var cookies1 = HttpContext.Request.Cookies;
 
-            HttpClient client = new HttpClient(handler);
-            var response = client.DefaultRequestHeaders;  // The Response
+          //var myCookie = Request.Cookies;
 
-
-
-
-          var cookies1 = HttpContext.Request.Cookies;
-
-            var myCookie = Request.Cookies;
-
-
-
-            return Ok(_tempServices.GetTemps());
+            return Ok(await _tempServices.GetAllTempsAsync());
         }
 
 
         // Get - Temp ============================================================================== 
-        [HttpGet("{id}", Name = "GetTemp")]
-        public IActionResult GetTemp(string id)
+        //[Route("GetTemp")]
+        [HttpGet("GetTemp/{id}")]
+        public async Task<IActionResult> GetTemp(string id)
         {
-            return Ok(_tempServices.GetTemp(id));
+            return Ok(await _tempServices.GetTempByIdAsync(id));
         }
 
 
 
         // ADD - Temp ============================================================================== 
+        [Route("AddTemp")]
         [HttpPost]
-        public IActionResult AddTemp(Temp temp)
+        public async Task<IActionResult> AddTemp(Temp temp)
         {
-            _tempServices.AddTemp(temp);
-            return CreatedAtRoute("GetTemp", new { id = temp.Id }, temp);
+            await _tempServices.AddTempAsync(temp);
+            return Ok();
         }
 
 
 
         // Delete - Temp =========================================================================== 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteTemp(string id)
+        [HttpDelete("DeleteTemp/{id}")]
+        public async Task<IActionResult> DeleteTemp(string id)
         {
-            _tempServices.DeleteTemp(id);
+            await _tempServices.DeleteTempAsync(id);
             return NoContent();
         }
     }

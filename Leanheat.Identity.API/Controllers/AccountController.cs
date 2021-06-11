@@ -25,14 +25,14 @@ namespace Leanheat.Identity.API.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
-        private readonly DataProtectorTokenProvider<ApplicationUser> _dataProtectorTokenProvider;
+        //private readonly DataProtectorTokenProvider<ApplicationUser> _dataProtectorTokenProvider;
 
         // || Constructor || ===================================================================
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, DataProtectorTokenProvider<ApplicationUser> dataProtectorTokenProvider = null)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            _dataProtectorTokenProvider = dataProtectorTokenProvider;
+            //_dataProtectorTokenProvider = dataProtectorTokenProvider;
         }
 
 

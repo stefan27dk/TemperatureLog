@@ -1,4 +1,5 @@
 ﻿using Leanheat.Temperature.Prediction.API.Domain.Models;
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,19 @@ namespace Leanheat.Temperature.Prediction.API.Application.Interfaces
 {
     public interface ITempServices
     {
-        List<Temp> GetTemps();
+        // Get Tempeartures
+        public Task<List<Temp>> GetAllTempsAsync();
 
-        Temp GetTemp(string id);
-        Temp AddTemp(Temp temp);
 
-        void DeleteTemp(string id);
+        // Get Temperature
+       public Task<Temp> GetTempByIdAsync(string id);
+     
+        
+        // Add Temperature
+        public Task AddTempAsync(Temp temp);
+
+
+        // Delete Temperature
+        public Task DeleteTempAsync(string id);
     }
 }
