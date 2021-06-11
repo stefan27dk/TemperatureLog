@@ -165,24 +165,25 @@ namespace Leanheat.Identity.API.Controllers
                                    for (int i = 0; i < usersInRole.Count; i++) // Loop and reassign users
                                    {
                                       changeRoleResult = await userManager.AddToRoleAsync(usersInRole[i], reAssignRole);
-                                      if(changeRoleResult.Succeeded)
-                                      {
-                                        rollbackList.Add(usersInRole[i]);
-                                      }
+
+                                      //if(changeRoleResult.Succeeded)
+                                      //{
+                                      //  rollbackList.Add(usersInRole[i]);
+                                      //}
                   
                   
-                                      else // If cant reassign users
-                                      {
+                                      //else // If cant reassign users
+                                      //{
                   
-                                          if(rollbackList.Count != 0)  // If list not empty Rollback
-                                          {
-                                             for (int k = 0; k < rollbackList.Count; k++)
-                                             {
-                                               await userManager.AddToRoleAsync(rollbackList[k], roleName);  // Rollback
-                                             }
-                                          }
-                                          return StatusCode(500, "[\n \"Fatal error: could not reassign one or more of the users - Please try again\" \n]"); // If list empty return just message
-                                      }
+                                      //    if(rollbackList.Count != 0)  // If list not empty Rollback
+                                      //    {
+                                      //       for (int k = 0; k < rollbackList.Count; k++)
+                                      //       {
+                                      //         await userManager.AddToRoleAsync(rollbackList[k], roleName);  // Rollback
+                                      //       }
+                                      //    }
+                                      //    return StatusCode(500, "[\n \"Fatal error: could not reassign one or more of the users - Please try again\" \n]"); // If list empty return just message
+                                      //}
                   
                                    }
                                }
