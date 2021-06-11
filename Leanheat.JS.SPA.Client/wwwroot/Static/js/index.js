@@ -78,7 +78,7 @@ export const navigateTo = url => {
 
 
      // Check if User logged in than show Content - ex. Prifile - Update etc.
-     if (location.pathname == '/Profile' || location.pathname == '/' || location.pathname == '/MongoGraph')
+     if (location.pathname == '/Profile' || location.pathname == '/' || location.pathname == '/MongoGraph' || location.pathname == '/Search')
      {
          if (await GetUserEmailAsString() == '')
          {
