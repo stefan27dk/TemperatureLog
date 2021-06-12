@@ -54,7 +54,6 @@ namespace Leanheat.Temperature.Search.API.Controllers
             }
 
             return StatusCode(400, "Invalid input");
-
         }
 
 
