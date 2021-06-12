@@ -48,10 +48,13 @@ namespace Leanheat.Temperature.Search.API.Controllers
                 Uri uri = new Uri(ConnectionSettings.RabbitMqAddress + "/searchLogQueue");
                 var endPoint = await _bus.GetSendEndpoint(uri);
                 await endPoint.Send(searchLog);
+               
+                // Return the Search Result
+               return StatusCode(200, await _searchServices.GetSearchResult(searchParam));
             }
 
-            // Return the Search Result
-            return StatusCode(200, await _searchServices.GetSearchResult(searchParam));
+            return StatusCode(400, "Invalid input");
+
         }
 
 
