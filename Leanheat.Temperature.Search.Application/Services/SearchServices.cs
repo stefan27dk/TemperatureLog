@@ -25,9 +25,9 @@ namespace Leanheat.Temperature.Search.Application.Services
    
     
         //public List<SearchModel> GetSearchResult(string searchParam) => _searchs.Find(x => x.Datetime == searchParam).ToList();
-        public async Task<List<SearchModel>> GetSearchResult(string searchParam) => _collection.Find(new BsonDocument { { "Datetime", new BsonDocument { { "$regex", searchParam }, { "$options", "i" } } } }).ToList(); // Search DateTime "Like"
+        public async Task<List<SearchModel>> GetSearchResult(string searchParam) => await _collection.FindAsync(new BsonDocument { { "Datetime", new BsonDocument { { "$regex", searchParam }, { "$options", "i" } } } }).Result.ToListAsync(); // Search DateTime "Like"
 
-        public async Task<List<SearchModel>> GetAll() => _collection.Find(x => true).ToList();
+        public async Task<List<SearchModel>> GetAll() => await _collection.FindAsync(x => true).Result.ToListAsync();
  
     }
 }
