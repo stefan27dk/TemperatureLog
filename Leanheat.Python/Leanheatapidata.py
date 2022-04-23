@@ -15,7 +15,7 @@ from pymongo import MongoClient
 from datetime import timedelta
 
 api = "https://api.leanheat.fi/v2/apartments/rawData?site_name=lh_lysholtalle11a_vejle&data=apt_temperature&start_time=1559347200"
-key = "GZXXOHQ90LJSJDBKUC19R0QYFWOAUX67KZZGLK5UOPPA0EG3MCNT9TQEOIEEDPJ1TR88BBWHEMLCCNRL7CCCZFRUOSZN9HIAG078Y3254NP44XL6NELAKYN7UMXO47DI"
+key = "GZXXOHQ90LJSJDBKUC19R0QYFW*************************************************"
 
 leanheat_temp = []
 leanheat_time = []
